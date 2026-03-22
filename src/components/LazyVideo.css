@@ -1,0 +1,48 @@
+.lazy-video-container {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 aspect ratio */
+  background: #0a0a0a;
+  border-radius: 0;
+  overflow: hidden;
+}
+
+.lazy-video-iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  /* Controles ocultos por defecto, visibles en hover */
+  opacity: 0.85;
+  transition: opacity 0.3s ease;
+}
+
+.lazy-video-container:hover .lazy-video-iframe {
+  opacity: 1;
+}
+
+/* Ocultar la barra de controles del iframe hasta hover */
+.lazy-video-container .lazy-video-iframe {
+  pointer-events: none;
+}
+.lazy-video-container:hover .lazy-video-iframe {
+  pointer-events: auto;
+}
+
+.lazy-video-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+}
+
+.lazy-video-save-data-msg {
+  color: #f5a623;
+  font-size: 0.85rem;
+  font-family: var(--font-body);
+  text-align: center;
+  padding: 1rem;
+}

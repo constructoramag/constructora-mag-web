@@ -1,0 +1,66 @@
+import { useSiteContent } from '../hooks/useSiteContent';
+import './ServicesSection.css';
+
+function ServicesSection() {
+    const { services, stats, loading } = useSiteContent();
+
+    // Valores de stats: desde Sanity o fallback del hook
+    const statItems = [
+        { value: stats?.years ?? '+10', label: 'Años de experiencia' },
+        { value: stats?.projects ?? '+150', label: 'Proyectos realizados' },
+        { value: stats?.satisfaction ?? '100%', label: 'Clientes satisfechos' },
+        { value: stats?.coverage ?? 'RM', label: 'Región Metropolitana' },
+    ];
+
+    return (
+        <section id="servicios" className="services section">
+            <div className="container">
+                <div className="section-header">
+                    <span className="section-eyebrow">Lo que hacemos</span>
+                    <h2 className="section-title">Nuestros Servicios</h2>
+                    <p className="section-subtitle">
+                        Ofrecemos soluciones integrales en construcción y remodelación
+                        con mano de obra calificada y materiales de primera calidad.
+                    </p>
+                </div>
+
+                {loading ? (
+                    <div className="services__grid">
+                        {Array.from({ length: 6 }).map((_, i) => (
+                            <div key={i} className="service-card service-card--skeleton">
+                                <div className="skeleton skeleton--icon" />
+                                <div className="skeleton skeleton--title" />
+                                <div className="skeleton skeleton--text" />
+                                <div className="skeleton skeleton--text skeleton--text-short" />
+                            </div>
+                        ))}
+                    </div>
+                ) : (
+                    <div className="services__grid">
+                        {(services ?? []).map((service) => (
+                            <div key={service.id ?? service.title} className="service-card">
+                                <div className="service-card__icon" aria-hidden="true">
+                                    {service.icon}
+                                </div>
+                                <h3 className="service-card__title">{service.title}</h3>
+                                <p className="service-card__desc">{service.description}</p>
+                            </div>
+                        ))}
+                    </div>
+                )}
+
+                {/* Stats bar */}
+                <div className="services__stats">
+                    {statItems.map((stat) => (
+                        <div key={stat.label} className="stat-item">
+                            <span className="stat-value">{stat.value}</span>
+                            <span className="stat-label">{stat.label}</span>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+}
+
+export default ServicesSection;
