@@ -12,8 +12,8 @@
   --surface: #111111;
   --card-bg: #141414;
   --border: rgba(255, 255, 255, 0.08);
-  --accent: #d4af37;
-  --accent-dim: rgba(212, 175, 55, 0.35);
+  --accent: #e4aa15;
+  --accent-dim: rgba(228, 170, 21, 0.35);
 
   /* Text */
   --text-primary: #ffffff;
@@ -131,9 +131,9 @@ a {
 }
 
 .btn--primary:hover {
-  background: #ebd275;
+  background: #f5bd25;
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(212, 175, 55, 0.35);
+  box-shadow: 0 8px 24px rgba(228, 170, 21, 0.35);
 }
 
 .btn--outline {
