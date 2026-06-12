@@ -14,6 +14,7 @@
   --border: rgba(255, 255, 255, 0.08);
   --accent: #e4aa15;
   --accent-dim: rgba(228, 170, 21, 0.35);
+  --accent-gradient: linear-gradient(135deg, #e4aa15 0%, #ffe97e 30%, #e4aa15 60%, #b47a06 100%);
 
   /* Text */
   --text-primary: #ffffff;
@@ -84,10 +85,12 @@ a {
   display: inline-block;
   font-family: var(--font-body);
   font-size: 0.75rem;
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--accent);
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   margin-bottom: 0.75rem;
 }
 
@@ -126,8 +129,9 @@ a {
 }
 
 .btn--primary {
-  background: var(--accent);
+  background: var(--accent-gradient);
   color: #000;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.4);
 }
 
 .btn--primary:hover {

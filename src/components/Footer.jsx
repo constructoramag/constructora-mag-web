@@ -18,16 +18,19 @@ function Footer() {
                             <span className="footer__logo-sub">Servicios Integrales</span>
                         </div>
                         <div className="footer__map-small">
-                            <iframe
-                                src="https://maps.google.com/maps?q=Venezuela%20652,%20Recoleta,%20Chile&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                                width="100%"
-                                height="150"
-                                style={{ border: 0, borderRadius: '12px', marginTop: '1rem', marginBottom: '0.8rem' }}
-                                allowFullScreen=""
-                                loading="lazy"
-                                referrerPolicy="no-referrer-when-downgrade"
-                                title="Ubicación MAG Servicios Integrales"
-                            ></iframe>
+                            <a href="https://maps.app.goo.gl/Uw2JgBLmc6JiQAPp8" target="_blank" rel="noopener noreferrer" className="footer__map-link">
+                                <div className="footer__map-overlay"></div>
+                                <iframe
+                                    src="https://maps.google.com/maps?q=Venezuela%20652,%20Recoleta,%20Chile&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                                    width="100%"
+                                    height="150"
+                                    style={{ border: 0, borderRadius: '12px' }}
+                                    allowFullScreen=""
+                                    loading="lazy"
+                                    referrerPolicy="no-referrer-when-downgrade"
+                                    title="Ubicación MAG Servicios Integrales"
+                                ></iframe>
+                            </a>
                         </div>
                     </div>
 
