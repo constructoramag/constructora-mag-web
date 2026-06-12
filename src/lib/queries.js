@@ -44,7 +44,9 @@ export const SITE_CONTENT_QUERY = `
     services[]{
       icon,
       title,
-      description
+      description,
+      image,
+      "imageUrl": image.asset->url
     },
     statYears,
     statProjects,

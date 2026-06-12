@@ -2,7 +2,7 @@
    MAG Servicios Integrales — Design System
    ════════════════════════════════════════════════════════════════ */
 
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@400;500;600;700&display=swap');
 
 /* ── Tokens ──────────────────────────────────────────────────── */
 :root {
@@ -22,8 +22,8 @@
   --text-muted: rgba(255, 255, 255, 0.35);
 
   /* Typography */
-  --font-heading: 'Outfit', sans-serif;
-  --font-body: 'Inter', sans-serif;
+  --font-heading: 'Montserrat', sans-serif;
+  --font-body: 'Open Sans', sans-serif;
 
   /* Layout */
   --container: 1200px;

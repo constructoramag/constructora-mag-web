@@ -28,10 +28,13 @@ function ServicesSection() {
                     <div className="services__grid">
                         {Array.from({ length: 6 }).map((_, i) => (
                             <div key={i} className="service-card service-card--skeleton">
-                                <div className="skeleton skeleton--icon" />
-                                <div className="skeleton skeleton--title" />
-                                <div className="skeleton skeleton--text" />
-                                <div className="skeleton skeleton--text skeleton--text-short" />
+                                <div className="skeleton skeleton--media" style={{aspectRatio: '16/9', borderRadius: '16px 16px 0 0', height: '200px', width: '100%'}} />
+                                <div className="service-card__content">
+                                    <div className="skeleton skeleton--icon" />
+                                    <div className="skeleton skeleton--title" />
+                                    <div className="skeleton skeleton--text" />
+                                    <div className="skeleton skeleton--text skeleton--text-short" />
+                                </div>
                             </div>
                         ))}
                     </div>
@@ -39,11 +42,18 @@ function ServicesSection() {
                     <div className="services__grid">
                         {(services ?? []).map((service) => (
                             <div key={service.id ?? service.title} className="service-card">
-                                <div className="service-card__icon material-symbols-outlined" aria-hidden="true">
-                                    {service.icon}
+                                {service.imageUrl && (
+                                    <div className="service-card__image-wrapper">
+                                        <img src={service.imageUrl} alt={service.title} className="service-card__image" />
+                                    </div>
+                                )}
+                                <div className="service-card__content">
+                                    <div className="service-card__icon material-symbols-outlined" aria-hidden="true">
+                                        {service.icon}
+                                    </div>
+                                    <h3 className="service-card__title">{service.title}</h3>
+                                    <p className="service-card__desc">{service.description}</p>
                                 </div>
-                                <h3 className="service-card__title">{service.title}</h3>
-                                <p className="service-card__desc">{service.description}</p>
                             </div>
                         ))}
                     </div>

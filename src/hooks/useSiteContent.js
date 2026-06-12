@@ -112,7 +112,12 @@ function normalizeSanityContent(raw) {
             location: raw.companyLocation ?? staticContent.company.location,
         },
         services: raw.services?.length
-            ? raw.services.map((s, i) => ({ ...s, id: i + 1 }))
+            ? raw.services.map((s, i) => ({ 
+                ...s, 
+                id: i + 1,
+                // Si viene de Sanity usa imageUrl, sino busca el del fallback por título o índice
+                imageUrl: s.imageUrl ?? (staticContent.services.find(stat => stat.title === s.title)?.imageUrl || staticContent.services[0].imageUrl)
+              }))
             : staticContent.services,
         stats: {
             years: raw.statYears ?? '+10',

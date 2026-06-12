@@ -34,6 +34,7 @@ export const siteContent = {
             title: "Construcción",
             description:
                 "Construcción de casas nuevas y proyectos habitacionales desde cero, con materiales de primera calidad.",
+            imageUrl: "https://images.unsplash.com/photo-1541888086425-d81bb19240f5?q=80&w=600&auto=format&fit=crop",
         },
         {
             id: 2,
@@ -41,6 +42,7 @@ export const siteContent = {
             title: "Remodelación",
             description:
                 "Transformamos tu espacio con remodelaciones integrales: cocinas, baños, living y dormitorios.",
+            imageUrl: "https://images.unsplash.com/photo-1484154218962-a197022b5858?q=80&w=600&auto=format&fit=crop",
         },
         {
             id: 3,
@@ -48,6 +50,7 @@ export const siteContent = {
             title: "Ampliaciones",
             description:
                 "Ampliamos tu vivienda con segundos pisos, dormitorios adicionales y espacios funcionales.",
+            imageUrl: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=600&auto=format&fit=crop",
         },
         {
             id: 4,
@@ -55,6 +58,7 @@ export const siteContent = {
             title: "Quinchos",
             description:
                 "Diseño y construcción de quinchos, pérgolas y jardines para disfrutar al aire libre.",
+            imageUrl: "https://images.unsplash.com/photo-1585128719715-46776b56a0fb?q=80&w=600&auto=format&fit=crop",
         },
         {
             id: 5,
@@ -62,6 +66,7 @@ export const siteContent = {
             title: "Pintura",
             description:
                 "Pintura interior y exterior con preparación de superficies y acabados duraderos.",
+            imageUrl: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?q=80&w=600&auto=format&fit=crop",
         },
         {
             id: 6,
@@ -69,6 +74,7 @@ export const siteContent = {
             title: "Obras Menores",
             description:
                 "Cierre perimetral, antejardines, pavimentación y todo tipo de trabajos menores.",
+            imageUrl: "https://images.unsplash.com/photo-1504307651254-35680f356f58?q=80&w=600&auto=format&fit=crop",
         },
     ],
 

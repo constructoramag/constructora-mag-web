@@ -21,6 +21,15 @@ export const serviceItem = {
             validation: (Rule) => Rule.required(),
         },
         {
+            name: 'image',
+            title: 'Imagen representativa',
+            type: 'image',
+            options: {
+                hotspot: true,
+            },
+            description: 'Sube una imagen atractiva para este servicio.',
+        },
+        {
             name: 'description',
             title: 'Descripción corta',
             type: 'text',
