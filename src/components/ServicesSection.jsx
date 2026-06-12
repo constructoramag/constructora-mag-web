@@ -39,7 +39,7 @@ function ServicesSection() {
                     <div className="services__grid">
                         {(services ?? []).map((service) => (
                             <div key={service.id ?? service.title} className="service-card">
-                                <div className="service-card__icon" aria-hidden="true">
+                                <div className="service-card__icon material-symbols-outlined" aria-hidden="true">
                                     {service.icon}
                                 </div>
                                 <h3 className="service-card__title">{service.title}</h3>

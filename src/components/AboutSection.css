@@ -42,7 +42,12 @@
     transition: all 0.3s ease;
     display: inline-flex;
     align-items: center;
+    gap: 0.4rem;
     cursor: pointer;
+}
+
+.about__badge-btn .material-symbols-outlined {
+    font-size: 1.2rem;
 }
 
 .about__badge-btn:hover {

@@ -22,13 +22,13 @@ function AboutSection() {
                         </p>
                         <div className="about__badges">
                             <a href="https://wa.me/56994478840?text=Hola!%20Me%20interesa%20un%20presupuesto." target="_blank" rel="noopener noreferrer" className="about__badge-btn">
-                                ✅ Presupuesto sin costo
+                                <span className="material-symbols-outlined">check_circle</span> Presupuesto sin costo
                             </a>
                             <a href="https://wa.me/56994478840?text=Hola!%20Me%20gustar%C3%ADa%20saber%20sobre%20las%20garant%C3%ADas." target="_blank" rel="noopener noreferrer" className="about__badge-btn">
-                                🛡️ Garantía en trabajos
+                                <span className="material-symbols-outlined">shield</span> Garantía en trabajos
                             </a>
                             <a href="https://wa.me/56994478840?text=Hola!%20Busco%20atenci%C3%B3n%20personalizada." target="_blank" rel="noopener noreferrer" className="about__badge-btn">
-                                🤝 Atención personalizada
+                                <span className="material-symbols-outlined">handshake</span> Atención personalizada
                             </a>
                         </div>
                     </div>

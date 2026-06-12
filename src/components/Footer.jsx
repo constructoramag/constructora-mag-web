@@ -10,6 +10,18 @@ function Footer() {
     return (
         <footer id="contacto" className="footer">
             <div className="container">
+                <div className="footer__map-container">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d850222.7562818968!2d-71.30006733979803!3d-33.61118182963162!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662c5410425af2f%3A0x8475d53c400f0931!2sSantiago%2C%20Regi%C3%B3n%20Metropolitana!5e0!3m2!1ses-419!2scl!4v1717000000000!5m2!1ses-419!2scl"
+                        width="100%"
+                        height="250"
+                        style={{ border: 0, borderRadius: '16px', marginBottom: '3rem' }}
+                        allowFullScreen=""
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
+                        title="Ubicación MAG Servicios Integrales"
+                    ></iframe>
+                </div>
                 <div className="footer__grid">
                     {/* Brand */}
                     <div className="footer__brand">
@@ -32,7 +44,7 @@ function Footer() {
                                         target="_blank" rel="noopener noreferrer"
                                         className="footer__link"
                                     >
-                                        📱 {displayContact.whatsapp1Display ?? displayContact.whatsapp1}
+                                        <span className="material-symbols-outlined">phone</span> {displayContact.whatsapp1Display ?? displayContact.whatsapp1}
                                     </a>
                                 </li>
                             )}
@@ -43,14 +55,14 @@ function Footer() {
                                         target="_blank" rel="noopener noreferrer"
                                         className="footer__link"
                                     >
-                                        📱 {displayContact.whatsapp2Display ?? displayContact.whatsapp2}
+                                        <span className="material-symbols-outlined">phone</span> {displayContact.whatsapp2Display ?? displayContact.whatsapp2}
                                     </a>
                                 </li>
                             )}
                             {displayContact.email && (
                                 <li>
                                     <a href={`mailto:${displayContact.email}`} className="footer__link">
-                                        ✉️ {displayContact.email}
+                                        <span className="material-symbols-outlined">mail</span> {displayContact.email}
                                     </a>
                                 </li>
                             )}
@@ -64,14 +76,14 @@ function Footer() {
                             {displayContact.instagram && (
                                 <li>
                                     <a href={displayContact.instagram} target="_blank" rel="noopener noreferrer" className="footer__link">
-                                        📷 Instagram
+                                        <span className="material-symbols-outlined">photo_camera</span> Instagram
                                     </a>
                                 </li>
                             )}
                             {displayContact.facebook && (
                                 <li>
                                     <a href={displayContact.facebook} target="_blank" rel="noopener noreferrer" className="footer__link">
-                                        👍 Facebook
+                                        <span className="material-symbols-outlined">thumb_up</span> Facebook
                                     </a>
                                 </li>
                             )}
@@ -88,7 +100,7 @@ function Footer() {
                             rel="noopener noreferrer"
                             className="btn btn--primary"
                         >
-                            💬 Cotiza por WhatsApp
+                            <span className="material-symbols-outlined">chat</span> Cotiza por WhatsApp
                         </a>
                     </div>
                 </div>

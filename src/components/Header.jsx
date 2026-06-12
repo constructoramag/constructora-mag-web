@@ -53,7 +53,7 @@ function Header() {
                         rel="noopener noreferrer"
                         className="btn btn--primary btn--sm"
                     >
-                        💬 WhatsApp
+                        <span className="material-symbols-outlined">chat</span> WhatsApp
                     </a>
                 </nav>
 
@@ -88,7 +88,7 @@ function Header() {
                         className="btn btn--primary"
                         style={{ margin: '0.5rem 1.5rem' }}
                     >
-                        💬 WhatsApp
+                        <span className="material-symbols-outlined">chat</span> WhatsApp
                     </a>
                 </nav>
             )}

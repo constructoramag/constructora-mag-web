@@ -78,6 +78,13 @@
     color: var(--text-secondary);
     text-decoration: none;
     transition: color 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.footer__link .material-symbols-outlined {
+    font-size: 1.1rem;
 }
 
 .footer__link:hover {
