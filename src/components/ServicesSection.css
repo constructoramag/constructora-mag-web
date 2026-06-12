@@ -59,8 +59,41 @@
     font-family: var(--font-body);
     font-size: 0.9rem;
     color: var(--text-secondary);
-    line-height: 1.65;
+    line-height: 1.6;
     margin: 0;
+    margin-bottom: 1.5rem;
+}
+
+.service-card__cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.85rem;
+    background: rgba(228, 170, 21, 0.1);
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border-radius: 8px;
+    border: 1px solid rgba(228, 170, 21, 0.2);
+    transition: all 0.3s ease;
+    margin-top: auto;
+}
+
+.service-card__cta svg {
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover .service-card__cta {
+    background: var(--accent);
+    color: var(--primary);
+    border-color: var(--accent);
+}
+
+.service-card:hover .service-card__cta svg {
+    transform: translateX(4px);
 }
 
 /* ── Stats ──────────────────────────────────────────────────────── */

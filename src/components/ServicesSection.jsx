@@ -20,7 +20,7 @@ const itemVariants = {
 };
 
 function ServicesSection() {
-    const { services, stats, loading } = useSiteContent();
+    const { services, stats, contact, loading } = useSiteContent();
 
     // Valores de stats: desde Sanity o fallback del hook
     const statItems = [
@@ -51,6 +51,7 @@ function ServicesSection() {
                                     <div className="skeleton skeleton--title" />
                                     <div className="skeleton skeleton--text" />
                                     <div className="skeleton skeleton--text skeleton--text-short" />
+                                    <div className="skeleton skeleton--btn" style={{ height: '40px', width: '100%', marginTop: '1rem', borderRadius: '8px' }} />
                                 </div>
                             </div>
                         ))}
@@ -73,6 +74,19 @@ function ServicesSection() {
                                 <div className="service-card__content">
                                     <h3 className="service-card__title">{service.title}</h3>
                                     <p className="service-card__desc">{service.description}</p>
+                                    
+                                    <a 
+                                        href={`https://wa.me/${contact?.whatsapp1 || '56994478840'}?text=${encodeURIComponent(`Hola! Estoy viendo su página web y me interesa cotizar el servicio de *${service.title}*.`)}`}
+                                        target="_blank" 
+                                        rel="noopener noreferrer" 
+                                        className="service-card__cta"
+                                    >
+                                        Cotizar por WhatsApp
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                                            <polyline points="12 5 19 12 12 19"></polyline>
+                                        </svg>
+                                    </a>
                                 </div>
                             </motion.div>
                         ))}
