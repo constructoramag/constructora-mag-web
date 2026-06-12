@@ -50,6 +50,24 @@ export default defineConfig({
                                 S.documentTypeList('project')
                                     .title('Todos los Proyectos')
                             ),
+
+                        S.divider(),
+
+                        // Grupo 3: Equipo
+                        S.listItem()
+                            .title('👨‍🔧 Equipo Familiar')
+                            .child(
+                                S.documentTypeList('teamMember')
+                                    .title('Integrantes del Equipo')
+                            ),
+
+                        // Grupo 4: Testimonios
+                        S.listItem()
+                            .title('💬 Testimonios')
+                            .child(
+                                S.documentTypeList('testimonial')
+                                    .title('Reseñas de Clientes')
+                            ),
                     ]),
         }),
         visionTool(), // Explorador GROQ integrado
