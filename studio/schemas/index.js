@@ -1,7 +1,7 @@
 // Exporta todos los schemas de Sanity
 import { project } from './project';
 import { siteContent } from './siteContent';
-import { serviceItem } from './serviceItem';
+import serviceItem from './serviceItem';
 import teamMember from './teamMember';
 import testimonial from './testimonial';
 
