@@ -113,15 +113,6 @@ export const siteContent = {
             initialValue: 'Santiago de Chile, RM',
         },
 
-        // ── SERVICES (array de serviceItem) ──────────────────────────────────
-        {
-            name: 'services',
-            title: 'Servicios',
-            type: 'array',
-            of: [{ type: 'serviceItem' }],
-            description: 'Arrastra para reordenar. Máximo 8 servicios.',
-            validation: (Rule) => Rule.required().min(1).max(8),
-        },
         // ── STATS ────────────────────────────────────────────────────────────
         {
             name: 'statYears',
