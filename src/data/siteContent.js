@@ -30,7 +30,6 @@ export const siteContent = {
     services: [
         {
             id: 1,
-            icon: "architecture",
             title: "Construcción",
             description:
                 "Construcción de casas nuevas y proyectos habitacionales desde cero, con materiales de primera calidad.",
@@ -38,7 +37,6 @@ export const siteContent = {
         },
         {
             id: 2,
-            icon: "home_repair_service",
             title: "Remodelación",
             description:
                 "Transformamos tu espacio con remodelaciones integrales: cocinas, baños, living y dormitorios.",
@@ -46,7 +44,6 @@ export const siteContent = {
         },
         {
             id: 3,
-            icon: "add_home",
             title: "Ampliaciones",
             description:
                 "Ampliamos tu vivienda con segundos pisos, dormitorios adicionales y espacios funcionales.",
@@ -54,7 +51,6 @@ export const siteContent = {
         },
         {
             id: 4,
-            icon: "outdoor_grill",
             title: "Quinchos",
             description:
                 "Diseño y construcción de quinchos, pérgolas y jardines para disfrutar al aire libre.",
@@ -62,7 +58,6 @@ export const siteContent = {
         },
         {
             id: 5,
-            icon: "format_paint",
             title: "Pintura",
             description:
                 "Pintura interior y exterior con preparación de superficies y acabados duraderos.",
@@ -70,7 +65,6 @@ export const siteContent = {
         },
         {
             id: 6,
-            icon: "hardware",
             title: "Obras Menores",
             description:
                 "Cierre perimetral, antejardines, pavimentación y todo tipo de trabajos menores.",

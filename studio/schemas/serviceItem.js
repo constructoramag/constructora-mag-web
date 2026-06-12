@@ -15,13 +15,6 @@ export default {
             description: 'Para ordenar los servicios (ej. 1, 2, 3...)',
         },
         {
-            name: 'icon',
-            title: 'Ícono (emoji)',
-            type: 'string',
-            description: 'Pega un emoji, ej: 🏗️ 🔨 📐 🪵 🎨 🧱',
-            validation: (Rule) => Rule.required().max(4),
-        },
-        {
             name: 'title',
             title: 'Nombre del servicio',
             type: 'string',

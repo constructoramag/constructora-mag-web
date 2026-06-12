@@ -55,7 +55,6 @@ export const SITE_CONTENT_QUERY = `
     facebook
   },
   "services": *[_type == "serviceItem"] | order(order asc, _createdAt asc) {
-    icon,
     title,
     description,
     image,

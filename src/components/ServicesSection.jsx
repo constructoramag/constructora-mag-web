@@ -30,7 +30,6 @@ function ServicesSection() {
                             <div key={i} className="service-card service-card--skeleton">
                                 <div className="skeleton skeleton--media" style={{aspectRatio: '16/9', borderRadius: '16px 16px 0 0', height: '200px', width: '100%'}} />
                                 <div className="service-card__content">
-                                    <div className="skeleton skeleton--icon" />
                                     <div className="skeleton skeleton--title" />
                                     <div className="skeleton skeleton--text" />
                                     <div className="skeleton skeleton--text skeleton--text-short" />
@@ -48,9 +47,6 @@ function ServicesSection() {
                                     </div>
                                 )}
                                 <div className="service-card__content">
-                                    <div className="service-card__icon material-symbols-outlined" aria-hidden="true">
-                                        {service.icon}
-                                    </div>
                                     <h3 className="service-card__title">{service.title}</h3>
                                     <p className="service-card__desc">{service.description}</p>
                                 </div>
