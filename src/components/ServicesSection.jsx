@@ -1,5 +1,23 @@
 import { useSiteContent } from '../hooks/useSiteContent';
+import { motion } from 'framer-motion';
 import './ServicesSection.css';
+
+const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: { staggerChildren: 0.15 }
+    }
+};
+
+const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+        opacity: 1, 
+        y: 0,
+        transition: { duration: 0.5, ease: 'easeOut' }
+    }
+};
 
 function ServicesSection() {
     const { services, stats, loading } = useSiteContent();
@@ -38,9 +56,15 @@ function ServicesSection() {
                         ))}
                     </div>
                 ) : (
-                    <div className="services__grid">
+                    <motion.div 
+                        className="services__grid"
+                        variants={containerVariants}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, margin: "-50px" }}
+                    >
                         {(services ?? []).map((service) => (
-                            <div key={service.id ?? service.title} className="service-card">
+                            <motion.div variants={itemVariants} key={service.id ?? service.title} className="service-card">
                                 {service.imageUrl && (
                                     <div className="service-card__image-wrapper">
                                         <img src={service.imageUrl} alt={service.title} className="service-card__image" />
@@ -50,9 +74,9 @@ function ServicesSection() {
                                     <h3 className="service-card__title">{service.title}</h3>
                                     <p className="service-card__desc">{service.description}</p>
                                 </div>
-                            </div>
+                            </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
                 )}
 
                 {/* Stats bar */}

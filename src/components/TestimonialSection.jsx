@@ -1,6 +1,24 @@
 import React from 'react';
 import { useTestimonials } from '../hooks/useTestimonials';
+import { motion } from 'framer-motion';
 import './TestimonialSection.css';
+
+const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: { staggerChildren: 0.15 }
+    }
+};
+
+const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+        opacity: 1, 
+        y: 0,
+        transition: { duration: 0.5, ease: 'easeOut' }
+    }
+};
 
 const TestimonialSection = () => {
     const { testimonials, loading } = useTestimonials();
@@ -44,9 +62,15 @@ const TestimonialSection = () => {
                     </p>
                 </div>
 
-                <div className="testimonials-grid">
+                <motion.div 
+                    className="testimonials-grid"
+                    variants={containerVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-50px" }}
+                >
                     {testimonials.map((testimonial) => (
-                        <div key={testimonial._id} className="testimonial-card">
+                        <motion.div variants={itemVariants} key={testimonial._id} className="testimonial-card">
                             <div className="testimonial-quote-icon">"</div>
                             <div className="testimonial-rating">
                                 {renderStars(testimonial.rating || 5)}
@@ -56,9 +80,9 @@ const TestimonialSection = () => {
                                 <h4 className="testimonial-author">{testimonial.author}</h4>
                                 <p className="testimonial-role">{testimonial.role}</p>
                             </div>
-                        </div>
+                        </motion.div>
                     ))}
-                </div>
+                </motion.div>
             </div>
         </section>
     );

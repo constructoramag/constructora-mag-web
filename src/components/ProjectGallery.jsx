@@ -1,8 +1,27 @@
 import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import ProjectCard from './ProjectCard';
 import VideoModal from './VideoModal';
 import { useProjects } from '../hooks/useProjects';
 import './ProjectGallery.css';
+
+const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: { staggerChildren: 0.15 }
+    }
+};
+
+const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+        opacity: 1, 
+        y: 0,
+        transition: { duration: 0.5, ease: 'easeOut' }
+    },
+    exit: { opacity: 0, scale: 0.9, transition: { duration: 0.2 } }
+};
 
 /**
  * ProjectGallery — Grid de proyectos.
@@ -66,15 +85,31 @@ function ProjectGallery() {
 
                 {/* Grid de proyectos */}
                 {!loading && (
-                    <div className="gallery-grid">
-                        {filtered.map((project) => (
-                            <ProjectCard
-                                key={project._id}
-                                project={project}
-                                onVideoClick={setSelectedProject}
-                            />
-                        ))}
-                    </div>
+                    <motion.div 
+                        className="gallery-grid"
+                        variants={containerVariants}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, margin: "-50px" }}
+                    >
+                        <AnimatePresence mode="popLayout">
+                            {filtered.map((project) => (
+                                <motion.div 
+                                    key={project._id} 
+                                    variants={itemVariants}
+                                    initial="hidden"
+                                    animate="visible"
+                                    exit="exit"
+                                    layout
+                                >
+                                    <ProjectCard
+                                        project={project}
+                                        onVideoClick={setSelectedProject}
+                                    />
+                                </motion.div>
+                            ))}
+                        </AnimatePresence>
+                    </motion.div>
                 )}
 
                 {/* Vacío */}

@@ -1,4 +1,5 @@
 import { siteContent } from '../data/siteContent';
+import { motion } from 'framer-motion';
 import './AboutSection.css';
 
 function AboutSection() {
@@ -9,7 +10,13 @@ function AboutSection() {
             <div className="container">
                 <div className="about__inner">
                     {/* Text */}
-                    <div className="about__content">
+                    <motion.div 
+                        className="about__content"
+                        initial={{ opacity: 0, x: -40 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true, margin: "-50px" }}
+                        transition={{ duration: 0.6, ease: 'easeOut' }}
+                    >
                         <span className="section-eyebrow">Quiénes Somos</span>
                         <h2 className="section-title about__title">
                             Construimos con <span className="accent-text">pasión</span> y compromiso
@@ -31,10 +38,16 @@ function AboutSection() {
                                 <span className="material-symbols-outlined">handshake</span> Atención personalizada
                             </a>
                         </div>
-                    </div>
+                    </motion.div>
 
                     {/* Image */}
-                    <div className="about__image-wrap">
+                    <motion.div 
+                        className="about__image-wrap"
+                        initial={{ opacity: 0, x: 40 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true, margin: "-50px" }}
+                        transition={{ duration: 0.6, ease: 'easeOut', delay: 0.2 }}
+                    >
                         <img
                             src="/images/construction_site.png"
                             alt="Equipo MAG en obra"
@@ -45,7 +58,7 @@ function AboutSection() {
                             <span className="about__image-card-value">+10</span>
                             <span className="about__image-card-label">Años construyendo sueños</span>
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
             </div>
         </section>

@@ -1,6 +1,24 @@
 import React from 'react';
 import { useTeam } from '../hooks/useTeam';
+import { motion } from 'framer-motion';
 import './TeamSection.css';
+
+const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: { staggerChildren: 0.15 }
+    }
+};
+
+const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+        opacity: 1, 
+        y: 0,
+        transition: { duration: 0.5, ease: 'easeOut' }
+    }
+};
 
 const TeamSection = () => {
     const { team, loading } = useTeam();
@@ -36,9 +54,15 @@ const TeamSection = () => {
                     </p>
                 </div>
 
-                <div className="team-grid">
+                <motion.div 
+                    className="team-grid"
+                    variants={containerVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-50px" }}
+                >
                     {team.map((member) => (
-                        <div key={member._id} className="team-card">
+                        <motion.div variants={itemVariants} key={member._id} className="team-card">
                             <div className="team-image-wrapper">
                                 <img src={member.imageUrl} alt={member.name} className="team-image" />
                                 <div className="team-overlay"></div>
@@ -48,9 +72,9 @@ const TeamSection = () => {
                                 <p className="team-role">{member.role}</p>
                                 {member.bio && <p className="team-bio">{member.bio}</p>}
                             </div>
-                        </div>
+                        </motion.div>
                     ))}
-                </div>
+                </motion.div>
             </div>
         </section>
     );
