@@ -67,6 +67,11 @@ function Footer() {
                                     </a>
                                 </li>
                             )}
+                            <li>
+                                <span className="footer__link" style={{ cursor: 'default' }}>
+                                    <span className="material-symbols-outlined">location_on</span> Venezuela 652, Recoleta
+                                </span>
+                            </li>
                         </ul>
                     </div>
 
