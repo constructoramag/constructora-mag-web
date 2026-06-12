@@ -192,7 +192,7 @@ export const siteContent = {
             type: 'string',
             fieldset: 'communication',
             description: 'Email donde recibirás consultas del sitio.',
-            initialValue: 'magserviciosintegrales@hotmail.com',
+            initialValue: 'contacto@constructoramag.cl',
             validation: (Rule) => Rule.email(),
         },
         {

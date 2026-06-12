@@ -37,7 +37,7 @@
     min-width: 177.77vh; /* 16:9 aspect ratio */
     border: none;
     pointer-events: none; /* No interactivo — es decorativo */
-    transform: translate(-50%, -50%) scale(1.05); /* Escalar un poco para ocultar bordes */
+    transform: translate(-50%, -50%) scale(1.35); /* Escalar extra para ocultar el título superior de YouTube en móviles */
 }
 
 .video-hero__fallback-img {
@@ -52,9 +52,9 @@
     position: absolute;
     inset: 0;
     background: linear-gradient(135deg,
-            rgba(0, 0, 0, 0.75) 0%,
-            rgba(0, 0, 0, 0.4) 60%,
-            rgba(0, 0, 0, 0.6) 100%);
+            rgba(0, 0, 0, 0.45) 0%,
+            rgba(0, 0, 0, 0.15) 50%,
+            rgba(0, 0, 0, 0.35) 100%);
     z-index: 1;
 }
 

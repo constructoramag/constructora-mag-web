@@ -6,7 +6,7 @@ export const siteContent = {
     hero: {
         title: "Construimos tus sueños",
         subtitle:
-            "Somos especialistas en construcción, remodelación y ampliación de viviendas en Santiago. Calidad, puntualidad y terminaciones impecables.",
+            "Transformamos tus espacios con más de 10 años de experiencia, garantizando calidad, cumplimiento de plazos y acabados de primer nivel.",
         cta: "Ver Proyectos",
         ctaSecondary: "Cotiza gratis",
         // Imagen de respaldo (SIEMPRE requerida)
@@ -21,7 +21,7 @@ export const siteContent = {
         name: "MAG Servicios Integrales",
         slogan: "CONSTRUYENDO TUS SUEÑOS...!",
         about:
-            "Somos una empresa familiar con más de 10 años de experiencia en el rubro de la construcción en la Región Metropolitana de Santiago, Chile. Nos especializamos en proyectos residenciales, desde obras menores hasta la construcción completa de tu hogar.",
+            "Transformamos tus espacios con más de 10 años de experiencia, garantizando calidad, cumplimiento de plazos y acabados de primer nivel. Nos especializamos en proyectos residenciales, remodelaciones integrales y construcción de alto estándar.",
         founded: 2014,
         location: "Santiago de Chile, RM",
     },
@@ -78,7 +78,7 @@ export const siteContent = {
         whatsapp2: "+56974972366",
         whatsappDisplay1: "+569 9447 8840",
         whatsappDisplay2: "+569 7497 2366",
-        email: "magserviciosintegrales@hotmail.com",
+        email: "contacto@constructoramag.cl",
         instagram: "https://www.instagram.com/servicios.integrales.m.a.g",
         facebook: "https://www.facebook.com/contructoramag/",
         location: "Santiago de Chile, Región Metropolitana",

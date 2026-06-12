@@ -29,7 +29,7 @@
     margin-top: 2rem;
 }
 
-.about__badge {
+.about__badge-btn {
     font-family: var(--font-body);
     font-size: 0.85rem;
     font-weight: 600;
@@ -38,6 +38,19 @@
     border: 1px solid var(--border);
     padding: 0.5rem 1rem;
     border-radius: 100px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.about__badge-btn:hover {
+    background: #25D366; /* WhatsApp color on hover */
+    color: #fff;
+    border-color: #25D366;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
 }
 
 /* Image */

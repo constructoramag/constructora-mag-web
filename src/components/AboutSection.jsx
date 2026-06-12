@@ -21,9 +21,15 @@ function AboutSection() {
                             Nuestro equipo cuenta con maestros calificados con amplia experiencia en construcción residencial.
                         </p>
                         <div className="about__badges">
-                            <span className="about__badge">✅ Presupuesto sin costo</span>
-                            <span className="about__badge">✅ Garantía en trabajos</span>
-                            <span className="about__badge">✅ Atención personalizada</span>
+                            <a href="https://wa.me/56994478840?text=Hola!%20Me%20interesa%20un%20presupuesto." target="_blank" rel="noopener noreferrer" className="about__badge-btn">
+                                ✅ Presupuesto sin costo
+                            </a>
+                            <a href="https://wa.me/56994478840?text=Hola!%20Me%20gustar%C3%ADa%20saber%20sobre%20las%20garant%C3%ADas." target="_blank" rel="noopener noreferrer" className="about__badge-btn">
+                                🛡️ Garantía en trabajos
+                            </a>
+                            <a href="https://wa.me/56994478840?text=Hola!%20Busco%20atenci%C3%B3n%20personalizada." target="_blank" rel="noopener noreferrer" className="about__badge-btn">
+                                🤝 Atención personalizada
+                            </a>
                         </div>
                     </div>
 
