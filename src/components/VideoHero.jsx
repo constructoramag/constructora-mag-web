@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { parseVideoUrl, isSaveDataEnabled } from '../utils/videoUtils';
+import { parseVideoUrl, isSaveDataEnabled, isNativeVideoUrl } from '../utils/videoUtils';
 import './VideoHero.css';
 
 /**
@@ -17,21 +17,34 @@ function VideoHero({ title, subtitle, cta, ctaSecondary, fallbackImage, videoUrl
     const embedUrl = shouldShowVideo
         ? parseVideoUrl(videoUrl, { autoplay: true, muted: true, loop: true, controls: false })
         : null;
+    const isNative = isNativeVideoUrl(embedUrl);
 
     return (
         <section className="video-hero" aria-label="Sección principal">
             {/* Fondo: video o imagen */}
             <div className="video-hero__bg">
                 {shouldShowVideo ? (
-                    <iframe
-                        src={embedUrl}
-                        title="Video de fondo"
-                        frameBorder="0"
-                        allow="autoplay; encrypted-media"
-                        allowFullScreen
-                        className="video-hero__iframe"
-                        onLoad={() => setVideoReady(true)}
-                    />
+                    isNative ? (
+                        <video
+                            src={embedUrl}
+                            autoPlay
+                            muted
+                            loop
+                            playsInline
+                            className="video-hero__video-native"
+                            onLoadedData={() => setVideoReady(true)}
+                        />
+                    ) : (
+                        <iframe
+                            src={embedUrl}
+                            title="Video de fondo"
+                            frameBorder="0"
+                            allow="autoplay; encrypted-media"
+                            allowFullScreen
+                            className="video-hero__iframe"
+                            onLoad={() => setVideoReady(true)}
+                        />
+                    )
                 ) : (
                     <img
                         src={fallbackImage}

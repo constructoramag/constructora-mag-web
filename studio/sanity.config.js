@@ -16,7 +16,6 @@ export default defineConfig({
     title: 'MAG Servicios Integrales — CMS',
     projectId: SANITY_PROJECT_ID,
     dataset: SANITY_DATASET,
-    basePath: '/studio',
 
     plugins: [
         structureTool({
@@ -24,21 +23,33 @@ export default defineConfig({
                 S.list()
                     .title('Panel de Control')
                     .items([
-                        // Singleton: Contenido del Sitio
+                        // Grupo 1: Configuración
                         S.listItem()
-                            .title('⚙️ Contenido del Sitio')
-                            .id('siteContent')
+                            .title('🏠 Configuración Web')
                             .child(
-                                S.document()
-                                    .schemaType('siteContent')
-                                    .documentId('siteContent')
+                                S.list()
+                                    .title('Configuración General')
+                                    .items([
+                                        S.listItem()
+                                            .title('Contenido Principal')
+                                            .icon(() => '⚙️')
+                                            .child(
+                                                S.document()
+                                                    .schemaType('siteContent')
+                                                    .documentId('siteContent')
+                                            ),
+                                    ])
                             ),
+
                         S.divider(),
-                        // Lista de proyectos
+
+                        // Grupo 2: Proyectos
                         S.listItem()
-                            .title('🏗️ Proyectos')
-                            .schemaType('project')
-                            .child(S.documentTypeList('project')),
+                            .title('🏗️ Gestión de Obras')
+                            .child(
+                                S.documentTypeList('project')
+                                    .title('Todos los Proyectos')
+                            ),
                     ]),
         }),
         visionTool(), // Explorador GROQ integrado

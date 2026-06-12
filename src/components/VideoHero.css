@@ -16,19 +16,28 @@
     width: 100%;
     height: 100%;
     z-index: 0;
+    overflow: hidden;
+}
+
+.video-hero__video-native {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .video-hero__iframe {
     position: absolute;
-    /* Extender el iframe para ocultar los bordes de YouTube */
-    top: -60px;
-    left: -60px;
-    width: calc(100% + 120px);
-    height: calc(100% + 120px);
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    height: 56.25vw; /* 16:9 aspect ratio */
+    min-height: 100vh;
+    min-width: 177.77vh; /* 16:9 aspect ratio */
     border: none;
-    pointer-events: none;
-    /* No interactivo — es decorativo */
-    object-fit: cover;
+    pointer-events: none; /* No interactivo — es decorativo */
+    transform: translate(-50%, -50%) scale(1.05); /* Escalar un poco para ocultar bordes */
 }
 
 .video-hero__fallback-img {

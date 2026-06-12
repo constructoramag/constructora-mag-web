@@ -21,6 +21,7 @@ export const project = {
             name: 'title',
             title: 'Título del proyecto',
             type: 'string',
+            description: 'Ej: Remodelación Completa Casa La Dehesa',
             validation: (Rule) => Rule.required().min(5).max(80),
         },
         {
@@ -28,6 +29,7 @@ export const project = {
             title: 'Descripción',
             type: 'text',
             rows: 3,
+            description: 'Explica brevemente qué se hizo en este proyecto.',
             validation: (Rule) => Rule.required().min(20).max(400),
         },
         {
