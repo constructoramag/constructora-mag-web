@@ -83,4 +83,54 @@ export const siteContent = {
         facebook: "https://www.facebook.com/contructoramag/",
         location: "Santiago de Chile, Región Metropolitana",
     },
+
+    // ── Team (Grupo Familiar) ─────────────────────────────────────────────────
+    team: [
+        {
+            _id: 't1',
+            name: "Marco A. Guzmán",
+            role: "Fundador & Director de Proyectos",
+            bio: "Más de 15 años liderando proyectos de construcción y remodelación con enfoque en calidad y detalle.",
+            imageUrl: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=600&auto=format&fit=crop",
+        },
+        {
+            _id: 't2',
+            name: "María Eugenia",
+            role: "Gerente de Administración y Finanzas",
+            bio: "Encargada de la planificación, presupuesto y atención a clientes, garantizando la transparencia en cada etapa.",
+            imageUrl: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=600&auto=format&fit=crop",
+        },
+        {
+            _id: 't3',
+            name: "José Guzmán",
+            role: "Jefe de Obras",
+            bio: "Supervisión técnica en terreno, coordinando equipos de trabajo y asegurando los plazos de entrega.",
+            imageUrl: "https://images.unsplash.com/photo-1504307651254-35680f356f58?q=80&w=600&auto=format&fit=crop",
+        }
+    ],
+
+    // ── Testimonials ──────────────────────────────────────────────────────────
+    testimonials: [
+        {
+            _id: 'test1',
+            author: "Camila Rojas",
+            role: "Remodelación Casa Completa",
+            content: "Excelente trabajo del equipo de MAG. Cumplieron con todos los plazos y los acabados de nuestra casa quedaron maravillosos. Totalmente recomendados para proyectos grandes.",
+            rating: 5,
+        },
+        {
+            _id: 'test2',
+            author: "Roberto Silva",
+            role: "Construcción de Quincho",
+            content: "Contratamos a la constructora para hacer un quincho en nuestro patio. Muy profesionales desde el diseño hasta la entrega. Quedó espectacular para la familia.",
+            rating: 5,
+        },
+        {
+            _id: 'test3',
+            author: "Familia Gómez",
+            role: "Ampliación Segundo Piso",
+            content: "Teníamos miedo de ampliar con la casa habitada, pero fueron muy ordenados y limpios. El resultado final superó nuestras expectativas.",
+            rating: 4,
+        }
+    ],
 };

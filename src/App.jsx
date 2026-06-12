@@ -4,6 +4,8 @@ import VideoHero from './components/VideoHero';
 import ServicesSection from './components/ServicesSection';
 import ProjectGallery from './components/ProjectGallery';
 import AboutSection from './components/AboutSection';
+import TeamSection from './components/TeamSection';
+import TestimonialSection from './components/TestimonialSection';
 import Footer from './components/Footer';
 import { useSiteContent } from './hooks/useSiteContent';
 import { isSanityConfigured } from './lib/sanityClient';
@@ -47,6 +49,12 @@ function App() {
 
         {/* Quiénes somos */}
         <AboutSection />
+
+        {/* Equipo Familiar */}
+        <TeamSection />
+
+        {/* Testimonios */}
+        <TestimonialSection />
       </main>
 
       {/* Footer + Contacto */}

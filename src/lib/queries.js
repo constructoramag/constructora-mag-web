@@ -84,3 +84,32 @@ export const FEATURED_PROJECTS_QUERY = `
 export const CATEGORIES_QUERY = `
   array::unique(*[_type == "project"].category)
 `.trim();
+
+/**
+ * Trae a los miembros del equipo, ordenados por "order".
+ */
+export const TEAM_QUERY = `
+  *[_type == "teamMember"] | order(order asc, _createdAt asc) {
+    _id,
+    name,
+    role,
+    bio,
+    image,
+    "imageUrl": image.asset->url,
+    order
+  }
+`.trim();
+
+/**
+ * Trae los testimonios/reseñas, ordenados por "order" o fecha.
+ */
+export const TESTIMONIALS_QUERY = `
+  *[_type == "testimonial"] | order(order asc, _createdAt desc) {
+    _id,
+    author,
+    role,
+    content,
+    rating,
+    order
+  }
+`.trim();
