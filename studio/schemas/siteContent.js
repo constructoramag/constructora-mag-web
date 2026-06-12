@@ -122,7 +122,6 @@ export const siteContent = {
             description: 'Arrastra para reordenar. Máximo 8 servicios.',
             validation: (Rule) => Rule.required().min(1).max(8),
         },
-
         // ── STATS ────────────────────────────────────────────────────────────
         {
             name: 'statYears',

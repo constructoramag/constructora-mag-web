@@ -2,11 +2,18 @@
 // Sub-schema: serviceItem (objeto embebido dentro de siteContent)
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const serviceItem = {
+export default {
     name: 'serviceItem',
     title: 'Servicio',
-    type: 'object',
+    type: 'document',
+    icon: () => '🛠️',
     fields: [
+        {
+            name: 'order',
+            title: 'Orden (Número)',
+            type: 'number',
+            description: 'Para ordenar los servicios (ej. 1, 2, 3...)',
+        },
         {
             name: 'icon',
             title: 'Ícono (emoji)',

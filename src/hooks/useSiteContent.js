@@ -60,7 +60,7 @@ export function useSiteContent() {
  * Si `raw` es null, usa los datos de data/siteContent.js.
  */
 function normalizeSanityContent(raw) {
-    if (!raw) {
+    if (!raw || (!raw.siteContent && !raw.services)) {
         // Fallback al esquema estático — ya tiene el shape correcto
         return {
             hero: {
@@ -92,27 +92,30 @@ function normalizeSanityContent(raw) {
         };
     }
 
+    const site = raw.siteContent || {};
+    const servicesData = raw.services || [];
+
     // Mapeo desde respuesta de Sanity
     return {
         hero: {
-            title: raw.heroTitle ?? staticContent.hero.title,
-            subtitle: raw.heroSubtitle ?? staticContent.hero.subtitle,
-            cta: raw.heroCta ?? staticContent.hero.cta,
-            ctaSecondary: raw.heroCtaSecondary ?? staticContent.hero.ctaSecondary,
+            title: site.heroTitle ?? staticContent.hero.title,
+            subtitle: site.heroSubtitle ?? staticContent.hero.subtitle,
+            cta: site.heroCta ?? staticContent.hero.cta,
+            ctaSecondary: site.heroCtaSecondary ?? staticContent.hero.ctaSecondary,
             // heroFallbackImage es un objeto Sanity image — urlFor lo transforma
-            fallbackImage: raw.heroFallbackImage ?? staticContent.hero.fallbackImage,
-            fallbackImageUrl: raw.heroFallbackImageUrl, // URL directa del CDN
-            videoUrl: raw.heroVideoUrl ?? staticContent.hero.videoUrl,
+            fallbackImage: site.heroFallbackImage ?? staticContent.hero.fallbackImage,
+            fallbackImageUrl: site.heroFallbackImageUrl, // URL directa del CDN
+            videoUrl: site.heroVideoUrl ?? staticContent.hero.videoUrl,
         },
         company: {
-            name: raw.companyName ?? staticContent.company.name,
-            slogan: raw.companySlogan ?? staticContent.company.slogan,
-            about: raw.companyAbout ?? staticContent.company.about,
-            founded: raw.companyFounded ?? staticContent.company.founded,
-            location: raw.companyLocation ?? staticContent.company.location,
+            name: site.companyName ?? staticContent.company.name,
+            slogan: site.companySlogan ?? staticContent.company.slogan,
+            about: site.companyAbout ?? staticContent.company.about,
+            founded: site.companyFounded ?? staticContent.company.founded,
+            location: site.companyLocation ?? staticContent.company.location,
         },
-        services: raw.services?.length
-            ? raw.services.map((s, i) => ({ 
+        services: servicesData.length
+            ? servicesData.map((s, i) => ({ 
                 ...s, 
                 id: i + 1,
                 // Si viene de Sanity usa imageUrl, sino busca el del fallback por título o índice
@@ -120,19 +123,19 @@ function normalizeSanityContent(raw) {
               }))
             : staticContent.services,
         stats: {
-            years: raw.statYears ?? '+10',
-            projects: raw.statProjects ?? '+150',
-            satisfaction: raw.statSatisfaction ?? '100%',
-            coverage: raw.statCoverage ?? 'RM',
+            years: site.statYears ?? '+10',
+            projects: site.statProjects ?? '+150',
+            satisfaction: site.statSatisfaction ?? '100%',
+            coverage: site.statCoverage ?? 'RM',
         },
         contact: {
-            whatsapp1: raw.whatsapp1 ?? staticContent.contact.whatsapp1.replace('+', ''),
-            whatsapp1Display: raw.whatsapp1Display ?? staticContent.contact.whatsappDisplay1,
-            whatsapp2: raw.whatsapp2 ?? staticContent.contact.whatsapp2.replace('+', ''),
-            whatsapp2Display: raw.whatsapp2Display ?? staticContent.contact.whatsappDisplay2,
-            email: raw.email ?? staticContent.contact.email,
-            instagram: raw.instagram ?? staticContent.contact.instagram,
-            facebook: raw.facebook ?? staticContent.contact.facebook,
+            whatsapp1: site.whatsapp1 ?? staticContent.contact.whatsapp1.replace('+', ''),
+            whatsapp1Display: site.whatsapp1Display ?? staticContent.contact.whatsappDisplay1,
+            whatsapp2: site.whatsapp2 ?? staticContent.contact.whatsapp2.replace('+', ''),
+            whatsapp2Display: site.whatsapp2Display ?? staticContent.contact.whatsappDisplay2,
+            email: site.email ?? staticContent.contact.email,
+            instagram: site.instagram ?? staticContent.contact.instagram,
+            facebook: site.facebook ?? staticContent.contact.facebook,
             location: staticContent.contact.location,
         },
     };

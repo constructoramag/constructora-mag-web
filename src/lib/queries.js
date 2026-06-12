@@ -28,7 +28,8 @@ export const PROJECTS_QUERY = `
  * Incluye la imagen del hero con URL directa + asset reference.
  */
 export const SITE_CONTENT_QUERY = `
-  *[_type == "siteContent"][0] {
+{
+  "siteContent": *[_type == "siteContent"][0] {
     heroTitle,
     heroSubtitle,
     heroCta,
@@ -41,13 +42,6 @@ export const SITE_CONTENT_QUERY = `
     companyAbout,
     companyFounded,
     companyLocation,
-    services[]{
-      icon,
-      title,
-      description,
-      image,
-      "imageUrl": image.asset->url
-    },
     statYears,
     statProjects,
     statSatisfaction,
@@ -59,7 +53,15 @@ export const SITE_CONTENT_QUERY = `
     email,
     instagram,
     facebook
+  },
+  "services": *[_type == "serviceItem"] | order(order asc, _createdAt asc) {
+    icon,
+    title,
+    description,
+    image,
+    "imageUrl": image.asset->url
   }
+}
 `.trim();
 
 /**

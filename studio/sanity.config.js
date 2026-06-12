@@ -53,7 +53,15 @@ export default defineConfig({
 
                         S.divider(),
 
-                        // Grupo 3: Equipo
+                        // Grupo 3: Servicios
+                        S.listItem()
+                            .title('🛠️ Servicios')
+                            .child(
+                                S.documentTypeList('serviceItem')
+                                    .title('Servicios Ofrecidos')
+                            ),
+
+                        // Grupo 4: Equipo
                         S.listItem()
                             .title('👨‍🔧 Equipo Familiar')
                             .child(
