@@ -4,7 +4,6 @@ import VideoHero from './components/VideoHero';
 import ProjectGallery from './components/ProjectGallery';
 import BenefitsSection from './components/BenefitsSection';
 import ServicesSection from './components/ServicesSection';
-import ProjectGallery from './components/ProjectGallery';
 import AboutSection from './components/AboutSection';
 import TeamSection from './components/TeamSection';
 import TestimonialSection from './components/TestimonialSection';
