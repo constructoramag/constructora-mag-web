@@ -59,6 +59,16 @@ export const SITE_CONTENT_QUERY = `
     description,
     image,
     "imageUrl": image.asset->url
+  },
+  "brandSettings": *[_type == "brandSettings"][0] {
+    enableCustomTheme,
+    "primaryColor": primaryColor.hex,
+    "primaryHoverColor": primaryHoverColor.hex,
+    "backgroundColor": backgroundColor.hex,
+    "surfaceColor": surfaceColor.hex,
+    "textPrimaryColor": textPrimaryColor.hex,
+    "textSecondaryColor": textSecondaryColor.hex,
+    "borderColor": borderColor.hex
   }
 }
 `.trim();

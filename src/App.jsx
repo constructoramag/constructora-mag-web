@@ -13,7 +13,7 @@ import { isSanityConfigured } from './lib/sanityClient';
 import './index.css';
 
 function App() {
-  const { hero, company, loading } = useSiteContent();
+  const { hero, company, theme, loading } = useSiteContent();
 
   const scrollToProjects = () =>
     document.getElementById('proyectos')?.scrollIntoView({ behavior: 'smooth' });
@@ -23,6 +23,23 @@ function App() {
 
   return (
     <>
+      {/* Theme dinámico desde Sanity */}
+      {theme?.enableCustomTheme && (
+        <style>{`
+          :root {
+            ${theme.backgroundColor ? `--bg: ${theme.backgroundColor};` : ''}
+            ${theme.backgroundColor ? `--bg-deep: ${theme.backgroundColor}; /* Mismo tono por defecto */` : ''}
+            ${theme.surfaceColor ? `--surface: ${theme.surfaceColor};` : ''}
+            ${theme.surfaceColor ? `--card-bg: ${theme.surfaceColor};` : ''}
+            ${theme.primaryColor ? `--accent: ${theme.primaryColor};` : ''}
+            ${theme.primaryColor && theme.primaryHoverColor ? `--accent-gradient: linear-gradient(135deg, ${theme.primaryColor} 0%, ${theme.primaryHoverColor} 100%);` : ''}
+            ${theme.textPrimaryColor ? `--text-primary: ${theme.textPrimaryColor};` : ''}
+            ${theme.textSecondaryColor ? `--text-secondary: ${theme.textSecondaryColor};` : ''}
+            ${theme.borderColor ? `--border: ${theme.borderColor};` : ''}
+          }
+        `}</style>
+      )}
+
       <Header />
 
       <main>

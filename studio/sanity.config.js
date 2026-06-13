@@ -1,6 +1,7 @@
 import { defineConfig } from 'sanity';
 import { structureTool } from 'sanity/structure';
 import { visionTool } from '@sanity/vision';
+import { colorInput } from '@sanity/color-input';
 import { schemaTypes } from './schemas/index.js';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -37,6 +38,14 @@ export default defineConfig({
                                                 S.document()
                                                     .schemaType('siteContent')
                                                     .documentId('siteContent')
+                                            ),
+                                        S.listItem()
+                                            .title('🎨 Identidad y Colores (Theme)')
+                                            .icon(() => '🎨')
+                                            .child(
+                                                S.document()
+                                                    .schemaType('brandSettings')
+                                                    .documentId('brandSettings')
                                             ),
                                     ])
                             ),
@@ -79,6 +88,7 @@ export default defineConfig({
                     ]),
         }),
         visionTool(), // Explorador GROQ integrado
+        colorInput(), // Selector de colores
     ],
 
     schema: {

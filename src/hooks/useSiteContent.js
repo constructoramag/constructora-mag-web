@@ -11,7 +11,7 @@ import { siteContent as staticContent } from '../data/siteContent';
 
 /**
  * Retorna el contenido del sitio en el mismo shape que usan los componentes:
- * { hero, company, services, stats, contact, loading, error }
+ * { hero, company, services, stats, contact, theme, loading, error }
  */
 export function useSiteContent() {
     const [content, setContent] = useState(null);
@@ -60,7 +60,7 @@ export function useSiteContent() {
  * Si `raw` es null, usa los datos de data/siteContent.js.
  */
 function normalizeSanityContent(raw) {
-    if (!raw || (!raw.siteContent && !raw.services)) {
+    if (!raw || (!raw.siteContent && !raw.services && !raw.brandSettings)) {
         // Fallback al esquema estático — ya tiene el shape correcto
         return {
             hero: {
@@ -89,11 +89,13 @@ function normalizeSanityContent(raw) {
                 facebook: staticContent.contact.facebook,
                 location: staticContent.contact.location,
             },
+            theme: null, // Sin tema estático por ahora
         };
     }
 
     const site = raw.siteContent || {};
     const servicesData = raw.services || [];
+    const theme = raw.brandSettings || null;
 
     // Mapeo desde respuesta de Sanity
     return {
@@ -138,5 +140,6 @@ function normalizeSanityContent(raw) {
             facebook: site.facebook ?? staticContent.contact.facebook,
             location: staticContent.contact.location,
         },
+        theme,
     };
 }
