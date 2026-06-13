@@ -64,7 +64,7 @@ const TeamSection = () => {
                     {team.map((member) => (
                         <motion.div variants={itemVariants} key={member._id} className="team-card">
                             <div className="team-image-wrapper">
-                                <img src={member.imageUrl} alt={member.name} className="team-image" />
+                                <img src={member.imageUrl} alt={member.name} className="team-image" loading="lazy" />
                                 <div className="team-overlay"></div>
                             </div>
                             <div className="team-info">

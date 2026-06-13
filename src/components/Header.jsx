@@ -3,8 +3,9 @@ import './Header.css';
 
 const navLinks = [
     { label: 'Inicio', href: '#inicio' },
-    { label: 'Servicios', href: '#servicios' },
     { label: 'Proyectos', href: '#proyectos' },
+    { label: 'Por qué elegirnos', href: '#beneficios' },
+    { label: 'Servicios', href: '#servicios' },
     { label: 'Nosotros', href: '#nosotros' },
     { label: 'Contacto', href: '#contacto' },
 ];
@@ -48,12 +49,12 @@ function Header() {
                         </a>
                     ))}
                     <a
-                        href="https://wa.me/56994478840"
+                        href="https://wa.me/56994478840?text=Hola!%20Me%20interesa%20solicitar%20un%20presupuesto."
                         target="_blank"
                         rel="noopener noreferrer"
                         className="btn btn--primary btn--sm"
                     >
-                        <span className="material-symbols-outlined">chat</span> WhatsApp
+                        <span className="material-symbols-outlined">chat</span> Solicitar presupuesto
                     </a>
                 </nav>
 
@@ -82,13 +83,13 @@ function Header() {
                         </a>
                     ))}
                     <a
-                        href="https://wa.me/56994478840"
+                        href="https://wa.me/56994478840?text=Hola!%20Me%20interesa%20solicitar%20un%20presupuesto."
                         target="_blank"
                         rel="noopener noreferrer"
                         className="btn btn--primary"
                         style={{ margin: '0.5rem 1.5rem' }}
                     >
-                        <span className="material-symbols-outlined">chat</span> WhatsApp
+                        <span className="material-symbols-outlined">chat</span> Solicitar presupuesto
                     </a>
                 </nav>
             )}

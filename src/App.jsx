@@ -1,6 +1,8 @@
 import { useRef } from 'react';
 import Header from './components/Header';
 import VideoHero from './components/VideoHero';
+import ProjectGallery from './components/ProjectGallery';
+import BenefitsSection from './components/BenefitsSection';
 import ServicesSection from './components/ServicesSection';
 import ProjectGallery from './components/ProjectGallery';
 import AboutSection from './components/AboutSection';
@@ -31,8 +33,8 @@ function App() {
             <VideoHero
               title={hero.title}
               subtitle={hero.subtitle}
-              cta={hero.cta}
-              ctaSecondary={hero.ctaSecondary}
+              cta={hero.cta || "Solicita tu presupuesto sin costo"}
+              ctaSecondary={hero.ctaSecondary || "Ver proyectos destacados"}
               fallbackImage={hero.fallbackImageUrl || hero.fallbackImage}
               videoUrl={hero.videoUrl}
               onCtaClick={scrollToProjects}
@@ -41,11 +43,14 @@ function App() {
           )}
         </div>
 
+        {/* Galería de proyectos (Evidencia antes de vender) */}
+        <ProjectGallery />
+
+        {/* Por qué elegirnos (Confianza) */}
+        <BenefitsSection />
+
         {/* Servicios */}
         <ServicesSection />
-
-        {/* Galería de proyectos */}
-        <ProjectGallery />
 
         {/* Quiénes somos */}
         <AboutSection />
