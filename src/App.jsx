@@ -66,7 +66,10 @@ function App() {
         <TrustBar />
 
         {/* Antes y Después */}
-        <BeforeAfterSlider />
+        <BeforeAfterSlider 
+          beforeImage="/images/antes.jpg"
+          afterImage="/images/despues.jpg"
+        />
 
         {/* Galería de proyectos (Evidencia antes de vender) */}
         <ProjectGallery />
