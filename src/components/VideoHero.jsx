@@ -15,7 +15,7 @@ function VideoHero({ title, subtitle, cta, ctaSecondary, fallbackImage, videoUrl
     const saveData = isSaveDataEnabled();
     const shouldShowVideo = videoUrl && !saveData;
     const embedUrl = shouldShowVideo
-        ? parseVideoUrl(videoUrl, { autoplay: true, muted: true, loop: true, controls: false })
+        ? parseVideoUrl(videoUrl, { autoplay: true, muted: true, loop: true, controls: false, start: 2, end: 32 })
         : null;
     const isNative = isNativeVideoUrl(embedUrl);
 

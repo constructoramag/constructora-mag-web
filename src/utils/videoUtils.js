@@ -11,7 +11,7 @@
 export function parseVideoUrl(url, options = {}) {
     if (!url) return null;
 
-    const { autoplay = false, muted = true, loop = false, controls = true } = options;
+    const { autoplay = false, muted = true, loop = false, controls = true, start, end } = options;
 
     // ── Detectar Instagram (no compatible) ──────────────────────────────────
     if (url.includes('instagram.com')) {
@@ -36,6 +36,8 @@ export function parseVideoUrl(url, options = {}) {
             enablejsapi: '1',
         });
         if (loop) params.set('playlist', videoId); // requerido para loop en YouTube
+        if (start) params.set('start', start);
+        if (end) params.set('end', end);
         return `https://www.youtube.com/embed/${videoId}?${params.toString()}`;
     }
 
