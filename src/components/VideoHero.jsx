@@ -50,6 +50,7 @@ function VideoHero({ title, subtitle, cta, ctaSecondary, fallbackImage, videoUrl
                                     modestbranding: 1, 
                                     rel: 0, 
                                     autoplay: 1, 
+                                    mute: 1,
                                     controls: 0,
                                     disablekb: 1,
                                     iv_load_policy: 3
