@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import ReactPlayer from 'react-player/lazy';
+import ReactPlayer from 'react-player';
 import { isSaveDataEnabled } from '../utils/videoUtils';
 import './VideoHero.css';
 
