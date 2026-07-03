@@ -3,11 +3,10 @@
 
 export const siteContent = {
     hero: {
-        title: "Expertos en Construcción y Remodelación Integral",
-        subtitle:
-            "Desde remodelaciones completas y quinchos, hasta obras menores y terminaciones. Más de 10 años garantizando calidad, plazos cumplidos y un trabajo profesional.",
-        cta: "Cotizar mi proyecto",
-        ctaSecondary: "Ver trabajos realizados",
+        title: "Expertos en\nConstrucción y\nRemodelación Integral",
+        subtitle: "Más de 10 años transformando hogares y empresas con soluciones integrales de construcción, remodelación y terminaciones de primer nivel.",
+        cta: "Solicitar presupuesto",
+        ctaSecondary: "Ver proyectos",
         // Imagen de respaldo (SIEMPRE requerida)
         fallbackImage: "/images/hero_bg.png",
         // URL de YouTube o Vimeo para video de fondo (null = solo imagen)

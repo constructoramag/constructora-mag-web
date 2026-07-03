@@ -5,10 +5,10 @@ function TrustBar() {
     const { stats } = useSiteContent();
 
     const statItems = [
-        { value: stats?.years ?? '+10', label: 'Años de experiencia' },
-        { value: stats?.projects ?? '+150', label: 'Proyectos realizados' },
-        { value: stats?.satisfaction ?? '100%', label: 'Clientes satisfechos' },
-        { value: stats?.coverage ?? 'RM', label: 'Región Metropolitana' },
+        { value: stats?.years ?? '+10', label: 'Años' },
+        { value: stats?.projects ?? '+250', label: 'Proyectos' },
+        { value: stats?.satisfaction ?? '98%', label: 'Clientes satisfechos' },
+        { value: stats?.guarantee ?? '100%', label: 'Garantía' },
     ];
 
     return (
