@@ -1,0 +1,122 @@
+.before-after {
+    background: var(--bg-deep);
+}
+
+.slider-container {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    aspect-ratio: 16 / 9;
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: ew-resize;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--border);
+}
+
+.slider-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none; /* Previene el drag nativo del navegador */
+}
+
+.slider-img--before {
+    z-index: 1;
+}
+
+.slider-img--after {
+    z-index: 2;
+}
+
+/* Etiquetas */
+.slider-label {
+    position: absolute;
+    top: 1rem;
+    padding: 0.5rem 1.25rem;
+    background: rgba(10, 10, 10, 0.6);
+    backdrop-filter: blur(8px);
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-radius: 100px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 4;
+}
+
+.slider-label--before {
+    left: 1rem;
+}
+
+.slider-label--after {
+    right: 1rem;
+}
+
+/* Handle central */
+.slider-handle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--accent);
+    z-index: 3;
+    transform: translateX(-50%);
+    pointer-events: none;
+}
+
+.slider-handle-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    background: #fff;
+    transform: translateX(-50%);
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.slider-handle-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 48px;
+    height: 48px;
+    background: var(--accent);
+    border: 2px solid #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    transition: transform 0.2s ease;
+}
+
+.slider-container:hover .slider-handle-button {
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+.slider-handle-button svg {
+    width: 18px;
+    height: 18px;
+    margin: -2px; /* Juntar un poco las flechas */
+}
+
+@media (max-width: 768px) {
+    .slider-container {
+        aspect-ratio: 4 / 3;
+    }
+    
+    .slider-handle-button {
+        width: 40px;
+        height: 40px;
+    }
+}

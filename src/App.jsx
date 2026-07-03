@@ -7,7 +7,10 @@ import ServicesSection from './components/ServicesSection';
 import AboutSection from './components/AboutSection';
 import TeamSection from './components/TeamSection';
 import TestimonialSection from './components/TestimonialSection';
+import BeforeAfterSlider from './components/BeforeAfterSlider';
+import WorkProcessSection from './components/WorkProcessSection';
 import Footer from './components/Footer';
+import TrustBar from './components/TrustBar';
 import { useSiteContent } from './hooks/useSiteContent';
 import { isSanityConfigured } from './lib/sanityClient';
 import './index.css';
@@ -59,11 +62,20 @@ function App() {
           )}
         </div>
 
+        {/* Barra de confianza (Estadísticas) */}
+        <TrustBar />
+
+        {/* Antes y Después */}
+        <BeforeAfterSlider />
+
         {/* Galería de proyectos (Evidencia antes de vender) */}
         <ProjectGallery />
 
         {/* Por qué elegirnos (Confianza) */}
         <BenefitsSection />
+
+        {/* Proceso de Trabajo */}
+        <WorkProcessSection />
 
         {/* Servicios */}
         <ServicesSection />

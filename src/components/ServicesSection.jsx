@@ -127,16 +127,6 @@ function ServicesSection() {
                         })}
                     </motion.div>
                 )}
-
-                {/* Stats bar */}
-                <div className="services__stats">
-                    {statItems.map((stat) => (
-                        <div key={stat.label} className="stat-item">
-                            <span className="stat-value">{stat.value}</span>
-                            <span className="stat-label">{stat.label}</span>
-                        </div>
-                    ))}
-                </div>
             </div>
         </section>
     );

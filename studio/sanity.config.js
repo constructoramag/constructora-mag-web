@@ -9,7 +9,7 @@ import { schemaTypes } from './schemas/index.js';
 // Puedes encontrarlos en https://www.sanity.io/manage
 // ─────────────────────────────────────────────────────────────────────────────
 
-const SANITY_PROJECT_ID = process.env.SANITY_STUDIO_PROJECT_ID || 'et1zei1q';
+const SANITY_PROJECT_ID = process.env.SANITY_STUDIO_PROJECT_ID || 'bdqq6fie';
 const SANITY_DATASET = process.env.SANITY_STUDIO_DATASET || 'production';
 
 export default defineConfig({

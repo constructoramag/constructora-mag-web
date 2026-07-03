@@ -177,43 +177,6 @@
     transform: translateX(4px);
 }
 
-/* ── Stats ──────────────────────────────────────────────────────── */
-.services__stats {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1px;
-    background: var(--border);
-    border-radius: 16px;
-    overflow: hidden;
-}
-
-.stat-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem 1rem;
-    background: var(--card-bg);
-    gap: 0.4rem;
-    text-align: center;
-}
-
-.stat-value {
-    font-family: var(--font-heading);
-    font-size: 2.25rem;
-    font-weight: 900;
-    color: var(--accent);
-    line-height: 1;
-}
-
-.stat-label {
-    font-family: var(--font-body);
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.07em;
-}
-
 /* ── Responsive ─────────────────────────────────────────────────── */
 @media (max-width: 1024px) {
     .bento-grid {
@@ -235,11 +198,6 @@
     }
 }
 
-@media (max-width: 768px) {
-    .services__stats {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
 
 @media (max-width: 600px) {
     .bento-grid {

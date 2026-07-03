@@ -2,13 +2,12 @@
 // Edita este archivo para actualizar el contenido sin tocar los componentes.
 
 export const siteContent = {
-    // ── Hero Section ──────────────────────────────────────────────────────────
     hero: {
-        title: "Construimos tus sueños",
+        title: "Expertos en Construcción y Remodelación Integral",
         subtitle:
-            "Transformamos tus espacios con más de 10 años de experiencia, garantizando calidad, cumplimiento de plazos y acabados de primer nivel.",
-        cta: "Ver Proyectos",
-        ctaSecondary: "Cotiza gratis",
+            "Desde remodelaciones completas y quinchos, hasta obras menores y terminaciones. Más de 10 años garantizando calidad, plazos cumplidos y un trabajo profesional.",
+        cta: "Cotizar mi proyecto",
+        ctaSecondary: "Ver trabajos realizados",
         // Imagen de respaldo (SIEMPRE requerida)
         fallbackImage: "/images/hero_bg.png",
         // URL de YouTube o Vimeo para video de fondo (null = solo imagen)

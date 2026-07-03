@@ -1,0 +1,81 @@
+.work-process {
+    background: var(--bg);
+}
+
+.process-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    position: relative;
+}
+
+.process-card {
+    position: relative;
+    padding: 2rem 1.5rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    text-align: center;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.process-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(228, 170, 21, 0.4);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.process-number {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--border);
+    margin-bottom: 1rem;
+    line-height: 1;
+    transition: color 0.3s ease;
+}
+
+.process-card:hover .process-number {
+    color: var(--accent);
+}
+
+.process-title {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.process-desc {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.process-connector {
+    position: absolute;
+    top: 50%;
+    right: -1.75rem;
+    transform: translateY(-50%);
+    color: var(--border);
+    z-index: 2;
+}
+
+@media (max-width: 1024px) {
+    .process-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+
+    .process-connector {
+        display: none; /* Se oculta en responsive para no romper el layout */
+    }
+}
+
+@media (max-width: 600px) {
+    .process-grid {
+        grid-template-columns: 1fr;
+    }
+}
