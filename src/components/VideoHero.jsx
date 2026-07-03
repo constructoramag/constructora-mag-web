@@ -18,12 +18,7 @@ function VideoHero({ title, subtitle, cta, ctaSecondary, fallbackImage, videoUrl
     const saveData = isSaveDataEnabled();
     const shouldShowVideo = videoUrl && !saveData;
 
-    const handleEnded = () => {
-        if (playerRef.current) {
-            playerRef.current.seekTo(2, 'seconds');
-            setPlaying(true);
-        }
-    };
+
 
     return (
         <section className="video-hero" aria-label="Sección principal">
@@ -37,17 +32,37 @@ function VideoHero({ title, subtitle, cta, ctaSecondary, fallbackImage, videoUrl
                         muted={true}
                         controls={false}
                         playsinline={true}
+                        progressInterval={300}
                         width="100%"
                         height="100%"
                         className="video-hero__react-player"
                         onReady={() => setVideoReady(true)}
-                        onEnded={handleEnded}
-                        config={{
-                            youtube: {
-                                playerVars: { start: 2, end: 32, modestbranding: 1, rel: 0, autoplay: 1, controls: 0 }
+                        onProgress={({ playedSeconds }) => {
+                            // Cuando llega al segundo 30, volver silenciosamente al 2
+                            if (playedSeconds >= 30 && playerRef.current) {
+                                playerRef.current.seekTo(2, 'seconds');
                             }
                         }}
-                        style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%) scale(1.35)' }}
+                        config={{
+                            youtube: {
+                                playerVars: { 
+                                    start: 2, 
+                                    modestbranding: 1, 
+                                    rel: 0, 
+                                    autoplay: 1, 
+                                    controls: 0,
+                                    disablekb: 1,
+                                    iv_load_policy: 3
+                                }
+                            }
+                        }}
+                        style={{ 
+                            position: 'absolute', 
+                            top: '50%', 
+                            left: '50%', 
+                            transform: 'translate(-50%, -50%) scale(1.35)',
+                            pointerEvents: 'none'
+                        }}
                     />
                 ) : (
                     <img
