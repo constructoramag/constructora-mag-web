@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import ReactPlayer from 'react-player';
+
 import { isSaveDataEnabled } from '../utils/videoUtils';
 import './VideoHero.css';
 
@@ -12,57 +12,28 @@ import './VideoHero.css';
  * - Gradient overlay con título, subtítulo y botones CTA.
  */
 function VideoHero({ title, subtitle, cta, ctaSecondary, fallbackImage, videoUrl, onCtaClick, onSecondaryClick }) {
-    const [videoReady, setVideoReady] = useState(false);
-    const [playing, setPlaying] = useState(true);
-    const playerRef = useRef(null);
     const saveData = isSaveDataEnabled();
     const shouldShowVideo = videoUrl && !saveData;
-
-
 
     return (
         <section className="video-hero" aria-label="Sección principal">
             {/* Fondo: video o imagen */}
             <div className="video-hero__bg">
                 {shouldShowVideo ? (
-                    <ReactPlayer
-                        ref={playerRef}
-                        url={videoUrl}
-                        playing={playing}
-                        muted={true}
-                        controls={false}
-                        playsinline={true}
-                        progressInterval={300}
-                        width="100%"
-                        height="100%"
+                    <video
+                        src="/videos/hero-bg.mp4"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
                         className="video-hero__react-player"
-                        onReady={() => setVideoReady(true)}
-                        onProgress={({ playedSeconds }) => {
-                            // Cuando llega al segundo 30, volver silenciosamente al 2
-                            if (playedSeconds >= 30 && playerRef.current) {
-                                playerRef.current.seekTo(2, 'seconds');
-                            }
-                        }}
-                        config={{
-                            youtube: {
-                                playerVars: { 
-                                    start: 2, 
-                                    modestbranding: 1, 
-                                    rel: 0, 
-                                    autoplay: 1, 
-                                    mute: 1,
-                                    controls: 0,
-                                    disablekb: 1,
-                                    iv_load_policy: 3
-                                }
-                            }
-                        }}
-                        style={{ 
-                            position: 'absolute', 
-                            top: '50%', 
-                            left: '50%', 
+                        style={{
+                            position: 'absolute',
+                            top: '50%',
+                            left: '50%',
                             transform: 'translate(-50%, -50%) scale(1.35)',
-                            pointerEvents: 'none'
+                            pointerEvents: 'none',
+                            objectFit: 'cover'
                         }}
                     />
                 ) : (
