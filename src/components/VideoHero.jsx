@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import { parseVideoUrl, isSaveDataEnabled, isNativeVideoUrl } from '../utils/videoUtils';
+import ReactPlayer from 'react-player/lazy';
+import { isSaveDataEnabled } from '../utils/videoUtils';
 import './VideoHero.css';
 
 /**
@@ -12,39 +13,42 @@ import './VideoHero.css';
  */
 function VideoHero({ title, subtitle, cta, ctaSecondary, fallbackImage, videoUrl, onCtaClick, onSecondaryClick }) {
     const [videoReady, setVideoReady] = useState(false);
+    const [playing, setPlaying] = useState(true);
+    const playerRef = useRef(null);
     const saveData = isSaveDataEnabled();
     const shouldShowVideo = videoUrl && !saveData;
-    const embedUrl = shouldShowVideo
-        ? parseVideoUrl(videoUrl, { autoplay: true, muted: true, loop: true, controls: false, start: 2, end: 32 })
-        : null;
-    const isNative = isNativeVideoUrl(embedUrl);
+
+    const handleEnded = () => {
+        if (playerRef.current) {
+            playerRef.current.seekTo(2, 'seconds');
+            setPlaying(true);
+        }
+    };
 
     return (
         <section className="video-hero" aria-label="Sección principal">
             {/* Fondo: video o imagen */}
             <div className="video-hero__bg">
                 {shouldShowVideo ? (
-                    isNative ? (
-                        <video
-                            src={embedUrl}
-                            autoPlay
-                            muted
-                            loop
-                            playsInline
-                            className="video-hero__video-native"
-                            onLoadedData={() => setVideoReady(true)}
-                        />
-                    ) : (
-                        <iframe
-                            src={embedUrl}
-                            title="Video de fondo"
-                            frameBorder="0"
-                            allow="autoplay; encrypted-media"
-                            allowFullScreen
-                            className="video-hero__iframe"
-                            onLoad={() => setVideoReady(true)}
-                        />
-                    )
+                    <ReactPlayer
+                        ref={playerRef}
+                        url={videoUrl}
+                        playing={playing}
+                        muted={true}
+                        controls={false}
+                        playsinline={true}
+                        width="100%"
+                        height="100%"
+                        className="video-hero__react-player"
+                        onReady={() => setVideoReady(true)}
+                        onEnded={handleEnded}
+                        config={{
+                            youtube: {
+                                playerVars: { start: 2, end: 32, modestbranding: 1, rel: 0, autoplay: 1, controls: 0 }
+                            }
+                        }}
+                        style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%) scale(1.35)' }}
+                    />
                 ) : (
                     <img
                         src={fallbackImage}
