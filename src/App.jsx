@@ -67,8 +67,8 @@ function App() {
 
         {/* Antes y Después */}
         <BeforeAfterSlider 
-          beforeImage="/images/antes.jpg"
-          afterImage="/images/despues.jpg"
+          beforeImage="/images/antes.png"
+          afterImage="/images/despues.png"
         />
 
         {/* Galería de proyectos (Evidencia antes de vender) */}
