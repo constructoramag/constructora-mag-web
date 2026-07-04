@@ -51,10 +51,22 @@ async function run() {
   const routes = await getDynamicRoutes();
   const { server, port } = await startServer();
   
-  const browser = await puppeteer.launch({ 
-    headless: true,
-    args: ['--no-sandbox', '--disable-setuid-sandbox'] 
-  });
+  let browser;
+  if (process.env.VERCEL || process.env.CI) {
+    const chromium = (await import('@sparticuz/chromium')).default;
+    const puppeteerCore = (await import('puppeteer-core')).default;
+    browser = await puppeteerCore.launch({
+      args: chromium.args,
+      defaultViewport: chromium.defaultViewport,
+      executablePath: await chromium.executablePath(),
+      headless: chromium.headless,
+    });
+  } else {
+    browser = await puppeteer.launch({ 
+      headless: true,
+      args: ['--no-sandbox', '--disable-setuid-sandbox'] 
+    });
+  }
   
   for (const route of routes) {
     const page = await browser.newPage();
