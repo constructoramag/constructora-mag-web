@@ -11,7 +11,7 @@ export const siteContent = {
         fallbackImage: "/images/hero_bg.png",
         // URL de YouTube o Vimeo para video de fondo (null = solo imagen)
         // Para activar: reemplaza null con tu URL de YouTube/Vimeo
-        videoUrl: "https://www.youtube.com/watch?v=AZ4uM4M_O3I",
+        videoUrl: null, // Lo dejamos en null para usar el video local (hero-bg.mp4)
     },
 
     // ── Company Info ──────────────────────────────────────────────────────────

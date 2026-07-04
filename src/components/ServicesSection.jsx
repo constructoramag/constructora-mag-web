@@ -1,5 +1,7 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useSiteContent } from '../hooks/useSiteContent';
+import { useServices } from '../hooks/useServices';
 import { motion, AnimatePresence } from 'framer-motion';
 import './ServicesSection.css';
 
@@ -21,7 +23,9 @@ const itemVariants = {
 };
 
 function ServicesSection() {
-    const { services, stats, contact, loading } = useSiteContent();
+    const { stats, contact } = useSiteContent();
+    const { data: sanityServices, loading } = useServices();
+    const services = sanityServices?.slice(0, 5) || [];
     const [selectedId, setSelectedId] = useState(null);
 
     // Valores de stats: desde Sanity o fallback del hook
@@ -96,21 +100,19 @@ function ServicesSection() {
                                                     transition={{ duration: 0.3 }}
                                                     className="bento-card__details"
                                                 >
-                                                    <p className="bento-card__desc">{service.description}</p>
+                                                    <p className="bento-card__desc">{service.shortDescription || service.description}</p>
                                                     
-                                                    <a 
-                                                        href={`https://wa.me/${contact?.whatsapp1 || '56994478840'}?text=${encodeURIComponent(`Hola! Estoy viendo su página web y me interesa cotizar el servicio de *${service.title}*.`)}`}
-                                                        target="_blank" 
-                                                        rel="noopener noreferrer" 
+                                                    <Link 
+                                                        to={`/servicios/${service.slug}`}
                                                         className="bento-card__cta"
-                                                        onClick={(e) => e.stopPropagation()} // Prevenir que el click cierre la tarjeta
+                                                        onClick={(e) => e.stopPropagation()}
                                                     >
-                                                        Habla con un especialista
+                                                        Ver detalles del servicio
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                                             <line x1="5" y1="12" x2="19" y2="12"></line>
                                                             <polyline points="12 5 19 12 12 19"></polyline>
                                                         </svg>
-                                                    </a>
+                                                    </Link>
                                                 </motion.div>
                                             )}
                                         </AnimatePresence>
@@ -126,6 +128,18 @@ function ServicesSection() {
                             );
                         })}
                     </motion.div>
+                )}
+
+                {/* CTA Teaser */}
+                {!loading && sanityServices && sanityServices.length > 5 && (
+                    <div className="mt-12 text-center">
+                        <Link 
+                            to="/servicios" 
+                            className="inline-block bg-[var(--surface)] border border-[var(--border)] text-white hover:text-[var(--primary)] px-8 py-4 rounded-full font-bold transition-all hover:scale-105 hover:border-[var(--primary)]/50 focus:outline-none focus-visible:ring-2 ring-[var(--primary)]"
+                        >
+                            Ver Todos los Servicios
+                        </Link>
+                    </div>
                 )}
             </div>
         </section>

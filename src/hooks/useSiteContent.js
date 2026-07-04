@@ -14,7 +14,9 @@ import { siteContent as staticContent } from '../data/siteContent';
  * { hero, company, services, stats, contact, theme, loading, error }
  */
 export function useSiteContent() {
-    const [content, setContent] = useState(null);
+    // Usar el fallback estático como estado inicial garantiza 0 milisegundos de pantalla en blanco.
+    // Cuando Sanity termine de cargar, simplemente actualizará los textos (Stale-While-Revalidate).
+    const [content, setContent] = useState(() => normalizeSanityContent(null));
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -60,25 +62,19 @@ export function useSiteContent() {
  * Si `raw` es null, usa los datos de data/siteContent.js.
  */
 function normalizeSanityContent(raw) {
-    if (!raw || (!raw.siteContent && !raw.services && !raw.brandSettings)) {
-        // Fallback al esquema estático — ya tiene el shape correcto
+    if (!raw || (!raw.homePage && !raw.companyInfo)) {
         return {
             hero: {
                 title: staticContent.hero.title,
                 subtitle: staticContent.hero.subtitle,
                 cta: staticContent.hero.cta,
                 ctaSecondary: staticContent.hero.ctaSecondary,
-                fallbackImage: staticContent.hero.fallbackImage, // string URL
+                fallbackImage: staticContent.hero.fallbackImage,
                 videoUrl: staticContent.hero.videoUrl,
             },
             company: staticContent.company,
             services: staticContent.services,
-            stats: {
-                years: '+10',
-                projects: '+150',
-                satisfaction: '100%',
-                coverage: 'RM',
-            },
+            stats: { years: '+10', projects: '+150', satisfaction: '100%', coverage: 'RM' },
             contact: {
                 whatsapp1: staticContent.contact.whatsapp1.replace('+', ''),
                 whatsapp1Display: staticContent.contact.whatsappDisplay1,
@@ -89,57 +85,48 @@ function normalizeSanityContent(raw) {
                 facebook: staticContent.contact.facebook,
                 location: staticContent.contact.location,
             },
-            theme: null, // Sin tema estático por ahora
+            theme: null,
+            testimonials: staticContent.testimonials
         };
     }
 
-    const site = raw.siteContent || {};
-    const servicesData = raw.services || [];
-    const theme = raw.brandSettings || null;
+    const { homePage = {}, companyInfo = {}, globalCTA = {}, brandSettings = {}, services = [], testimonials = [] } = raw;
 
-    // Mapeo desde respuesta de Sanity
     return {
         hero: {
-            title: site.heroTitle ?? staticContent.hero.title,
-            subtitle: site.heroSubtitle ?? staticContent.hero.subtitle,
-            cta: site.heroCta ?? staticContent.hero.cta,
-            ctaSecondary: site.heroCtaSecondary ?? staticContent.hero.ctaSecondary,
-            // heroFallbackImage es un objeto Sanity image — urlFor lo transforma
-            fallbackImage: site.heroFallbackImage ?? staticContent.hero.fallbackImage,
-            fallbackImageUrl: site.heroFallbackImageUrl, // URL directa del CDN
-            videoUrl: site.heroVideoUrl ?? staticContent.hero.videoUrl,
+            title: homePage.heroTitle ?? staticContent.hero.title,
+            subtitle: homePage.heroSubtitle ?? staticContent.hero.subtitle,
+            cta: globalCTA.buttonText ?? staticContent.hero.cta,
+            ctaSecondary: staticContent.hero.ctaSecondary,
+            fallbackImage: staticContent.hero.fallbackImage,
+            fallbackImageUrl: homePage.heroFallbackImageUrl,
+            videoUrl: homePage.heroVideoUrl ?? staticContent.hero.videoUrl,
         },
         company: {
-            name: site.companyName ?? staticContent.company.name,
-            slogan: site.companySlogan ?? staticContent.company.slogan,
-            about: site.companyAbout ?? staticContent.company.about,
-            founded: site.companyFounded ?? staticContent.company.founded,
-            location: site.companyLocation ?? staticContent.company.location,
+            name: companyInfo.name ?? staticContent.company.name,
+            slogan: companyInfo.slogan ?? staticContent.company.slogan,
+            about: homePage.aboutText ?? staticContent.company.about,
+            founded: companyInfo.foundedYear ?? staticContent.company.founded,
+            location: companyInfo.address ?? staticContent.company.location,
         },
-        services: servicesData.length
-            ? servicesData.map((s, i) => ({ 
-                ...s, 
-                id: i + 1,
-                // Si viene de Sanity usa imageUrl, sino busca el del fallback por título o índice
-                imageUrl: s.imageUrl ?? (staticContent.services.find(stat => stat.title === s.title)?.imageUrl || staticContent.services[0].imageUrl)
-              }))
-            : staticContent.services,
-        stats: {
-            years: site.statYears ?? '+10',
-            projects: site.statProjects ?? '+150',
-            satisfaction: site.statSatisfaction ?? '100%',
-            coverage: site.statCoverage ?? 'RM',
-        },
+        services: services.length > 0 ? services.map(s => ({
+            id: s._id,
+            title: s.title,
+            description: s.shortDescription,
+            imageUrl: s.imageUrl ?? staticContent.services.find(st => st.title === s.title)?.imageUrl
+        })) : staticContent.services,
+        stats: { years: '+10', projects: '+150', satisfaction: '100%', coverage: 'RM' }, // Puede ser dinámico después
         contact: {
-            whatsapp1: site.whatsapp1 ?? staticContent.contact.whatsapp1.replace('+', ''),
-            whatsapp1Display: site.whatsapp1Display ?? staticContent.contact.whatsappDisplay1,
-            whatsapp2: site.whatsapp2 ?? staticContent.contact.whatsapp2.replace('+', ''),
-            whatsapp2Display: site.whatsapp2Display ?? staticContent.contact.whatsappDisplay2,
-            email: site.email ?? staticContent.contact.email,
-            instagram: site.instagram ?? staticContent.contact.instagram,
-            facebook: site.facebook ?? staticContent.contact.facebook,
-            location: staticContent.contact.location,
+            whatsapp1: (companyInfo.whatsapp1 || staticContent.contact.whatsapp1).replace('+', ''),
+            whatsapp1Display: companyInfo.whatsapp1Display ?? staticContent.contact.whatsappDisplay1,
+            whatsapp2: (companyInfo.whatsapp2 || staticContent.contact.whatsapp2).replace('+', ''),
+            whatsapp2Display: companyInfo.whatsapp2Display ?? staticContent.contact.whatsappDisplay2,
+            email: companyInfo.contactEmail ?? staticContent.contact.email,
+            instagram: companyInfo.instagramUrl ?? staticContent.contact.instagram,
+            facebook: companyInfo.facebookUrl ?? staticContent.contact.facebook,
+            location: companyInfo.address ?? staticContent.contact.location,
         },
-        theme,
+        testimonials: testimonials.length > 0 ? testimonials : staticContent.testimonials,
+        theme: brandSettings,
     };
 }

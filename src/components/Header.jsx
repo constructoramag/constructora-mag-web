@@ -1,18 +1,19 @@
 import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import './Header.css';
 
 const navLinks = [
-    { label: 'Inicio', href: '#inicio' },
-    { label: 'Proyectos', href: '#proyectos' },
-    { label: 'Por qué elegirnos', href: '#beneficios' },
-    { label: 'Servicios', href: '#servicios' },
-    { label: 'Nosotros', href: '#nosotros' },
-    { label: 'Contacto', href: '#contacto' },
+    { label: 'Inicio', href: '/' },
+    { label: 'Proyectos', href: '/proyectos' },
+    { label: 'Servicios', href: '/servicios' },
+    { label: 'Nosotros', href: '/nosotros' },
+    { label: 'Contacto', href: '/contacto' },
 ];
 
 function Header() {
     const [scrolled, setScrolled] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
+    const location = useLocation();
 
     useEffect(() => {
         const handleScroll = () => setScrolled(window.scrollY > 60);
@@ -20,33 +21,28 @@ function Header() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    const handleNavClick = (e, href) => {
-        e.preventDefault();
-        setMenuOpen(false);
-        const target = document.querySelector(href);
-        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    };
+    const closeMenu = () => setMenuOpen(false);
 
     return (
         <header className={`header ${scrolled ? 'header--scrolled' : ''}`}>
             <div className="header__inner container">
                 {/* Logo */}
-                <a href="#inicio" className="header__logo" onClick={(e) => handleNavClick(e, '#inicio')}>
+                <Link to="/" className="header__logo" onClick={closeMenu}>
                     <span className="header__logo-mag">MAG</span>
                     <span className="header__logo-sub">Servicios Integrales</span>
-                </a>
+                </Link>
 
                 {/* Nav desktop */}
                 <nav className="header__nav" aria-label="Navegación principal">
                     {navLinks.map((link) => (
-                        <a
+                        <Link
                             key={link.href}
-                            href={link.href}
-                            className="header__nav-link"
-                            onClick={(e) => handleNavClick(e, link.href)}
+                            to={link.href}
+                            className={`header__nav-link ${location.pathname === link.href ? 'active text-[var(--primary)] font-bold' : ''}`}
+                            onClick={closeMenu}
                         >
                             {link.label}
-                        </a>
+                        </Link>
                     ))}
                     <a
                         href="https://wa.me/56994478840?text=Hola!%20Me%20interesa%20solicitar%20un%20presupuesto."
@@ -73,14 +69,14 @@ function Header() {
             {menuOpen && (
                 <nav className="header__mobile-nav">
                     {navLinks.map((link) => (
-                        <a
+                        <Link
                             key={link.href}
-                            href={link.href}
-                            className="header__mobile-link"
-                            onClick={(e) => handleNavClick(e, link.href)}
+                            to={link.href}
+                            className={`header__mobile-link ${location.pathname === link.href ? 'active text-[var(--primary)] font-bold' : ''}`}
+                            onClick={closeMenu}
                         >
                             {link.label}
-                        </a>
+                        </Link>
                     ))}
                     <a
                         href="https://wa.me/56994478840?text=Hola!%20Me%20interesa%20solicitar%20un%20presupuesto."

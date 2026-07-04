@@ -2,27 +2,70 @@
     background: var(--bg);
 }
 
+.process-embla {
+    overflow: hidden;
+}
+
 .process-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
-    position: relative;
+    display: flex;
+    margin-top: 3rem;
+}
+
+.process-embla__slide {
+    flex: 0 0 90%;
+    min-width: 0;
+    margin-right: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+    .process-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
+    }
+    .process-embla__slide {
+        flex: auto;
+        margin-right: 0;
+    }
 }
 
 .process-card {
     position: relative;
-    padding: 2rem 1.5rem;
+    padding: 2.5rem 1.5rem;
     background: var(--card-bg);
     border: 1px solid var(--border);
     border-radius: 12px;
     text-align: center;
-    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.6s ease, box-shadow 0.6s ease, opacity 0.6s ease;
 }
 
-.process-card:hover {
-    transform: translateY(-5px);
-    border-color: rgba(228, 170, 21, 0.4);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+/* En mobile, los slides no activos son un poco más transparentes (Stepper effect) */
+@media (max-width: 1023px) {
+    .process-card {
+        opacity: 0.4;
+        transform: scale(0.95);
+    }
+    .process-card--active {
+        opacity: 1;
+        transform: scale(1);
+        border-color: rgba(228, 170, 21, 0.4);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+    .process-card--active .process-number {
+        color: var(--accent);
+    }
+}
+
+/* En desktop, efecto hover sutil y premium */
+@media (min-width: 1024px) {
+    .process-card:hover {
+        transform: translateY(-4px); 
+        border-color: rgba(228, 170, 21, 0.25);
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
+    }
+    .process-card:hover .process-number {
+        color: var(--accent);
+    }
 }
 
 .process-number {
@@ -32,11 +75,7 @@
     color: var(--border);
     margin-bottom: 1rem;
     line-height: 1;
-    transition: color 0.3s ease;
-}
-
-.process-card:hover .process-number {
-    color: var(--accent);
+    transition: color 0.6s ease;
 }
 
 .process-title {
@@ -57,25 +96,15 @@
 .process-connector {
     position: absolute;
     top: 50%;
-    right: -1.75rem;
+    right: -2rem; 
     transform: translateY(-50%);
-    color: var(--border);
+    color: var(--accent);
+    opacity: 0.6;
     z-index: 2;
 }
 
-@media (max-width: 1024px) {
-    .process-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 2rem;
-    }
-
+@media (max-width: 1023px) {
     .process-connector {
-        display: none; /* Se oculta en responsive para no romper el layout */
-    }
-}
-
-@media (max-width: 600px) {
-    .process-grid {
-        grid-template-columns: 1fr;
+        display: none;
     }
 }

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import ProjectCard from './ProjectCard';
 import VideoModal from './VideoModal';
@@ -37,6 +38,8 @@ function ProjectGallery() {
         activeCategory === 'Todos'
             ? projects
             : projects.filter((p) => p.category === activeCategory);
+
+    const displayedProjects = filtered.slice(0, 6); // Teaser mode
 
     return (
         <section id="proyectos" className="project-gallery section">
@@ -93,7 +96,7 @@ function ProjectGallery() {
                         viewport={{ once: true, margin: "-50px" }}
                     >
                         <AnimatePresence mode="popLayout">
-                            {filtered.map((project) => (
+                            {displayedProjects.map((project) => (
                                 <motion.div 
                                     key={project._id} 
                                     variants={itemVariants}

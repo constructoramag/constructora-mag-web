@@ -1,56 +1,71 @@
-import { useEffect, useRef, useState } from 'react';
-
-import { isSaveDataEnabled } from '../utils/videoUtils';
+import { useRef, useState } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import './VideoHero.css';
 
 /**
- * VideoHero — Sección hero de pantalla completa.
- *
- * - Si videoUrl está definido y el usuario no tiene Save-Data activo,
- *   embebe un iframe de YouTube/Vimeo en modo loop, silenciado y sin controles.
- * - Si no hay video (o Save-Data activo), muestra la fallbackImage.
- * - Gradient overlay con título, subtítulo y botones CTA.
+ * VideoHero — Sección hero de pantalla completa premium con video y crossfade.
  */
-function VideoHero({ title, subtitle, cta, ctaSecondary, fallbackImage, videoUrl, onCtaClick, onSecondaryClick }) {
-    const saveData = isSaveDataEnabled();
-    const shouldShowVideo = videoUrl && !saveData;
+function VideoHero({ title, subtitle, cta, ctaSecondary, videoUrl, onCtaClick, onSecondaryClick }) {
+    const ref = useRef(null);
+    const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+
+    const { scrollYProgress } = useScroll({
+        target: ref,
+        offset: ["start start", "end start"]
+    });
+
+    const yBg = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
+    const opacityBg = useTransform(scrollYProgress, [0, 1], [1, 0.6]);
 
     return (
-        <section className="video-hero" aria-label="Sección principal">
-            {/* Fondo: video o imagen */}
-            <div className="video-hero__bg">
-                {shouldShowVideo ? (
-                    <video
-                        src="/videos/hero-bg.mp4"
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        className="video-hero__react-player"
-                        style={{
-                            position: 'absolute',
-                            top: '50%',
-                            left: '50%',
-                            transform: 'translate(-50%, -50%) scale(1.35)',
-                            pointerEvents: 'none',
-                            objectFit: 'cover'
-                        }}
-                    />
-                ) : (
-                    <img
-                        src={fallbackImage}
-                        alt="Fondo constructora MAG"
-                        className="video-hero__fallback-img"
-                    />
-                )}
-            </div>
+        <section ref={ref} className="video-hero" aria-label="Sección principal">
+            {/* Fondo: poster y video con parallax y crossfade suave */}
+            <motion.div 
+                className="video-hero__bg"
+                style={{ y: yBg, opacity: opacityBg }}
+            >
+                {/* Poster: Usamos exactamente tu imagen optimizada */}
+                <img
+                    src="/images/hero-bg-opt.jpg"
+                    alt="Fondo constructora MAG"
+                    className={`video-hero__poster-img ${isVideoLoaded ? 'is-hidden' : ''}`}
+                    onError={(e) => { 
+                        // Fallback seguro por si acaso
+                        e.target.src = "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2075&auto=format&fit=crop"; 
+                    }}
+                />
 
-            {/* Gradient overlay */}
-            <div className="video-hero__overlay" />
+                <video
+                    src={videoUrl || "/videos/hero-bg.mp4"}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    preload="auto"
+                    onPlaying={() => setIsVideoLoaded(true)}
+                    className={`video-hero__react-player ${isVideoLoaded ? 'is-loaded' : ''}`}
+                />
+            </motion.div>
 
-            {/* Contenido */}
-            <div className="video-hero__content">
-                <div className="video-hero__badge">CONSTRUYENDO TUS SUEÑOS</div>
+            {/* Capas cinematográficas (Overlays y Viñeta) */}
+            <div className="video-hero__cinematic-overlay" />
+            <div className="video-hero__vignette" />
+
+            {/* Contenido (Aparece inmediatamente sobre el poster) */}
+            <motion.div 
+                className="video-hero__content"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            >
+                <motion.div 
+                    className="video-hero__badge"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.2, duration: 1, ease: "easeOut" }}
+                >
+                    CONSTRUYENDO TUS SUEÑOS
+                </motion.div>
                 <h1 className="video-hero__title">{title}</h1>
                 <p className="video-hero__subtitle">{subtitle}</p>
                 <div className="video-hero__actions">
@@ -61,12 +76,17 @@ function VideoHero({ title, subtitle, cta, ctaSecondary, fallbackImage, videoUrl
                         {ctaSecondary}
                     </button>
                 </div>
-            </div>
+            </motion.div>
 
             {/* Scroll indicator */}
-            <div className="video-hero__scroll-indicator">
+            <motion.div 
+                className="video-hero__scroll-indicator"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1, duration: 1.5 }}
+            >
                 <span className="video-hero__scroll-arrow">↓</span>
-            </div>
+            </motion.div>
         </section>
     );
 }
