@@ -41,8 +41,8 @@ function TrustBar() {
 
     const statItems = [
         { value: stats?.years ?? '+10', label: 'Años de Experiencia' },
-        { value: stats?.projects ?? '+250', label: 'Proyectos Entregados' },
-        { value: stats?.satisfaction ?? '98%', label: 'Clientes Satisfechos' },
+        { value: stats?.projects ?? '100%', label: 'Proyectos Residenciales' },
+        { value: stats?.satisfaction ?? 'Top', label: 'Calidad en Terminaciones' },
         { value: stats?.guarantee ?? '100%', label: 'Trabajos Garantizados' },
     ];
 

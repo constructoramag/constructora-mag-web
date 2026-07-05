@@ -22,6 +22,11 @@ const itemVariants = {
     }
 };
 
+const getInitials = (name) => {
+    if (!name) return 'MG';
+    return name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+};
+
 const TeamSection = () => {
     const { team, loading } = useTeam();
     
@@ -79,7 +84,13 @@ const TeamSection = () => {
                         {team.map((member) => (
                             <motion.div variants={itemVariants} key={member._id} className="team-card team-embla__slide">
                                 <div className="team-image-wrapper">
-                                    <img src={member.imageUrl} alt={member.name} className="team-image" loading="lazy" />
+                                    {member.imageUrl && !member.imageUrl.includes('unsplash') && !member.imageUrl.includes('placeholder') ? (
+                                        <img src={member.imageUrl} alt={member.name} className="team-image" loading="lazy" />
+                                    ) : (
+                                        <div className="team-avatar-placeholder">
+                                            <span>{getInitials(member.name)}</span>
+                                        </div>
+                                    )}
                                     <div className="team-overlay"></div>
                                 </div>
                                 <div className="team-info">

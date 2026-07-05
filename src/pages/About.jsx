@@ -45,6 +45,22 @@ export default function About() {
         </div>
       </section>
 
+      {/* Historia */}
+      <section className="container" style={{ padding: '6rem 1.5rem 2rem', maxWidth: '900px', margin: '0 auto', textAlign: 'center' }}>
+        <p style={{ fontSize: '1.15rem', lineHeight: '1.8', color: 'var(--text-secondary)', marginBottom: '1.5rem' }}>
+          Constructora MAG nace como una empresa familiar dedicada al rubro de la construcción, impulsada por el esfuerzo, la experiencia y la dedicación de su fundador.
+        </p>
+        <p style={{ fontSize: '1.15rem', lineHeight: '1.8', color: 'var(--text-secondary)', marginBottom: '1.5rem' }}>
+          Desde nuestros inicios, hemos trabajado con un propósito claro: entregar soluciones constructivas confiables, seguras y duraderas, cuidando cada detalle del proceso y manteniendo una relación cercana y transparente con nuestros clientes.
+        </p>
+        <p style={{ fontSize: '1.15rem', lineHeight: '1.8', color: 'var(--text-secondary)', marginBottom: '1.5rem' }}>
+          Creemos que una obra bien ejecutada no solo se mide por sus terminaciones, sino también por la confianza que se construye durante el camino. Por eso trabajamos con responsabilidad, planificación y compromiso, buscando que cada proyecto cumpla con las expectativas de quienes confían en nosotros.
+        </p>
+        <p style={{ fontSize: '1.25rem', lineHeight: '1.8', color: 'var(--text-primary)', fontWeight: 700 }}>
+          Más que construir obras, construimos relaciones duraderas basadas en el respeto, la transparencia y el trabajo bien hecho.
+        </p>
+      </section>
+
       {/* Identidad Corporativa */}
       <section className="about-page__mission">
         <div className="about-page__mission-grid">
@@ -56,11 +72,17 @@ export default function About() {
           >
             <h2>Misión</h2>
             <p>
-              Brindar soluciones integrales en el ámbito de la construcción y remodelación, superando las expectativas de nuestros clientes mediante la utilización de materiales de primera calidad, innovación en nuestros procesos y un equipo de profesionales altamente comprometidos.
+              Brindar soluciones integrales en construcción, remodelación y ampliación, desarrollando proyectos seguros, eficientes y duraderos.
+            </p>
+            <p>
+              Trabajamos con materiales de calidad, planificación clara y un equipo comprometido, buscando superar las expectativas de nuestros clientes en cada etapa de la obra.
             </p>
             <h2>Visión</h2>
             <p>
-              Consolidarnos como la empresa constructora líder y de mayor confianza en la región, reconocida por nuestra excelencia operativa, diseño vanguardista y la creación de espacios que mejoran la calidad de vida de las personas.
+              Consolidarnos como una constructora de confianza en la Región Metropolitana, reconocida por la calidad de nuestras terminaciones, la responsabilidad en nuestros procesos y la cercanía con cada cliente.
+            </p>
+            <p>
+              Queremos crear espacios funcionales, seguros y bien ejecutados, que mejoren la vida de las personas y aporten valor a sus hogares.
             </p>
           </motion.div>
           
