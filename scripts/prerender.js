@@ -72,7 +72,7 @@ async function run() {
     const page = await browser.newPage();
     try {
       console.log(`Prerenderizando: ${route}`);
-      await page.goto(`http://localhost:${port}${route}`, { waitUntil: 'networkidle0', timeout: 30000 });
+      await page.goto(`http://localhost:${port}${route}`, { waitUntil: 'domcontentloaded', timeout: 60000 });
       
       // Espera inteligente: aguardar a que React inyecte JSON-LD o que desaparezca el estado de carga
       try {
