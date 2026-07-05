@@ -56,7 +56,7 @@
 }
 
 .about-page__title-highlight {
-    color: var(--primary);
+    color: var(--accent);
 }
 
 .about-page__subtitle {
@@ -140,7 +140,7 @@
 
 .about-page__value-icon {
     font-size: 2.5rem;
-    color: var(--primary);
+    color: var(--accent);
     margin-bottom: 1rem;
 }
 

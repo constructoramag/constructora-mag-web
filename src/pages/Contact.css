@@ -34,7 +34,7 @@
 }
 
 .contact-page__title-highlight {
-    color: var(--primary);
+    color: var(--accent);
 }
 
 .contact-page__subtitle {
@@ -106,7 +106,7 @@
 }
 
 .contact-page__card:hover .contact-page__card-icon {
-    border-color: var(--primary);
+    border-color: var(--accent);
 }
 
 .contact-page__card--primary .contact-page__card-icon {
@@ -127,7 +127,7 @@
 
 .contact-page__card-icon .material-symbols-outlined {
     font-size: 1.75rem;
-    color: var(--primary);
+    color: var(--accent);
 }
 
 .contact-page__card-content {
@@ -200,3 +200,5 @@
     inset: 0;
     filter: invert(90%) hue-rotate(180deg) contrast(85%) grayscale(20%);
 }
+
+.contact-page__card:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 20px; }
