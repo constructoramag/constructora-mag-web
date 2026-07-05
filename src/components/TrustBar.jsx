@@ -40,10 +40,10 @@ function TrustBar() {
     const { stats } = useSiteContent();
 
     const statItems = [
-        { value: stats?.years ?? '+10', label: 'Años de Experiencia' },
-        { value: stats?.projects ?? '100%', label: 'Proyectos Residenciales' },
-        { value: stats?.satisfaction ?? 'Top', label: 'Calidad en Terminaciones' },
-        { value: stats?.guarantee ?? '100%', label: 'Trabajos Garantizados' },
+        { value: stats?.years ?? '+10', label: 'Años de experiencia' },
+        { value: stats?.projects ?? 'Familiar', label: 'Empresa cercana' },
+        { value: stats?.satisfaction ?? 'Calidad', label: 'Materiales seleccionados' },
+        { value: stats?.guarantee ?? 'Confianza', label: 'Trabajo garantizado' },
     ];
 
     return (

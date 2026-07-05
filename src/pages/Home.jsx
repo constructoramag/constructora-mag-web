@@ -37,17 +37,17 @@ export default function Home() {
         )}
       </div>
 
+      {/* Barra de confianza (Estadísticas) */}
+      <TrustBar />
+
       {/* Intro Familiar Teaser */}
-      <section className="container" style={{ padding: '6rem 1.5rem 2rem', textAlign: 'center', maxWidth: '900px', margin: '0 auto' }}>
+      <section className="container" style={{ padding: '3rem 1.5rem 5rem', textAlign: 'center', maxWidth: '900px', margin: '0 auto' }}>
         <span className="section-eyebrow">Empresa familiar, compromiso profesional</span>
         <h2 className="section-title" style={{ fontSize: 'clamp(1.2rem, 3vw, 1.5rem)', marginBottom: '2rem', fontWeight: 500, color: 'var(--text-secondary)', lineHeight: '1.8', fontFamily: 'var(--font-body)' }}>
           En Constructora MAG somos una empresa familiar dedicada al rubro de la construcción, donde cada proyecto se trabaja con responsabilidad, calidad y atención al detalle. Más que construir obras, construimos confianza.
         </h2>
         <Link to="/nosotros" className="btn btn--primary">Conoce nuestra historia</Link>
       </section>
-
-      {/* Barra de confianza (Estadísticas) */}
-      <TrustBar />
 
       {/* Antes y Después */}
       <BeforeAfterSlider 
