@@ -1,0 +1,249 @@
+/* ── Projects Page ───────────────────────────────────────────── */
+.projects-page {
+  padding-top: 10rem;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text-primary);
+  padding-bottom: 6rem;
+}
+
+/* ── Hero Editorial ──────────────────────────────────────────── */
+.projects-hero {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 5rem;
+  padding: 0 1.5rem;
+}
+
+.projects-hero__eyebrow {
+  display: block;
+  font-family: monospace, var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.projects-hero__title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.projects-hero__subtitle {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ── Filters (Premium Chips) ─────────────────────────────────── */
+.projects-filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 4rem;
+}
+
+.projects-filter-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+  padding: 0.6rem 1.5rem;
+  border-radius: 100px;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.projects-filter-btn:hover {
+  background: rgba(228, 170, 21, 0.1);
+  border-color: rgba(228, 170, 21, 0.3);
+  color: #fff;
+}
+
+.projects-filter-btn.active {
+  background: rgba(228, 170, 21, 0.15);
+  border-color: var(--accent);
+  color: #fff;
+  box-shadow: 0 0 15px rgba(228, 170, 21, 0.2), inset 0 0 10px rgba(228, 170, 21, 0.1);
+}
+
+.projects-filter-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ── Projects Grid ───────────────────────────────────────────── */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 2.5rem;
+  padding: 0 1.5rem;
+  max-width: var(--container);
+  margin: 0 auto;
+}
+
+/* ── Project Card ────────────────────────────────────────────── */
+.project-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  text-decoration: none;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+  position: relative;
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(228, 170, 21, 0.3);
+  border-color: rgba(228, 170, 21, 0.3);
+}
+
+/* ── Image & Overlay ── */
+.project-card__image-wrapper {
+  position: relative;
+  height: 280px;
+  overflow: hidden;
+}
+
+.project-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-card:hover .project-card__image {
+  transform: scale(1.08);
+}
+
+.project-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 50%, transparent 100%);
+  opacity: 0.8;
+  transition: opacity 0.4s ease;
+}
+
+.project-card:hover .project-card__overlay {
+  opacity: 0.6;
+}
+
+/* ── Badge Premium ── */
+.project-card__badge {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: linear-gradient(to right, #ffd700, #daa520);
+  color: #000;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.4rem 1rem;
+  border-radius: 100px;
+  box-shadow: 0 4px 15px rgba(218, 165, 32, 0.4);
+  z-index: 10;
+}
+
+/* ── Card Content ── */
+.project-card__content {
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.project-card__title {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  line-height: 1.3;
+}
+
+.project-card__meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.project-card__meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.project-card__meta-icon {
+  font-size: 1.1rem !important;
+  color: var(--accent);
+}
+
+/* ── Card CTA ── */
+.project-card__cta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--accent);
+  transition: transform 0.3s ease;
+  margin-top: auto;
+}
+
+.project-card:hover .project-card__cta {
+  transform: translateX(8px);
+}
+
+/* ── Loading State ───────────────────────────────────────────── */
+.projects-loading {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 2.5rem;
+  padding: 0 1.5rem;
+  max-width: var(--container);
+  margin: 0 auto;
+}
+
+.project-card--skeleton {
+  height: 480px;
+  border-radius: 16px;
+}
+
+/* ── Responsive ──────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .projects-page {
+    padding-top: 8rem;
+  }
+  .projects-hero {
+    margin-bottom: 3.5rem;
+  }
+  .projects-grid, .projects-loading {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
