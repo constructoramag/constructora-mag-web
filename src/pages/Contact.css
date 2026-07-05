@@ -1,0 +1,202 @@
+.contact-page {
+    min-height: 100vh;
+    background-color: var(--bg);
+    color: var(--text-primary);
+    padding: 10rem 0 6rem;
+}
+
+.contact-page__loading {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg);
+}
+
+.contact-page__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.contact-page__header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 4rem;
+}
+
+.contact-page__title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 1.5rem;
+}
+
+.contact-page__title-highlight {
+    color: var(--primary);
+}
+
+.contact-page__subtitle {
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.contact-page__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+@media (min-width: 1024px) {
+    .contact-page__grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.contact-page__cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.contact-page__card {
+    display: flex;
+    align-items: center;
+    padding: 2rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-page__card:hover {
+    border-color: rgba(228, 170, 21, 0.5);
+    background: rgba(255,255,255,0.02);
+}
+
+.contact-page__card--primary {
+    background: rgba(37, 211, 102, 0.1);
+    border-color: rgba(37, 211, 102, 0.3);
+}
+
+.contact-page__card--primary:hover {
+    background: rgba(37, 211, 102, 0.15);
+    border-color: rgba(37, 211, 102, 0.6);
+}
+
+.contact-page__card-icon {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-right: 1.5rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.contact-page__card:hover .contact-page__card-icon {
+    border-color: var(--primary);
+}
+
+.contact-page__card--primary .contact-page__card-icon {
+    background: #25D366;
+    border: none;
+    box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+}
+
+.contact-page__card--primary:hover .contact-page__card-icon {
+    transform: scale(1.1);
+}
+
+.contact-page__card-icon svg {
+    width: 2rem;
+    height: 2rem;
+    fill: #fff;
+}
+
+.contact-page__card-icon .material-symbols-outlined {
+    font-size: 1.75rem;
+    color: var(--primary);
+}
+
+.contact-page__card-content {
+    flex: 1;
+}
+
+.contact-page__card-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #fff;
+    margin: 0 0 0.25rem;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.contact-page__badge {
+    font-size: 0.7rem;
+    background: #25D366;
+    color: #000;
+    padding: 0.1rem 0.5rem;
+    border-radius: 50px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 800;
+}
+
+.contact-page__card-info {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    margin: 0;
+}
+
+.contact-page__card-hint {
+    font-size: 0.85rem;
+    margin: 0.25rem 0 0;
+}
+
+.contact-page__card-hint--success {
+    color: #25D366;
+    font-weight: 600;
+}
+
+.contact-page__card-hint--muted {
+    color: var(--text-muted);
+}
+
+.contact-page__map-wrapper {
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    height: 400px;
+    position: relative;
+}
+
+@media (min-width: 1024px) {
+    .contact-page__map-wrapper {
+        height: 100%;
+        min-height: 500px;
+    }
+}
+
+.contact-page__map {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    position: absolute;
+    inset: 0;
+    filter: invert(90%) hue-rotate(180deg) contrast(85%) grayscale(20%);
+}

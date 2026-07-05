@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { useServiceDetail } from '../hooks/useServices';
 import SEO from '../components/SEO';
 import RichTextRenderer from '../components/RichTextRenderer';
+import './ServiceDetail.css';
 
 export default function ServiceDetail() {
   const { slug } = useParams();
@@ -11,10 +12,10 @@ export default function ServiceDetail() {
 
   if (loading) {
     return (
-      <div className="min-h-screen pt-24 bg-[var(--bg)] flex items-center justify-center">
-        <div className="animate-pulse flex flex-col items-center">
-          <div className="h-12 w-12 border-4 border-[var(--primary)] border-t-transparent rounded-full animate-spin mb-4"></div>
-          <p className="text-[var(--text-secondary)]">Cargando servicio...</p>
+      <div className="service-detail__loading">
+        <div className="service-detail__loader">
+          <div className="service-detail__spinner"></div>
+          <p>Cargando servicio...</p>
         </div>
       </div>
     );
@@ -22,12 +23,16 @@ export default function ServiceDetail() {
 
   if (error || !service) {
     return (
-      <div className="min-h-screen pt-24 bg-[var(--bg)] flex flex-col items-center justify-center text-center px-4">
-        <h1 className="text-3xl font-bold mb-4 text-white">Servicio no encontrado</h1>
-        <p className="text-[var(--text-secondary)] mb-8">El servicio que buscas no existe o ha sido movido.</p>
-        <Link to="/servicios" className="bg-[var(--primary)] text-black px-6 py-2 rounded-full font-bold hover:scale-105 transition-transform">
-          ← Volver a Servicios
-        </Link>
+      <div className="service-detail__error">
+        <div>
+          <h2>Servicio no encontrado</h2>
+          <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem' }}>
+            El servicio que buscas no existe o ha sido movido.
+          </p>
+          <Link to="/servicios" className="service-detail__back-link">
+            ← Volver a Servicios
+          </Link>
+        </div>
       </div>
     );
   }
@@ -59,7 +64,7 @@ export default function ServiceDetail() {
   ];
 
   return (
-    <div className="min-h-screen bg-[var(--bg)] text-[var(--text-primary)]">
+    <div className="service-detail">
       <SEO 
         title={service.seo?.metaTitle || `${service.title} | Servicios Constructora MAG`}
         description={service.seo?.metaDescription || service.shortDescription}
@@ -68,131 +73,117 @@ export default function ServiceDetail() {
         schema={schema}
       />
 
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 px-4 overflow-hidden border-b border-[var(--border)]">
-        <div className="absolute inset-0 z-0">
+      <section className="service-detail__hero">
+        <div className="service-detail__hero-bg">
           <img 
             src={optUrl(service.imageUrl) || '/images/hero-bg-opt.jpg'} 
             alt=""
             aria-hidden="true"
-            className="w-full h-full object-cover opacity-20 blur-sm scale-105"
             fetchPriority="high"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[var(--bg)]/50 via-[var(--bg)]/80 to-[var(--bg)]"></div>
+          <div className="service-detail__hero-overlay"></div>
         </div>
 
-        <div className="container mx-auto relative z-10">
-          {/* Breadcrumbs */}
-          <nav className="mb-8 flex flex-wrap text-sm text-[var(--text-secondary)]" aria-label="Breadcrumb">
-            <Link to="/" className="hover:text-white transition-colors">Inicio</Link>
-            <span className="mx-2" aria-hidden="true">/</span>
-            <Link to="/servicios" className="hover:text-white transition-colors">Servicios</Link>
-            <span className="mx-2" aria-hidden="true">/</span>
-            <span className="text-[var(--primary)]" aria-current="page">{service.title}</span>
+        <div className="service-detail__hero-content">
+          <nav className="service-detail__breadcrumb" aria-label="Breadcrumb">
+            <Link to="/" className="service-detail__breadcrumb-link">Inicio</Link>
+            <span aria-hidden="true">/</span>
+            <Link to="/servicios" className="service-detail__breadcrumb-link">Servicios</Link>
+            <span aria-hidden="true">/</span>
+            <span className="service-detail__breadcrumb-current" aria-current="page">{service.title}</span>
           </nav>
 
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            className="max-w-4xl"
           >
-            <span className="inline-block px-4 py-1 rounded-full bg-[var(--primary)]/10 text-[var(--primary)] border border-[var(--primary)]/20 font-semibold tracking-wide text-sm mb-6 uppercase">
+            <span className="service-detail__eyebrow">
               {service.category || 'Especialidad'}
             </span>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight text-white">
+            <h1 className="service-detail__title">
               {service.title}
             </h1>
-            <p className="text-xl text-[var(--text-secondary)] max-w-2xl leading-relaxed">
+            <p className="service-detail__description">
               {service.shortDescription}
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Main Content Area */}
-      <section className="container mx-auto px-4 py-16 lg:py-24">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
-          
-          {/* Columna Izquierda: Descripción Larga */}
-          <div className="lg:col-span-2 space-y-12">
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              className="rounded-2xl overflow-hidden border border-[var(--border)] shadow-2xl"
-            >
-              <img 
-                src={optUrl(service.imageUrl) || '/images/hero-bg-opt.jpg'} 
-                alt={`Servicio de ${service.title}`} 
-                className="w-full h-[400px] object-cover" 
-                fetchPriority="high"
-              />
-            </motion.div>
+      <section className="service-detail__main">
+        
+        <div className="service-detail__content">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="service-detail__image-wrapper"
+          >
+            <img 
+              src={optUrl(service.imageUrl) || '/images/hero-bg-opt.jpg'} 
+              alt={`Servicio de ${service.title}`} 
+              fetchPriority="high"
+            />
+          </motion.div>
 
-            {service.richDescription ? (
-              <div className="prose prose-invert max-w-none text-white prose-lg prose-a:text-[var(--primary)] prose-img:rounded-xl">
-                <RichTextRenderer content={service.richDescription} />
-              </div>
-            ) : (
-              <div className="text-[var(--text-secondary)] italic">
-                La información detallada de este servicio está siendo actualizada.
-              </div>
-            )}
-          </div>
+          {service.richDescription ? (
+            <div className="service-detail__rich-text">
+              <RichTextRenderer content={service.richDescription} />
+            </div>
+          ) : (
+            <div className="service-detail__empty">
+              La información detallada de este servicio está siendo actualizada.
+            </div>
+          )}
+        </div>
 
-          {/* Columna Derecha: Sidebar Sticky CTA */}
-          <div className="space-y-8 relative">
-            <div className="sticky top-24">
-              <div className="bg-[var(--surface)] p-8 rounded-2xl border border-[var(--primary)]/30 relative overflow-hidden group shadow-2xl">
-                <div className="absolute inset-0 bg-gradient-to-br from-[var(--primary)]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                <h3 className="text-2xl font-bold mb-4 relative z-10 text-white">¿Necesitas este servicio?</h3>
-                <p className="text-[var(--text-secondary)] mb-8 relative z-10 leading-relaxed">
-                  Contamos con profesionales altamente calificados para llevar a cabo tu proyecto con el máximo estándar.
-                </p>
-                <a 
-                  href={`https://wa.me/56912345678?text=Hola,%20me%20gustaría%20cotizar%20el%20servicio%20de%20${service.title}.`}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="relative z-10 block w-full text-center py-4 rounded-xl bg-[var(--primary)] text-black font-bold hover:scale-105 transition-transform shadow-lg shadow-[var(--primary)]/20 focus:ring-2 ring-white"
-                >
-                  Cotizar por WhatsApp
-                </a>
-              </div>
+        <aside className="service-detail__sidebar">
+          <div className="service-detail__sidebar-sticky">
+            <div className="service-detail__cta-box">
+              <div className="service-detail__cta-bg"></div>
+              <h3 className="service-detail__cta-title">¿Necesitas este servicio?</h3>
+              <p className="service-detail__cta-text">
+                Contamos con profesionales altamente calificados para llevar a cabo tu proyecto con el máximo estándar.
+              </p>
+              <a 
+                href={`https://wa.me/56994478840?text=Hola,%20me%20gustaría%20cotizar%20el%20servicio%20de%20${service.title}.`}
+                target="_blank"
+                rel="noreferrer"
+                className="service-detail__cta-btn"
+              >
+                Cotizar por WhatsApp
+              </a>
             </div>
           </div>
-        </div>
+        </aside>
       </section>
 
-      {/* Proyectos Relacionados (Inverse Relations from GROQ) */}
       {service.relatedProjects && service.relatedProjects.length > 0 && (
-        <section className="border-t border-[var(--border)] bg-[#0a0a0a] py-24">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl font-bold mb-4 text-white">Proyectos Realizados</h2>
-              <p className="text-[var(--text-secondary)] max-w-2xl mx-auto">
+        <section className="service-detail__related">
+          <div className="service-detail__related-inner">
+            <div className="service-detail__related-header">
+              <h2 className="service-detail__related-title">Proyectos Realizados</h2>
+              <p className="service-detail__related-subtitle">
                 Explora cómo hemos aplicado el servicio de {service.title.toLowerCase()} en escenarios reales con resultados de primer nivel.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="service-detail__related-grid">
               {service.relatedProjects.map(relProject => (
-                <Link key={relProject._id} to={`/proyectos/${relProject.slug}`} className="group block focus:outline-none focus-visible:ring-4 ring-[var(--primary)] rounded-2xl h-full">
-                  <div className="bg-[var(--surface)] border border-[var(--border)] rounded-2xl overflow-hidden h-full flex flex-col transition-transform hover:-translate-y-2">
-                    <div className="relative h-64 overflow-hidden mb-4">
-                      <img 
-                        src={optUrl(relProject.imageUrl) || '/images/hero-bg-opt.jpg'} 
-                        alt={`Ver detalles de ${relProject.title}`} 
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
-                        loading="lazy"
-                      />
-                      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                        <span className="bg-[var(--primary)] text-black px-6 py-2 rounded-full font-bold">Ver Caso de Estudio</span>
-                      </div>
+                <Link key={relProject._id} to={`/proyectos/${relProject.slug}`} className="service-detail__related-card">
+                  <div className="service-detail__related-img">
+                    <img 
+                      src={optUrl(relProject.imageUrl) || '/images/hero-bg-opt.jpg'} 
+                      alt={`Ver detalles de ${relProject.title}`} 
+                      loading="lazy"
+                    />
+                    <div className="service-detail__related-overlay">
+                      <span className="service-detail__related-btn">Ver Caso de Estudio</span>
                     </div>
-                    <div className="p-6 pt-2 flex flex-col flex-1">
-                      <h3 className="text-xl font-bold group-hover:text-[var(--primary)] transition-colors text-white">{relProject.title}</h3>
-                      <p className="text-[var(--text-secondary)] text-sm mt-2">{relProject.location} • Nivel <span className="capitalize">{relProject.level}</span></p>
-                    </div>
+                  </div>
+                  <div className="service-detail__related-info">
+                    <h3 className="service-detail__related-name">{relProject.title}</h3>
+                    <p className="service-detail__related-meta">{relProject.location} • Nivel <span style={{textTransform: 'capitalize'}}>{relProject.level}</span></p>
                   </div>
                 </Link>
               ))}
