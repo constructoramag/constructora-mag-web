@@ -12,7 +12,7 @@ Esta aplicación está optimizada para ser desplegada en Vercel, aprovechando la
 
 En el dashboard de Vercel (Project Settings > Environment Variables), asegúrate de tener configuradas:
 
-- `VITE_SANITY_PROJECT_ID`: ID del proyecto (ej. `et1zei1q`).
+- `VITE_SANITY_PROJECT_ID`: ID del proyecto (ej. `bdqq6fie`).
 - `VITE_SANITY_DATASET`: Entorno (ej. `production`).
 - `VITE_GA_ID`: Measurement ID de Google Analytics (opcional, ej. `G-XXXXXXXXXX`).
 

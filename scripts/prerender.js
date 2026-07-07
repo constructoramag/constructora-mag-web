@@ -9,7 +9,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const distPath = path.resolve(__dirname, '../dist');
 
 const client = createClient({
-  projectId: 'et1zei1q',
+  projectId: 'bdqq6fie',
   dataset: 'production',
   useCdn: false,
   apiVersion: '2024-01-01',

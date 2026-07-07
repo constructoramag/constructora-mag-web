@@ -9,7 +9,7 @@ export default defineConfig({
   name: 'default',
   title: 'Constructora MAG - CMS',
 
-  projectId: 'et1zei1q',
+  projectId: 'bdqq6fie',
   dataset: 'production',
 
   plugins: [structureTool({ structure: deskStructure }), visionTool()],

@@ -7,7 +7,7 @@
 
 import { createClient } from '@sanity/client';
 
-const projectId = import.meta.env.VITE_SANITY_PROJECT_ID || 'et1zei1q';
+const projectId = import.meta.env.VITE_SANITY_PROJECT_ID || 'bdqq6fie';
 const dataset = import.meta.env.VITE_SANITY_DATASET || 'production';
 const apiVersion = '2024-01-01';
 
