@@ -73,12 +73,11 @@ export const siteContent = {
     // ── Contact ───────────────────────────────────────────────────────────────
     contact: {
         whatsapp1: "+56994478840",
-        whatsapp2: "+56974972366",
         whatsappDisplay1: "+569 9447 8840",
-        whatsappDisplay2: "+569 7497 2366",
         email: "contacto@constructoramag.cl",
         instagram: "https://www.instagram.com/servicios.integrales.m.a.g",
         facebook: "https://www.facebook.com/contructoramag/",
+        youtube: "https://www.youtube.com/@ConstructoraMAGChile",
         location: "Santiago de Chile, Región Metropolitana",
     },
 

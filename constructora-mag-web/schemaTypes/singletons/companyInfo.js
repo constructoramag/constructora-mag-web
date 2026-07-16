@@ -41,14 +41,9 @@ export default {
       description: 'Formato: +569 1234 5678',
     },
     {
-      name: 'whatsapp2',
-      title: 'WhatsApp 2 (Número)',
-      type: 'string',
-    },
-    {
-      name: 'whatsapp2Display',
-      title: 'WhatsApp 2 (Para mostrar)',
-      type: 'string',
+      name: 'youtubeUrl',
+      title: 'Enlace a YouTube',
+      type: 'url',
     },
     {
       name: 'instagramUrl',

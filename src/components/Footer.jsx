@@ -50,17 +50,6 @@ function Footer() {
                                     </a>
                                 </li>
                             )}
-                            {displayContact.whatsapp2 && (
-                                <li>
-                                    <a
-                                        href={`https://wa.me/${displayContact.whatsapp2}`}
-                                        target="_blank" rel="noopener noreferrer"
-                                        className="footer__link"
-                                    >
-                                        <span className="material-symbols-outlined">phone</span> {displayContact.whatsapp2Display ?? displayContact.whatsapp2}
-                                    </a>
-                                </li>
-                            )}
                             {displayContact.email && (
                                 <li>
                                     <a href={`mailto:${displayContact.email}`} className="footer__link">
@@ -107,6 +96,13 @@ function Footer() {
                                 <li>
                                     <a href={displayContact.facebook} target="_blank" rel="noopener noreferrer" className="footer__link">
                                         <span className="material-symbols-outlined">thumb_up</span> Facebook
+                                    </a>
+                                </li>
+                            )}
+                            {displayContact.youtube && (
+                                <li>
+                                    <a href={displayContact.youtube} target="_blank" rel="noopener noreferrer" className="footer__link">
+                                        <span className="material-symbols-outlined">smart_display</span> YouTube
                                     </a>
                                 </li>
                             )}
