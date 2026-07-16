@@ -120,6 +120,15 @@ export const SITE_CONTENT_QUERY = `
     "logoLightUrl": logoLight.asset->url,
     "logoDarkUrl": logoDark.asset->url,
     primaryColor, secondaryColor
+  },
+  "footerConfig": *[_type == "footerConfig"][0] {
+    copyrightText, footerLinks
+  },
+  "homePage": *[_type == "homePage"][0] {
+    heroTitle, heroSubtitle, heroVideoUrl, "heroFallbackImageUrl": heroFallbackImage.asset->url, aboutText
+  },
+  "globalCTA": *[_type == "globalCTA"][0] {
+    buttonText, buttonLink
   }
 }
 `

@@ -86,11 +86,15 @@ function normalizeSanityContent(raw) {
                 location: staticContent.contact.location,
             },
             theme: null,
-            testimonials: staticContent.testimonials
+            testimonials: staticContent.testimonials,
+            footer: {
+                copyright: `© ${new Date().getFullYear()} ${staticContent.company.name}. Todos los derechos reservados.`,
+                links: []
+            }
         };
     }
 
-    const { homePage = {}, companyInfo = {}, globalCTA = {}, brandSettings = {}, services = [], testimonials = [] } = raw;
+    const { homePage = {}, companyInfo = {}, globalCTA = {}, brandSettings = {}, services = [], testimonials = [], footerConfig = {} } = raw;
 
     return {
         hero: {
@@ -128,5 +132,9 @@ function normalizeSanityContent(raw) {
         },
         testimonials: testimonials.length > 0 ? testimonials : staticContent.testimonials,
         theme: brandSettings,
+        footer: {
+            copyright: footerConfig.copyrightText ?? `© ${new Date().getFullYear()} ${companyInfo.name ?? staticContent.company.name}. Todos los derechos reservados.`,
+            links: footerConfig.footerLinks ?? []
+        }
     };
 }

@@ -2,10 +2,11 @@ import { useSiteContent } from '../hooks/useSiteContent';
 import './Footer.css';
 
 function Footer() {
-    const { contact, company, loading } = useSiteContent();
+    const { contact, company, footer, loading } = useSiteContent();
 
     const displayContact = contact ?? {};
     const displayCompany = company ?? {};
+    const displayFooter = footer ?? {};
 
     return (
         <footer id="contacto" className="footer">
@@ -75,6 +76,22 @@ function Footer() {
                         </ul>
                     </div>
 
+                    {/* Enlaces Rápidos */}
+                    {displayFooter.links && displayFooter.links.length > 0 && (
+                        <div className="footer__col">
+                            <h4 className="footer__col-title">Enlaces Rápidos</h4>
+                            <ul className="footer__list">
+                                {displayFooter.links.map((item, index) => (
+                                    <li key={index}>
+                                        <a href={item.link} className="footer__link">
+                                            <span className="material-symbols-outlined">link</span> {item.label}
+                                        </a>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
+
                     {/* Social */}
                     <div className="footer__col">
                         <h4 className="footer__col-title">Síguenos</h4>
@@ -113,7 +130,7 @@ function Footer() {
 
                 {/* Bottom bar */}
                 <div className="footer__bottom">
-                    <p>© {new Date().getFullYear()} {displayCompany.name ?? 'MAG Servicios Integrales'}. Todos los derechos reservados.</p>
+                    <p>{displayFooter.copyright}</p>
                     <p className="footer__powered">Región Metropolitana, Santiago de Chile 🇨🇱</p>
                 </div>
             </div>
