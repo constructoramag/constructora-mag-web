@@ -59,7 +59,7 @@ function VideoModal({ project, onClose }) {
                         Cotiza un proyecto similar sin compromiso.
                     </p>
                     <a 
-                        href={`https://wa.me/56994478840?text=Hola!%20Acabo%20de%20ver%20el%20proyecto%20*${project.title}*%20en%20su%20web%20y%20me%20gustar%C3%ADa%20cotizar%20algo%20similar.`}
+                        href={`https://wa.me/56982340752?text=Hola!%20Acabo%20de%20ver%20el%20proyecto%20*${project.title}*%20en%20su%20web%20y%20me%20gustar%C3%ADa%20cotizar%20algo%20similar.`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="btn btn--primary btn--sm"

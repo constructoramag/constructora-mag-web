@@ -7,7 +7,7 @@ import './Contact.css';
 export default function Contact() {
   const { company, loading } = useSiteContent();
 
-  const waNumber = company?.whatsapp1 || '56994478840';
+  const waNumber = company?.whatsapp1 || '56982340752';
   const waDisplay = company?.whatsapp1Display || '+56 9 9447 8840';
   const email = company?.contactEmail || 'contacto@constructoramag.cl';
   const address = company?.address || 'Región Metropolitana, Santiago, Chile';

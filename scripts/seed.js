@@ -73,7 +73,7 @@ const seedData = [
     _id: 'companyInfo',
     _type: 'companyInfo',
     email: 'contacto@constructoramag.cl',
-    whatsapp1: '56994478840',
+    whatsapp1: '56982340752',
     whatsapp1Display: '+56 9 9447 8840',
     address: 'Santiago, Región Metropolitana, Chile'
   },

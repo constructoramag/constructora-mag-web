@@ -206,7 +206,7 @@ export default function ProjectDetail() {
                 Agendemos una visita técnica y diseñemos juntos tu próximo gran espacio con el mismo nivel de detalle.
               </p>
               <a 
-                href={`https://wa.me/56994478840?text=Hola,%20me%20gustó%20mucho%20el%20proyecto%20${project.title}%20y%20quiero%20cotizar%20algo%20similar.`}
+                href={`https://wa.me/56982340752?text=Hola,%20me%20gustó%20mucho%20el%20proyecto%20${project.title}%20y%20quiero%20cotizar%20algo%20similar.`}
                 target="_blank"
                 rel="noreferrer"
                 className="project-detail__cta-btn"

@@ -72,8 +72,8 @@ export const siteContent = {
 
     // ── Contact ───────────────────────────────────────────────────────────────
     contact: {
-        whatsapp1: "+56994478840",
-        whatsappDisplay1: "+569 9447 8840",
+        whatsapp1: "+56982340752",
+        whatsappDisplay1: "+56 9 8234 0752",
         email: "contacto@constructoramag.cl",
         instagram: "https://www.instagram.com/servicios.integrales.m.a.g",
         facebook: "https://www.facebook.com/contructoramag/",

@@ -146,7 +146,7 @@ export default function ServiceDetail() {
                 Contamos con profesionales altamente calificados para llevar a cabo tu proyecto con el máximo estándar.
               </p>
               <a 
-                href={`https://wa.me/56994478840?text=Hola,%20me%20gustaría%20cotizar%20el%20servicio%20de%20${service.title}.`}
+                href={`https://wa.me/56982340752?text=Hola,%20me%20gustaría%20cotizar%20el%20servicio%20de%20${service.title}.`}
                 target="_blank"
                 rel="noreferrer"
                 className="service-detail__cta-btn"

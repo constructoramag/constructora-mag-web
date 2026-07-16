@@ -43,7 +43,7 @@ export default function MainLayout() {
 
       {/* WhatsApp flotante */}
       <a
-        href="https://wa.me/56994478840?text=Hola!%20Me%20interesa%20cotizar%20un%20proyecto."
+        href="https://wa.me/56982340752?text=Hola!%20Me%20interesa%20cotizar%20un%20proyecto."
         target="_blank"
         rel="noopener noreferrer"
         className="whatsapp-fab"

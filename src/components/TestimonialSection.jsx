@@ -134,7 +134,7 @@ const TestimonialSection = () => {
 
                 <div style={{ textAlign: 'center', marginTop: '3rem' }}>
                     <a 
-                        href="https://wa.me/56994478840?text=Hola!%20He%20visto%20las%20rese%C3%B1as%20de%20sus%20clientes%20y%20me%20gustar%C3%ADa%20cotizar%20un%20proyecto."
+                        href="https://wa.me/56982340752?text=Hola!%20He%20visto%20las%20rese%C3%B1as%20de%20sus%20clientes%20y%20me%20gustar%C3%ADa%20cotizar%20un%20proyecto."
                         target="_blank"
                         rel="noopener noreferrer"
                         className="btn btn--primary"

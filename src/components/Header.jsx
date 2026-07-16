@@ -45,7 +45,7 @@ function Header() {
                         </Link>
                     ))}
                     <a
-                        href="https://wa.me/56994478840?text=Hola!%20Me%20interesa%20solicitar%20un%20presupuesto."
+                        href="https://wa.me/56982340752?text=Hola!%20Me%20interesa%20solicitar%20un%20presupuesto."
                         target="_blank"
                         rel="noopener noreferrer"
                         className="btn btn--primary btn--sm"
@@ -79,7 +79,7 @@ function Header() {
                         </Link>
                     ))}
                     <a
-                        href="https://wa.me/56994478840?text=Hola!%20Me%20interesa%20solicitar%20un%20presupuesto."
+                        href="https://wa.me/56982340752?text=Hola!%20Me%20interesa%20solicitar%20un%20presupuesto."
                         target="_blank"
                         rel="noopener noreferrer"
                         className="btn btn--primary"

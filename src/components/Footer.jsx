@@ -114,7 +114,7 @@ function Footer() {
                         <h4 className="footer__col-title">¿Tienes un proyecto?</h4>
                         <p className="footer__cta-text">Cotiza gratis, sin compromisos.</p>
                         <a
-                            href={`https://wa.me/${displayContact.whatsapp1 ?? '56994478840'}?text=Hola!%20Me%20interesa%20cotizar%20un%20proyecto.`}
+                            href={`https://wa.me/${displayContact.whatsapp1 ?? '56982340752'}?text=Hola!%20Me%20interesa%20cotizar%20un%20proyecto.`}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="btn btn--primary"
