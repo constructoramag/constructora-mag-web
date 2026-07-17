@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { urlFor } from '../lib/imageBuilder';
 import './ProjectCard.css';
 
@@ -20,14 +21,10 @@ function ProjectCard({ project, onVideoClick }) {
         if (hasVideo && onVideoClick) onVideoClick(project);
     };
 
-    return (
-        <article
+        <Link
+            to={`/proyectos/${project.slug}`}
             className={`project-card ${hasVideo ? 'project-card--has-video' : ''}`}
-            onClick={handleClick}
-            role={hasVideo ? 'button' : 'article'}
-            tabIndex={hasVideo ? 0 : undefined}
-            aria-label={hasVideo ? `Ver video de ${project.title}` : project.title}
-            onKeyDown={(e) => { if (e.key === 'Enter' && hasVideo) handleClick(); }}
+            aria-label={project.title}
         >
             {/* Imagen */}
             <div className="project-card__media">
@@ -70,7 +67,7 @@ function ProjectCard({ project, onVideoClick }) {
                     <div className="project-card__video-hint">▶ Ver video del proyecto</div>
                 )}
             </div>
-        </article>
+        </Link>
     );
 }
 
