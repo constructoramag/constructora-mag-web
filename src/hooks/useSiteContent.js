@@ -93,7 +93,13 @@ function normalizeSanityContent(raw) {
         };
     }
 
-    const { homePage = {}, companyInfo = {}, globalCTA = {}, brandSettings = {}, services = [], testimonials = [], footerConfig = {} } = raw;
+    const homePage = raw.homePage || {};
+    const companyInfo = raw.companyInfo || {};
+    const globalCTA = raw.globalCTA || {};
+    const brandSettings = raw.brandSettings || {};
+    const services = raw.services || [];
+    const testimonials = raw.testimonials || [];
+    const footerConfig = raw.footerConfig || {};
 
     return {
         hero: {

@@ -24,6 +24,6 @@ export const client = isSanityConfigured
         projectId,
         dataset,
         apiVersion,
-        useCdn: true, // true = máxima velocidad (caché CDN), false = datos en tiempo real
+        useCdn: false, // false = datos en tiempo real (evita problemas de caché al editar)
     })
     : null;
