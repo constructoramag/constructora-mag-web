@@ -21,6 +21,7 @@ function ProjectCard({ project, onVideoClick }) {
         if (hasVideo && onVideoClick) onVideoClick(project);
     };
 
+    return (
         <Link
             to={`/proyectos/${project.slug}`}
             className={`project-card ${hasVideo ? 'project-card--has-video' : ''}`}
