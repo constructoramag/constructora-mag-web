@@ -61,6 +61,15 @@ export default function ProjectDetail() {
     }
   ];
 
+  const getYouTubeEmbedUrl = (url) => {
+    if (!url) return null;
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+    const match = url.match(regExp);
+    const videoId = (match && match[2].length === 11) ? match[2] : null;
+    if (!videoId) return url;
+    return `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}`;
+  };
+
   return (
     <div className="project-detail">
       <SEO 
@@ -177,7 +186,7 @@ export default function ProjectDetail() {
                <h3 className="project-detail__section-title">Recorrido Virtual</h3>
                <div className="project-detail__video">
                   <iframe 
-                      src={project.videoUrl.replace("watch?v=", "embed/")} 
+                      src={getYouTubeEmbedUrl(project.videoUrl)} 
                       title={`Recorrido Virtual de ${project.title}`} 
                       style={{width: '100%', height: '100%', border: 'none'}}
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
