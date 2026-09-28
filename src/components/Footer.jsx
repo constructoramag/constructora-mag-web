@@ -16,7 +16,6 @@ function Footer() {
                     <div className="footer__brand">
                         <div className="footer__logo">
                             <span className="footer__logo-mag">MAG</span>
-                            <span className="footer__logo-sub">Servicios Integrales</span>
                         </div>
                         <div className="footer__map-small">
                             <a href="https://maps.app.goo.gl/Uw2JgBLmc6JiQAPp8" target="_blank" rel="noopener noreferrer" className="footer__map-link">

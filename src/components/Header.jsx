@@ -29,7 +29,6 @@ function Header() {
                 {/* Logo */}
                 <Link to="/" className="header__logo" onClick={closeMenu}>
                     <span className="header__logo-mag">MAG</span>
-                    <span className="header__logo-sub">Servicios Integrales</span>
                 </Link>
 
                 {/* Nav desktop */}
@@ -38,7 +37,7 @@ function Header() {
                         <Link
                             key={link.href}
                             to={link.href}
-                            className={`header__nav-link ${location.pathname === link.href ? 'active text-[var(--primary)] font-bold' : ''}`}
+                            className={`header__nav-link ${location.pathname === link.href ? 'active' : ''}`}
                             onClick={closeMenu}
                         >
                             {link.label}
@@ -72,7 +71,7 @@ function Header() {
                         <Link
                             key={link.href}
                             to={link.href}
-                            className={`header__mobile-link ${location.pathname === link.href ? 'active text-[var(--primary)] font-bold' : ''}`}
+                            className={`header__mobile-link ${location.pathname === link.href ? 'active' : ''}`}
                             onClick={closeMenu}
                         >
                             {link.label}

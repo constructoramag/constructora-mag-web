@@ -61,7 +61,12 @@
 .footer__logo {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     margin-bottom: 1.5rem;
+}
+
+.footer__logo-icon {
+    margin-bottom: 4px;
 }
 
 .footer__logo-mag {

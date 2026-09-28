@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import ProjectCard from './ProjectCard';
 import VideoModal from './VideoModal';
+import BeforeAfterSlider from './BeforeAfterSlider';
 import { useProjects } from '../hooks/useProjects';
 import './ProjectGallery.css';
 
@@ -46,11 +47,17 @@ function ProjectGallery() {
             <div className="container">
                 {/* Header */}
                 <div className="section-header">
-                    <span className="section-eyebrow">Nuestros Trabajos</span>
-                    <h2 className="section-title">Proyectos Realizados</h2>
+                    <h2 className="section-title">PROYECTOS REALIZADOS</h2>
                     <p className="section-subtitle">
-                        Cada proyecto refleja nuestro compromiso con la calidad y el cuidado por los detalles.
+                        Explora el antes y después de nuestros proyectos y descubre cómo transformamos cada espacio.
                     </p>
+                </div>
+
+                <div style={{ marginBottom: '4rem' }}>
+                    <BeforeAfterSlider 
+                        beforeImage="/images/antes.png"
+                        afterImage="/images/despues.png"
+                    />
                 </div>
 
                 {/* Filtros */}

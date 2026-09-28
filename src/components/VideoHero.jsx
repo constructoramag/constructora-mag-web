@@ -58,14 +58,7 @@ function VideoHero({ title, subtitle, cta, ctaSecondary, videoUrl, onCtaClick, o
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
             >
-                <motion.div 
-                    className="video-hero__badge"
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.2, duration: 1, ease: "easeOut" }}
-                >
-                    CONSTRUYENDO TUS SUEÑOS
-                </motion.div>
+
                 <h1 className="video-hero__title">{title}</h1>
                 <p className="video-hero__subtitle">{subtitle}</p>
                 <div className="video-hero__actions">
