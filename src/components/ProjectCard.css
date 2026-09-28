@@ -18,7 +18,7 @@
 /* ── Media ─────────────────────────────────────────────────────────── */
 .project-card__media {
     position: relative;
-    aspect-ratio: 16 / 10;
+    aspect-ratio: 4 / 3;
     overflow: hidden;
     background: #111;
 }
@@ -118,6 +118,18 @@
     align-items: center;
     font-size: 0.8rem;
     color: var(--text-muted);
+}
+
+.project-card__location {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.project-card__location svg {
+    width: 14px;
+    height: 14px;
+    color: var(--accent);
 }
 
 .project-card__video-hint {
