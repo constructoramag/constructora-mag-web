@@ -1,7 +1,6 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import useEmblaCarousel from 'embla-carousel-react';
 import ProjectCard from './ProjectCard';
 import VideoModal from './VideoModal';
 import { useProjects } from '../hooks/useProjects';
@@ -40,32 +39,7 @@ function ProjectGallery() {
             ? projects
             : projects.filter((p) => p.category === activeCategory);
 
-    const displayedProjects = filtered;
-
-    const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: 'center' });
-    const [selectedIndex, setSelectedIndex] = useState(0);
-
-    const scrollPrev = useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi]);
-    const scrollNext = useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi]);
-
-    const onSelect = useCallback((emblaApi) => {
-        setSelectedIndex(emblaApi.selectedScrollSnap());
-    }, []);
-
-    useEffect(() => {
-        if (!emblaApi) return;
-        onSelect(emblaApi);
-        emblaApi.on('select', onSelect);
-        emblaApi.on('reInit', onSelect);
-    }, [emblaApi, onSelect]);
-
-    // Update carousel index if category changes so it doesn't crash on out of bounds
-    useEffect(() => {
-        if (emblaApi) {
-            emblaApi.reInit();
-            emblaApi.scrollTo(0);
-        }
-    }, [activeCategory, emblaApi]);
+    const displayedProjects = filtered.slice(0, 6); // Teaser mode
 
     return (
         <section id="proyectos" className="project-gallery section">
@@ -99,71 +73,47 @@ function ProjectGallery() {
 
                 {/* Skeleton loader */}
                 {loading && (
-                    <div className="project-embla">
-                        <div className="project-embla__viewport">
-                            <div className="project-embla__container">
-                                {Array.from({ length: 3 }).map((_, i) => (
-                                    <div key={i} className="project-embla__slide">
-                                        <div className="project-card project-card--skeleton">
-                                            <div className="skeleton skeleton--media" />
-                                            <div className="skeleton-info">
-                                                <div className="skeleton skeleton--title" />
-                                                <div className="skeleton skeleton--text" />
-                                                <div className="skeleton skeleton--text skeleton--text-short" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                ))}
+                    <div className="gallery-grid">
+                        {Array.from({ length: 6 }).map((_, i) => (
+                            <div key={i} className="project-card project-card--skeleton">
+                                <div className="skeleton skeleton--media" />
+                                <div className="skeleton-info">
+                                    <div className="skeleton skeleton--title" />
+                                    <div className="skeleton skeleton--text" />
+                                    <div className="skeleton skeleton--text skeleton--text-short" />
+                                </div>
                             </div>
-                        </div>
+                        ))}
                     </div>
                 )}
 
-                {/* Carousel de proyectos */}
-                {!loading && displayedProjects.length > 0 && (
-                    <div className="project-embla">
-                        <div className="project-embla__viewport" ref={emblaRef}>
-                            <motion.div 
-                                className="project-embla__container"
-                                variants={containerVariants}
-                                initial="hidden"
-                                whileInView="visible"
-                                viewport={{ once: true, margin: "-50px" }}
-                            >
-                                <AnimatePresence mode="popLayout">
-                                    {displayedProjects.map((project, idx) => (
-                                        <motion.div 
-                                            key={project._id} 
-                                            variants={itemVariants}
-                                            initial="hidden"
-                                            animate="visible"
-                                            exit="exit"
-                                            layout
-                                            className={`project-embla__slide ${idx === selectedIndex ? 'is-active' : ''}`}
-                                        >
-                                            <ProjectCard
-                                                project={project}
-                                                onVideoClick={setSelectedProject}
-                                            />
-                                        </motion.div>
-                                    ))}
-                                </AnimatePresence>
-                            </motion.div>
-                        </div>
-                        
-                        {/* Paginación estilo ‹ 01 / 04 › */}
-                        <div className="project-embla__pagination">
-                            <button className="project-embla__btn" onClick={scrollPrev} aria-label="Anterior">
-                                ‹
-                            </button>
-                            <span className="project-embla__counter">
-                                {String(selectedIndex + 1).padStart(2, '0')} / {String(displayedProjects.length).padStart(2, '0')}
-                            </span>
-                            <button className="project-embla__btn" onClick={scrollNext} aria-label="Siguiente">
-                                ›
-                            </button>
-                        </div>
-                    </div>
+                {/* Grid de proyectos */}
+                {!loading && (
+                    <motion.div 
+                        className="gallery-grid"
+                        variants={containerVariants}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, margin: "-50px" }}
+                    >
+                        <AnimatePresence mode="popLayout">
+                            {displayedProjects.map((project) => (
+                                <motion.div 
+                                    key={project._id} 
+                                    variants={itemVariants}
+                                    initial="hidden"
+                                    animate="visible"
+                                    exit="exit"
+                                    layout
+                                >
+                                    <ProjectCard
+                                        project={project}
+                                        onVideoClick={setSelectedProject}
+                                    />
+                                </motion.div>
+                            ))}
+                        </AnimatePresence>
+                    </motion.div>
                 )}
 
                 {/* Vacío */}
