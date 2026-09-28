@@ -25,14 +25,11 @@ const itemVariants = {
 const TestimonialSection = () => {
     const { testimonials, loading } = useTestimonials();
     
-    // Embla activo solo en móviles (< 1024px)
+    // Embla activo en todos los dispositivos
     const [emblaRef, emblaApi] = useEmblaCarousel(
         { 
             loop: true, 
-            align: 'center', 
-            breakpoints: {
-                '(min-width: 1024px)': { active: false }
-            }
+            align: 'center' 
         }, 
         [Autoplay({ delay: 5000, stopOnInteraction: true })]
     );
