@@ -35,28 +35,73 @@
     color: #000;
 }
 
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.5rem;
+.project-embla {
+    position: relative;
+    max-width: 100%;
+    margin: 0 auto;
 }
 
-@media (max-width: 768px) {
-    .gallery-grid {
-        display: flex;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        gap: 1rem;
-        padding-bottom: 1rem;
-        -webkit-overflow-scrolling: touch;
-        /* Custom scrollbar hiding for cleaner look */
-        scrollbar-width: none;
+.project-embla__viewport {
+    overflow: hidden;
+}
+
+.project-embla__container {
+    display: flex;
+    margin-left: -1rem; /* Gap for mobile */
+}
+
+.project-embla__slide {
+    flex: 0 0 85%; /* Mobile: show most of center, peek sides */
+    min-width: 0;
+    padding-left: 1rem;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* Dim inactive slides to focus on center */
+.project-embla__slide:not(.is-active) {
+    opacity: 0.5;
+    transform: scale(0.95);
+    pointer-events: none; /* Prevent clicking side slides accidentally */
+}
+
+.project-embla__pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 3rem;
+}
+
+.project-embla__btn {
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    padding: 0 1rem;
+}
+
+.project-embla__btn:hover {
+    color: var(--accent);
+}
+
+.project-embla__counter {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--text-secondary);
+}
+
+@media (min-width: 768px) {
+    .project-embla__container {
+        margin-left: -2rem; /* Larger gap on desktop */
     }
-    .gallery-grid::-webkit-scrollbar {
-        display: none;
-    }
-    .gallery-grid > div {
-        flex: 0 0 85%;
-        scroll-snap-align: center;
+    
+    .project-embla__slide {
+        flex: 0 0 50%; /* Desktop: center card takes 50%, peek 25% each side */
+        padding-left: 2rem;
     }
 }
