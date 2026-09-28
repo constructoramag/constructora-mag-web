@@ -33,16 +33,28 @@ function ProjectCard({ project, onVideoClick }) {
             {/* Imagen o Slider */}
             <div className="project-card__media">
                 {hasBeforeAfter ? (
-                    <div 
-                        onClick={(e) => { e.preventDefault(); e.stopPropagation(); }} 
-                        style={{ width: '100%', height: '100%', zIndex: 10, position: 'relative' }}
-                    >
-                        <BeforeAfterSlider 
-                            beforeImage={project.beforeAfter.beforeImageUrl} 
-                            afterImage={project.beforeAfter.afterImageUrl} 
-                            title={project.title} 
+                    <>
+                        <div 
+                            className="project-card__slider-wrapper"
+                            onClick={(e) => { e.preventDefault(); e.stopPropagation(); }} 
+                            style={{ width: '100%', height: '100%', zIndex: 10, position: 'relative' }}
+                        >
+                            <BeforeAfterSlider 
+                                beforeImage={project.beforeAfter.beforeImageUrl} 
+                                afterImage={project.beforeAfter.afterImageUrl} 
+                                title={project.title} 
+                            />
+                        </div>
+                        <img
+                            src={project.beforeAfter.afterImageUrl}
+                            alt={`${project.title} Resultado Final`}
+                            className={`project-card__img project-card__mobile-after ${imageLoaded ? 'project-card__img--loaded' : ''}`}
+                            loading="lazy"
+                            width="640"
+                            height="400"
+                            onLoad={() => setImageLoaded(true)}
                         />
-                    </div>
+                    </>
                 ) : (
                     <img
                         src={imageSrc}

@@ -43,20 +43,15 @@
 
 @media (max-width: 768px) {
     .gallery-grid {
-        display: flex;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
+        grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
-        padding-bottom: 1rem;
-        -webkit-overflow-scrolling: touch;
-        /* Custom scrollbar hiding for cleaner look */
-        scrollbar-width: none;
     }
-    .gallery-grid::-webkit-scrollbar {
-        display: none;
-    }
-    .gallery-grid > div {
-        flex: 0 0 85%;
-        scroll-snap-align: center;
+}
+
+@media (max-width: 480px) {
+    .gallery-grid {
+        /* Even on very small screens they requested 2 cards per row */
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
     }
 }
