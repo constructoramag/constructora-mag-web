@@ -62,7 +62,7 @@ const BeforeAfterSlider = React.memo(({ beforeImage, afterImage, title = "Transf
             if(e.key === 'ArrowRight') setSliderPosition(p => Math.min(100, p + 5));
         }}
     >
-      <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', backgroundColor: '#111' }}>
+      <div style={{ position: 'relative', width: '100%', height: '100%', minHeight: '200px', backgroundColor: '#111' }}>
         
         {/* AFTER Image (Background) */}
         <img 

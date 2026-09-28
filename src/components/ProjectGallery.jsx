@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import ProjectCard from './ProjectCard';
 import VideoModal from './VideoModal';
-import BeforeAfterSlider from './BeforeAfterSlider';
 import { useProjects } from '../hooks/useProjects';
 import './ProjectGallery.css';
 
@@ -53,12 +52,7 @@ function ProjectGallery() {
                     </p>
                 </div>
 
-                <div style={{ marginBottom: '4rem' }}>
-                    <BeforeAfterSlider 
-                        beforeImage="/images/antes.png"
-                        afterImage="/images/despues.png"
-                    />
-                </div>
+
 
                 {/* Filtros */}
                 {!loading && (

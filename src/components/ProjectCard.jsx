@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { urlFor } from '../lib/imageBuilder';
+import BeforeAfterSlider from './BeforeAfterSlider';
 import './ProjectCard.css';
 
 /**
@@ -21,23 +22,38 @@ function ProjectCard({ project, onVideoClick }) {
         if (hasVideo && onVideoClick) onVideoClick(project);
     };
 
+    const hasBeforeAfter = project.beforeAfter?.beforeImageUrl && project.beforeAfter?.afterImageUrl;
+
     return (
         <Link
             to={`/proyectos/${project.slug}`}
             className={`project-card ${hasVideo ? 'project-card--has-video' : ''}`}
             aria-label={project.title}
         >
-            {/* Imagen */}
+            {/* Imagen o Slider */}
             <div className="project-card__media">
-                <img
-                    src={imageSrc}
-                    alt={project.image?.alt || project.title}
-                    className={`project-card__img ${imageLoaded ? 'project-card__img--loaded' : ''}`}
-                    loading="lazy"
-                    width="640"
-                    height="400"
-                    onLoad={() => setImageLoaded(true)}
-                />
+                {hasBeforeAfter ? (
+                    <div 
+                        onClick={(e) => { e.preventDefault(); e.stopPropagation(); }} 
+                        style={{ width: '100%', height: '100%', zIndex: 10, position: 'relative' }}
+                    >
+                        <BeforeAfterSlider 
+                            beforeImage={project.beforeAfter.beforeImageUrl} 
+                            afterImage={project.beforeAfter.afterImageUrl} 
+                            title={project.title} 
+                        />
+                    </div>
+                ) : (
+                    <img
+                        src={imageSrc}
+                        alt={project.image?.alt || project.title}
+                        className={`project-card__img ${imageLoaded ? 'project-card__img--loaded' : ''}`}
+                        loading="lazy"
+                        width="640"
+                        height="400"
+                        onLoad={() => setImageLoaded(true)}
+                    />
+                )}
 
                 {/* Play Icon overlay (solo si tiene video) */}
                 {hasVideo && (

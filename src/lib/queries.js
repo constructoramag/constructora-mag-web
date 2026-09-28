@@ -13,7 +13,11 @@ export const PROJECTS_QUERY = `
     location,
     status,
     level,
-    "imageUrl": coverImage.asset->url
+    "imageUrl": coverImage.asset->url,
+    beforeAfter->{
+      "beforeImageUrl": beforeImage.asset->url,
+      "afterImageUrl": afterImage.asset->url
+    }
   }
 `
 
