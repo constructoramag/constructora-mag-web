@@ -92,7 +92,7 @@ const TestimonialSection = () => {
                         variants={containerVariants}
                         initial="hidden"
                         whileInView="visible"
-                        viewport={{ once: true, margin: "-50px" }}
+                        viewport={{ once: true, amount: 0.1 }}
                     >
                         {testimonials.map((testimonial, idx) => {
                             // Perspectiva sutil y elegante alternada

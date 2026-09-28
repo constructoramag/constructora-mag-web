@@ -96,7 +96,7 @@ function WorkProcessSection() {
                         variants={containerVariants}
                         initial="hidden"
                         whileInView="visible"
-                        viewport={{ once: true, margin: "-100px" }}
+                        viewport={{ once: true, amount: 0.1 }}
                     >
                         {processSteps.map((step, index) => {
                             const isMobileActive = selectedIndex === index;
