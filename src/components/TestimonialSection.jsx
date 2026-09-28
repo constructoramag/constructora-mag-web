@@ -57,7 +57,9 @@ const TestimonialSection = () => {
                     </div>
                     <div className="testimonials-grid">
                         {[1, 2, 3].map((n) => (
-                            <div key={n} className="testimonial-card skeleton" style={{height: '250px'}}></div>
+                            <div key={n} className="testimonials-embla__slide">
+                                <div className="testimonial-card skeleton" style={{height: '250px'}}></div>
+                            </div>
                         ))}
                     </div>
                 </div>
@@ -100,16 +102,18 @@ const TestimonialSection = () => {
                                 <motion.div 
                                     variants={itemVariants} 
                                     key={testimonial._id} 
-                                    className={`testimonial-card testimonials-embla__slide ${perspectiveClass}`}
+                                    className="testimonials-embla__slide"
                                 >
-                                    <div className="testimonial-quote-icon">"</div>
-                                    <div className="testimonial-rating">
-                                        {renderStars(testimonial.rating || 5)}
-                                    </div>
-                                    <p className="testimonial-content">"{testimonial.content}"</p>
-                                    <div className="testimonial-author-box">
-                                        <h4 className="testimonial-author">{testimonial.author}</h4>
-                                        <p className="testimonial-role">{testimonial.role}</p>
+                                    <div className={`testimonial-card ${perspectiveClass}`}>
+                                        <div className="testimonial-quote-icon">"</div>
+                                        <div className="testimonial-rating">
+                                            {renderStars(testimonial.rating || 5)}
+                                        </div>
+                                        <p className="testimonial-content">"{testimonial.content}"</p>
+                                        <div className="testimonial-author-box">
+                                            <h4 className="testimonial-author">{testimonial.author}</h4>
+                                            <p className="testimonial-role">{testimonial.role}</p>
+                                        </div>
                                     </div>
                                 </motion.div>
                             );

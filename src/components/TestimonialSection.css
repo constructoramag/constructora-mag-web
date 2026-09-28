@@ -30,19 +30,23 @@
   margin-top: 3rem;
   position: relative;
   z-index: 1;
+  margin-left: -1.5rem; /* Compensate for slide padding */
 }
 
 .testimonials-embla__slide {
   flex: 0 0 90%;
   min-width: 0;
-  margin-right: 1.5rem;
+  padding-left: 1.5rem; /* The gap */
 }
 
 @media (min-width: 1024px) {
+  .testimonials-grid {
+    margin-left: -2rem;
+  }
   .testimonials-embla__slide {
     flex: 0 0 33.333%;
     min-width: 0;
-    margin-right: 2rem;
+    padding-left: 2rem;
   }
 }
 
