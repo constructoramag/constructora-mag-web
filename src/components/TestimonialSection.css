@@ -37,6 +37,7 @@
   flex: 0 0 90%;
   min-width: 0;
   padding-left: 1.5rem; /* The gap */
+  display: flex;
 }
 
 @media (min-width: 1024px) {
@@ -58,6 +59,8 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  width: 100%;
+  height: 100%;
   transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.8s ease, box-shadow 0.8s ease;
   transform-style: preserve-3d;
 }

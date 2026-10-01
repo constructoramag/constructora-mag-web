@@ -30,8 +30,8 @@ export default function Home() {
             ctaSecondary={hero.ctaSecondary || "Ver proyectos destacados"}
             fallbackImage={hero.fallbackImageUrl || hero.fallbackImage}
             videoUrl={hero.videoUrl}
-            onCtaClick={scrollToProjects}
-            onSecondaryClick={scrollToContact}
+            onCtaClick={scrollToContact}
+            onSecondaryClick={scrollToProjects}
           />
         )}
       </div>
