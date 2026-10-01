@@ -42,18 +42,18 @@ const GalleryLightbox = React.memo(({ images = [] }) => {
 
   return (
     <>
-      <div className="relative group">
-        <div className="overflow-hidden rounded-xl" ref={emblaRef}>
-          <div className="flex" style={{ touchAction: 'pan-y pinch-zoom' }}>
+      <div style={{ position: 'relative' }}>
+        <div style={{ overflow: 'hidden', borderRadius: '0.75rem' }} ref={emblaRef}>
+          <div style={{ display: 'flex', touchAction: 'pan-y pinch-zoom' }}>
             {images.map((img, idx) => (
               <div 
                 key={idx}
-                className="flex-[0_0_80%] md:flex-[0_0_45%] min-w-0 pl-4 first:pl-0"
+                style={{ flex: '0 0 85%', minWidth: 0, paddingLeft: idx === 0 ? 0 : '1rem' }}
               >
                 <motion.div
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.95 }}
-                  className="cursor-pointer overflow-hidden rounded-xl bg-[var(--surface)] h-64 md:h-80"
+                  style={{ cursor: 'pointer', overflow: 'hidden', borderRadius: '0.75rem', backgroundColor: 'var(--surface)', height: '400px' }}
                   onClick={() => setSelectedIndex(idx)}
                   role="listitem"
                   tabIndex={0}
@@ -63,7 +63,7 @@ const GalleryLightbox = React.memo(({ images = [] }) => {
                   <img 
                     src={img} 
                     alt={`Galería ${idx + 1}`} 
-                    className="w-full h-full object-cover hover:opacity-90 transition-opacity"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                     loading="lazy"
                   />
                 </motion.div>
@@ -75,14 +75,14 @@ const GalleryLightbox = React.memo(({ images = [] }) => {
         {images.length > 1 && (
           <>
             <button 
-              className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 hover:bg-black/80 text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10"
+              style={{ position: 'absolute', left: '0.5rem', top: '50%', transform: 'translateY(-50%)', width: '40px', height: '40px', backgroundColor: 'rgba(0,0,0,0.5)', color: 'white', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', border: 'none', cursor: 'pointer', zIndex: 10 }}
               onClick={scrollPrevGallery}
               aria-label="Anterior"
             >
               &#10094;
             </button>
             <button 
-              className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 hover:bg-black/80 text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10"
+              style={{ position: 'absolute', right: '0.5rem', top: '50%', transform: 'translateY(-50%)', width: '40px', height: '40px', backgroundColor: 'rgba(0,0,0,0.5)', color: 'white', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', border: 'none', cursor: 'pointer', zIndex: 10 }}
               onClick={scrollNextGallery}
               aria-label="Siguiente"
             >
