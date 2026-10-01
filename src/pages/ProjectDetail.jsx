@@ -208,22 +208,6 @@ export default function ProjectDetail() {
         <aside className="project-detail__sidebar">
           <div className="project-detail__sidebar-sticky">
             
-            <div className="project-detail__cta-box">
-              <div className="project-detail__cta-bg"></div>
-              <h3 className="project-detail__cta-title">¿Te inspiró este resultado?</h3>
-              <p className="project-detail__cta-text">
-                Agendemos una visita técnica y diseñemos juntos tu próximo gran espacio con el mismo nivel de detalle.
-              </p>
-              <a 
-                href={`https://wa.me/56982340752?text=Hola,%20me%20gustó%20mucho%20el%20proyecto%20${project.title}%20y%20quiero%20cotizar%20algo%20similar.`}
-                target="_blank"
-                rel="noreferrer"
-                className="project-detail__cta-btn"
-              >
-                Cotizar por WhatsApp
-              </a>
-            </div>
-
             {project.relatedServices && project.relatedServices.length > 0 && (
               <div className="project-detail__services">
                 <h4 className="project-detail__services-title">Servicios Aplicados</h4>
@@ -262,6 +246,24 @@ export default function ProjectDetail() {
 
           </div>
         </aside>
+      </section>
+
+      <section className="project-detail__cta-section" style={{ margin: '4rem 0', padding: '0 5%' }}>
+        <div className="project-detail__cta-box" style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
+          <div className="project-detail__cta-bg"></div>
+          <h3 className="project-detail__cta-title">¿Te inspiró este resultado?</h3>
+          <p className="project-detail__cta-text" style={{ maxWidth: '600px', margin: '0 auto 1.5rem' }}>
+            Agendemos una visita técnica y diseñemos juntos tu próximo gran espacio con el mismo nivel de detalle.
+          </p>
+          <a 
+            href={`https://wa.me/56982340752?text=Hola,%20me%20gustó%20mucho%20el%20proyecto%20${project.title}%20y%20quiero%20cotizar%20algo%20similar.`}
+            target="_blank"
+            rel="noreferrer"
+            className="project-detail__cta-btn"
+          >
+            Cotizar por WhatsApp
+          </a>
+        </div>
       </section>
 
       {project.relatedProjects && project.relatedProjects.length > 0 && (

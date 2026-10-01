@@ -10,6 +10,13 @@ export default {
       description: 'Solo para uso interno u opcional para mostrar.'
     },
     {
+      name: 'description',
+      title: 'Descripción (Opcional)',
+      type: 'text',
+      rows: 2,
+      description: 'Texto que aparece antes del control de antes y después.'
+    },
+    {
       name: 'beforeImage',
       title: 'Imagen del ANTES',
       type: 'image',

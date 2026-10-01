@@ -49,7 +49,7 @@ const BeforeAfterSlider = React.memo(({ beforeImage, afterImage, title = "Transf
 
   return (
     <div 
-        style={{ width: '100%', position: 'relative', overflow: 'hidden', borderRadius: '1rem', boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)', userSelect: 'none', outline: 'none' }}
+        style={{ width: '100%', height: '100%', aspectRatio: '16/9', position: 'relative', overflow: 'hidden', borderRadius: '1rem', boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)', userSelect: 'none', outline: 'none' }}
         ref={containerRef}
         role="slider"
         aria-label={`Comparador Antes y Después: ${title}`}

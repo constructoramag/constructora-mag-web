@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import useEmblaCarousel from 'embla-carousel-react';
 
 const GalleryLightbox = React.memo(({ images = [] }) => {
   const [selectedIndex, setSelectedIndex] = useState(null);
@@ -27,31 +28,68 @@ const GalleryLightbox = React.memo(({ images = [] }) => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [selectedIndex, closeLightbox, nextImage, prevImage]);
 
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: 'start' });
+
+  const scrollPrevGallery = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev();
+  }, [emblaApi]);
+
+  const scrollNextGallery = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext();
+  }, [emblaApi]);
+
   if (!images || images.length === 0) return null;
 
   return (
     <>
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4" role="list" aria-label="Galería de imágenes">
-        {images.map((img, idx) => (
-          <motion.div
-            key={idx}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.95 }}
-            className={`cursor-pointer overflow-hidden rounded-xl bg-[var(--surface)] ${idx === 0 ? 'col-span-2 row-span-2' : ''}`}
-            onClick={() => setSelectedIndex(idx)}
-            role="listitem"
-            tabIndex={0}
-            onKeyDown={(e) => e.key === 'Enter' && setSelectedIndex(idx)}
-            aria-label={`Ver imagen ${idx + 1} en pantalla completa`}
-          >
-            <img 
-              src={img} 
-              alt={`Galería ${idx + 1}`} 
-              className="w-full h-full object-cover aspect-square hover:opacity-90 transition-opacity"
-              loading="lazy"
-            />
-          </motion.div>
-        ))}
+      <div className="relative group">
+        <div className="overflow-hidden rounded-xl" ref={emblaRef}>
+          <div className="flex" style={{ touchAction: 'pan-y pinch-zoom' }}>
+            {images.map((img, idx) => (
+              <div 
+                key={idx}
+                className="flex-[0_0_80%] md:flex-[0_0_45%] min-w-0 pl-4 first:pl-0"
+              >
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="cursor-pointer overflow-hidden rounded-xl bg-[var(--surface)] h-64 md:h-80"
+                  onClick={() => setSelectedIndex(idx)}
+                  role="listitem"
+                  tabIndex={0}
+                  onKeyDown={(e) => e.key === 'Enter' && setSelectedIndex(idx)}
+                  aria-label={`Ver imagen ${idx + 1} en pantalla completa`}
+                >
+                  <img 
+                    src={img} 
+                    alt={`Galería ${idx + 1}`} 
+                    className="w-full h-full object-cover hover:opacity-90 transition-opacity"
+                    loading="lazy"
+                  />
+                </motion.div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {images.length > 1 && (
+          <>
+            <button 
+              className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 hover:bg-black/80 text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10"
+              onClick={scrollPrevGallery}
+              aria-label="Anterior"
+            >
+              &#10094;
+            </button>
+            <button 
+              className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 hover:bg-black/80 text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10"
+              onClick={scrollNextGallery}
+              aria-label="Siguiente"
+            >
+              &#10095;
+            </button>
+          </>
+        )}
       </div>
 
       <AnimatePresence>
