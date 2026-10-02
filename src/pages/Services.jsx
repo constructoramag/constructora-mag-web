@@ -36,12 +36,13 @@ export default function Services() {
     : services.filter(s => s.category === activeCategory);
 
   const optUrl = (url) => url ? `${url}?auto=format` : null;
+  const whatsappUrl = "https://wa.me/56982340752?text=Hola,%20me%20gustaría%20saber%20más%20sobre%20sus%20servicios%20y%20evaluar%20un%20proyecto.";
 
   return (
     <div className="services-page">
       <SEO 
         title="Nuestros Servicios | Constructora MAG" 
-        description="Conoce todos los servicios de construcción, remodelación y arquitectura que Constructora MAG ofrece con estándar premium."
+        description="Soluciones de construcción y remodelación pensadas para cada proyecto, desde la evaluación inicial hasta la ejecución y entrega."
         canonical="/servicios"
       />
 
@@ -49,19 +50,20 @@ export default function Services() {
         {/* Header Section */}
         <div className="services-page__header">
           <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
             className="services-page__title"
           >
             Nuestros <span className="services-page__title-highlight">Servicios</span>
           </motion.h1>
           <motion.p 
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
+            transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
             className="services-page__subtitle"
           >
-            Soluciones integrales de construcción con un estándar de calidad insuperable. Desde el diseño inicial hasta la entrega llave en mano.
+            Soluciones de construcción y remodelación pensadas para cada proyecto, desde la evaluación inicial hasta la ejecución y entrega.
           </motion.p>
         </div>
 
@@ -73,6 +75,7 @@ export default function Services() {
                 key={index}
                 onClick={() => setActiveCategory(cat)}
                 className={`services-page__filter-btn ${activeCategory === cat ? 'services-page__filter-btn--active' : ''}`}
+                aria-pressed={activeCategory === cat}
               >
                 {cat}
               </button>
@@ -86,10 +89,10 @@ export default function Services() {
             {filteredServices.map(service => (
               <motion.div
                 layout
-                initial={{ opacity: 0, scale: 0.9 }}
+                initial={{ opacity: 0, scale: 0.98 }}
                 animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.3 }}
+                exit={{ opacity: 0, scale: 0.98 }}
+                transition={{ duration: 0.25, ease: "easeInOut" }}
                 key={service._id}
               >
                 <Link to={`/servicios/${service.slug}`} className="services-page__card-link">
@@ -103,9 +106,12 @@ export default function Services() {
                         loading="lazy"
                       />
                       <div className="services-page__card-overlay"></div>
-                      <div className="services-page__card-category">
-                        {service.category}
-                      </div>
+                      {/* FIX: Renderizado condicional de la categoría */}
+                      {service.category && (
+                        <div className="services-page__card-category">
+                          {service.category}
+                        </div>
+                      )}
                     </div>
                     <div className="services-page__card-content">
                       <h3 className="services-page__card-title">
@@ -130,6 +136,25 @@ export default function Services() {
             No se encontraron servicios en esta categoría.
           </div>
         )}
+
+        {/* Compact Final CTA */}
+        <motion.div 
+          className="services-page__cta"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+        >
+          <div className="services-page__cta-content">
+            <h2 className="services-page__cta-title">¿No sabes por dónde empezar?</h2>
+            <p className="services-page__cta-text">
+              Cuéntanos qué quieres hacer y te ayudamos a identificar el servicio adecuado para tu proyecto.
+            </p>
+          </div>
+          <a href={whatsappUrl} target="_blank" rel="noreferrer" className="services-page__cta-btn">
+            Conversar sobre mi proyecto
+          </a>
+        </motion.div>
 
       </div>
     </div>

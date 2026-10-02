@@ -2,13 +2,13 @@
     min-height: 100vh;
     background-color: var(--bg);
     color: var(--text-primary);
-    padding: 10rem 0 6rem;
+    padding: 6rem 0 2rem; /* Reducido el padding inferior para evitar salto abrupto hacia el footer */
 }
 
 .services-page__loading,
 .services-page__error {
     min-height: 100vh;
-    padding-top: 10rem;
+    padding-top: 8rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -35,29 +35,29 @@
 .services-page__error-title {
     font-size: 2rem;
     font-weight: 700;
-    color: #ef4444; /* red-500 equivalent */
+    color: #ef4444;
     margin-bottom: 1rem;
 }
 
 .services-page__container {
-    max-width: 1200px;
+    max-width: 1600px; /* Aumentado para acomodar bien las 4 columnas en monitores grandes */
     margin: 0 auto;
-    padding: 0 1rem;
+    padding: 0 1.5rem;
 }
 
 /* Header */
 .services-page__header {
     text-align: center;
     max-width: 800px;
-    margin: 0 auto 4rem;
+    margin: 0 auto 2rem; /* Reducido para compactar */
 }
 
 .services-page__title {
     font-family: var(--font-heading);
-    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-size: clamp(2.2rem, 4vw, 3.5rem); /* Ligeramente más pequeño */
     font-weight: 900;
     color: #fff;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.75rem;
 }
 
 .services-page__title-highlight {
@@ -65,7 +65,7 @@
 }
 
 .services-page__subtitle {
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     color: var(--text-secondary);
     line-height: 1.6;
 }
@@ -76,17 +76,17 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 0.5rem;
-    margin-bottom: 4rem;
+    margin-bottom: 2.5rem;
 }
 
 .services-page__filter-btn {
-    padding: 0.5rem 1.5rem;
+    padding: 0.5rem 1.25rem;
     border-radius: 50px;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 700;
     cursor: pointer;
     border: 1px solid transparent;
-    transition: all 0.3s ease;
+    transition: all 0.25s ease;
     background: var(--surface);
     color: var(--text-secondary);
 }
@@ -100,7 +100,6 @@
     background: var(--accent);
     color: #000;
     border-color: rgba(228, 170, 21, 0.5);
-    box-shadow: 0 4px 15px rgba(228, 170, 21, 0.2);
 }
 
 .services-page__filter-btn--active:hover {
@@ -108,22 +107,42 @@
     color: #000;
 }
 
-/* Grid */
-.services-page__grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-}
-
-@media (min-width: 768px) {
-    .services-page__grid {
-        grid-template-columns: repeat(2, 1fr);
+/* Reducir animaciones si el usuario lo prefiere */
+@media (prefers-reduced-motion: reduce) {
+    .services-page__filter-btn {
+        transition: none;
+    }
+    .services-page__card-img {
+        transition: none !important;
     }
 }
 
+/* Grid */
+.services-page__grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Mobile: 1 col */
+    gap: 1.5rem; /* Gap reducido para mayor cohesión */
+}
+
+/* Tablet: 2 cols */
+@media (min-width: 768px) {
+    .services-page__grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+}
+
+/* Desktop: 3 cols */
 @media (min-width: 1024px) {
     .services-page__grid {
         grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Pantallas Ultra Anchas: 4 cols */
+@media (min-width: 1600px) {
+    .services-page__grid {
+        grid-template-columns: repeat(4, 1fr);
     }
 }
 
@@ -137,41 +156,45 @@
 .services-page__card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 24px;
+    border-radius: 12px; /* Más arquitectónico, menos redondeado */
     overflow: hidden;
     height: 100%;
     display: flex;
     flex-direction: column;
-    transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .services-page__card:hover {
-    transform: translateY(-8px);
-    border-color: rgba(228, 170, 21, 0.3);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(228, 170, 21, 0.1);
+    transform: translateY(-2px); /* Hover sutil */
+    border-color: rgba(228, 170, 21, 0.4);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15); /* Sombra elegante, no exagerada */
 }
 
 .services-page__card-img-wrapper {
     position: relative;
-    height: 240px;
+    width: 100%;
+    aspect-ratio: 16 / 10; /* Arquitectónico pero compacto */
     overflow: hidden;
+    background-color: var(--surface); /* Evita layout shift blanco */
 }
 
 .services-page__card-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.6s ease;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Suave */
 }
 
 .services-page__card:hover .services-page__card-img {
-    transform: scale(1.05);
+    transform: scale(1.03); /* Zoom refinado de 1.05 a 1.03 */
 }
 
 .services-page__card-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+    background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 60%);
+    pointer-events: none;
 }
 
 .services-page__card-category {
@@ -180,26 +203,28 @@
     left: 1rem;
     background: var(--accent);
     color: #000;
-    padding: 0.3rem 0.8rem;
-    border-radius: 6px;
-    font-size: 0.75rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.05em;
+    z-index: 2;
 }
 
 .services-page__card-content {
-    padding: 2rem;
-    flex: 1;
+    padding: 1rem; /* Compactado ligeramente */
+    flex: 1; /* Permite estirar y alinear el botón abajo */
     display: flex;
     flex-direction: column;
 }
 
 .services-page__card-title {
-    font-size: 1.5rem;
+    font-size: 1.15rem; /* Un poco más refinado */
     font-weight: 800;
     color: #fff;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem; /* Reducido */
+    line-height: 1.3;
     transition: color 0.3s ease;
 }
 
@@ -209,10 +234,10 @@
 
 .services-page__card-desc {
     color: var(--text-secondary);
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-    flex: 1;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin-bottom: 1rem; /* Reducido */
+    /* Limitamos a 3 líneas pero descriptivas */
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
@@ -220,6 +245,7 @@
 }
 
 .services-page__card-action {
+    margin-top: auto; /* Empuja siempre la acción abajo */
     display: flex;
     align-items: center;
     color: var(--accent);
@@ -227,7 +253,6 @@
     font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    transition: transform 0.3s ease;
 }
 
 .services-page__card-action span {
@@ -236,7 +261,67 @@
 }
 
 .services-page__card:hover .services-page__card-action span {
-    transform: translateX(4px);
+    transform: translateX(6px); /* Microinteracción de flecha */
+}
+
+/* Compact CTA Final */
+.services-page__cta {
+    margin-top: 3rem; /* Reducido para evitar exceso de área negra */
+    background: linear-gradient(145deg, rgba(30,30,30,0.9) 0%, rgba(15,15,15,1) 100%);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 2.5rem 2rem; /* Ligeramente más compacto */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.25rem;
+}
+
+@media (min-width: 768px) {
+    .services-page__cta {
+        flex-direction: row;
+        text-align: left;
+        justify-content: space-between;
+        padding: 3rem;
+    }
+}
+
+.services-page__cta-content {
+    flex: 1;
+    max-width: 600px;
+}
+
+.services-page__cta-title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 0.5rem;
+}
+
+.services-page__cta-text {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.services-page__cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent);
+    color: #000;
+    font-weight: 800;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    white-space: nowrap;
+}
+
+.services-page__cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(228, 170, 21, 0.3);
 }
 
 .services-page__empty {
