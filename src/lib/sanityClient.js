@@ -7,14 +7,12 @@
 
 import { createClient } from '@sanity/client';
 
+import imageUrlBuilder from '@sanity/image-url';
+
 const projectId = import.meta.env.VITE_SANITY_PROJECT_ID || 'bdqq6fie';
 const dataset = import.meta.env.VITE_SANITY_DATASET || 'production';
 const apiVersion = '2024-01-01';
 
-/**
- * Retorna true si Sanity está correctamente configurado.
- * Si no, los hooks usarán los datos estáticos de fallback.
- */
 export const isSanityConfigured = Boolean(
     projectId && projectId !== 'TU_PROJECT_ID_AQUI'
 );
@@ -27,3 +25,14 @@ export const client = isSanityConfigured
         useCdn: false, // false = datos en tiempo real (evita problemas de caché al editar)
     })
     : null;
+
+const builder = isSanityConfigured ? imageUrlBuilder(client) : null;
+
+/**
+ * Genera la URL optimizada para una imagen de Sanity respetando crop/hotspot.
+ */
+export function urlFor(source) {
+    if (!builder || !source) return null;
+    return builder.image(source);
+}
+

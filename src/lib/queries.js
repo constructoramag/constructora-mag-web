@@ -93,7 +93,27 @@ export const SERVICE_DETAIL_QUERY = `
     richDescription,
     seo,
     "category": category->title,
-    "imageUrl": coverImage.asset->url,
+    coverImage,
+    intro,
+    solutions,
+    processSteps,
+    includedItems,
+    faqs[]->,
+    featuredProject->{
+      title,
+      "slug": slug.current,
+      location,
+      description,
+      videoUrl,
+      coverImage,
+      gallery,
+      beforeAfter->{
+        title,
+        description,
+        beforeImage,
+        afterImage
+      }
+    },
     
     // Relación Inversa: Proyectos que referencian este servicio
     "relatedProjects": *[_type == "project" && references(^._id)] | order(_createdAt desc) [0..3] {

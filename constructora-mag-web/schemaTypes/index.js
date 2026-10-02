@@ -15,7 +15,12 @@ import beforeAfter from './collections/beforeAfter'
 import teamMember from './collections/team'
 import faq from './collections/faq'
 
+import imageWithAlt from './objects/imageWithAlt'
+
 export const schemaTypes = [
+  // Objects
+  imageWithAlt,
+
   // Singletons
   brandSettings,
   analyticsSettings,

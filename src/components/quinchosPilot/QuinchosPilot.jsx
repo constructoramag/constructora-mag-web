@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import SEO from '../SEO';
 import { quinchosPilotContent } from '../../data/quinchosPilotContent';
+import { urlFor } from '../../lib/sanityClient';
 import './QuinchosPilot.css';
 
 // Componente helper para cargar imágenes de forma robusta con fallback limpio
@@ -82,36 +83,84 @@ export default function QuinchosPilot({ service }) {
   const content = quinchosPilotContent;
   const whatsappUrl = `https://wa.me/56982340752?text=${encodeURIComponent(content.finalCta.whatsappMessage)}`;
 
-  // Extracción robusta de datos reales
-  const realProject = service?.relatedProjects?.[0];
-  
-  // Validamos que exista url antes de asignar. Fallback seguro si falla la imagen
-  const beforeImgUrl = realProject?.beforeAfter?.beforeImageUrl || null;
-  const afterImgUrl = realProject?.beforeAfter?.afterImageUrl || realProject?.imageUrl || service?.imageUrl || '/images/hero-bg-opt.jpg';
+  // ─────────────────────────────────────────────────────────
+  // MAPEO DE DATOS (SANITY -> FALLBACK)
+  // ─────────────────────────────────────────────────────────
 
+  // PROYECTO DESTACADO (Prioriza featuredProject, si no, usa el primer relacionado)
+  const realProject = service?.featuredProject || service?.relatedProjects?.[0];
   const hasRealData = !!realProject;
+
+  // IMÁGENES CON SOPORTE DE CROP/HOTSPOT MEDIANTE urlFor
+  const beforeImgUrl = urlFor(realProject?.beforeAfter?.beforeImage)?.url() || null;
+  const afterImgUrl = urlFor(realProject?.beforeAfter?.afterImage)?.url() 
+                   || urlFor(realProject?.coverImage)?.url() 
+                   || urlFor(service?.coverImage)?.url() 
+                   || '/images/hero-bg-opt.jpg';
+
+  const heroCoverUrl = urlFor(service?.coverImage)?.url() || afterImgUrl;
+  const introImgUrl = urlFor(service?.intro?.image)?.url() || heroCoverUrl;
+
+  // TEXTOS DE HERO
+  const heroTitle = service?.title || content.hero.title;
+  const heroSubtitle = service?.shortDescription || content.hero.subtitle;
+
+  // SEO
+  const seoTitle = service?.seo?.metaTitle || `${heroTitle} | Constructora MAG`;
+  const seoDesc = service?.seo?.metaDescription || heroSubtitle;
+
+  // INTRODUCCIÓN
+  const introTitle = service?.intro?.title || content.intro.title;
+  const introParagraphs = service?.intro?.text 
+    ? service.intro.text.split('\n').filter(Boolean) 
+    : content.intro.paragraphs;
+
+  // SOLUCIONES
+  const solutionsItems = service?.solutions?.length > 0 
+    ? service.solutions.map((s, idx) => ({ id: s._key || String(idx), title: s.title, description: s.description, icon: s.icon }))
+    : content.solutions.items;
+
+  // PROCESO
+  const processSteps = service?.processSteps?.length > 0
+    ? service.processSteps.map((s, idx) => ({ number: String(idx + 1).padStart(2, '0'), title: s.title, description: s.description }))
+    : content.process.steps;
+
+  // INCLUYE (CHECKLIST)
+  const includedItems = service?.includedItems?.length > 0 ? service.includedItems : content.included.items;
+
+  // FAQ
+  const faqItems = service?.faqs?.length > 0
+    ? service.faqs.map(f => ({ question: f.question, answer: f.answer || (f.content && f.content[0]?.children?.[0]?.text) })) // Adaptación por si faq usa portable text o string
+    : content.faq.items;
+
+  // PROYECTO SHOWCASE INFO
   const projectTitle = hasRealData ? realProject.title : content.projectShowcase.fallbackProject.title;
-  const projectLocation = hasRealData ? realProject.location : null; // No hardcodeamos ubicación falsa
+  const projectLocation = hasRealData ? realProject.location : null;
   
-  // Extraemos la descripción del rich text de Sanity si existe, o usamos el fallback
   let projectDesc = content.projectShowcase.fallbackProject.description;
-  if (hasRealData && Array.isArray(realProject.description)) {
-     projectDesc = realProject.description.map(b => b.children?.map(c => c.text).join('')).join('\n') || projectDesc;
+  if (hasRealData) {
+     if (typeof realProject.description === 'string') {
+         projectDesc = realProject.description;
+     } else if (Array.isArray(realProject.description)) {
+         projectDesc = realProject.description.map(b => b.children?.map(c => c.text).join('')).join('\n') || projectDesc;
+     }
   }
+
+  // ─────────────────────────────────────────────────────────
 
   return (
     <div className="quinchos-pilot">
       <SEO 
-        title="Quinchos y Terrazas a Medida | Constructora MAG"
-        description={content.hero.subtitle}
-        canonical="/servicios/quinchos-y-terrazas"
-        ogImage={afterImgUrl}
+        title={seoTitle}
+        description={seoDesc}
+        canonical={`/servicios/${service?.slug || 'quinchos-y-terrazas'}`}
+        ogImage={heroCoverUrl}
       />
 
       {/* 1. HERO COMPACTO */}
       <section className="quinchos-pilot__hero">
         <div className="quinchos-pilot__hero-bg">
-          <SafeImage src={afterImgUrl} alt="Quincho y Terraza" fetchPriority="high" />
+          <SafeImage src={heroCoverUrl} alt={service?.coverImage?.alt || heroTitle} fetchPriority="high" />
           <div className="quinchos-pilot__hero-overlay"></div>
         </div>
 
@@ -121,7 +170,7 @@ export default function QuinchosPilot({ service }) {
               <React.Fragment key={idx}>
                 {idx > 0 && <span>/</span>}
                 {item.current ? (
-                  <span className="quinchos-pilot__breadcrumbs-current">{item.label}</span>
+                  <span className="quinchos-pilot__breadcrumbs-current">{heroTitle}</span>
                 ) : (
                   <Link to={item.link} className="quinchos-pilot__breadcrumbs-link">{item.label}</Link>
                 )}
@@ -130,8 +179,8 @@ export default function QuinchosPilot({ service }) {
           </nav>
 
           <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55, ease: "easeOut" }}>
-            <h1 className="quinchos-pilot__hero-title">{content.hero.title}</h1>
-            <p className="quinchos-pilot__hero-subtitle">{content.hero.subtitle}</p>
+            <h1 className="quinchos-pilot__hero-title">{heroTitle}</h1>
+            <p className="quinchos-pilot__hero-subtitle">{heroSubtitle}</p>
 
             <div className="quinchos-pilot__hero-actions">
               <a href={whatsappUrl} target="_blank" rel="noreferrer" className="quinchos-pilot__btn-primary">
@@ -153,8 +202,8 @@ export default function QuinchosPilot({ service }) {
             viewport={{ once: true, margin: "-40px" }} 
             variants={fadeInUp}
           >
-            <h2 className="quinchos-pilot__section-title">{content.intro.title}</h2>
-            {content.intro.paragraphs.map((p, i) => <p key={i}>{p}</p>)}
+            <h2 className="quinchos-pilot__section-title">{introTitle}</h2>
+            {introParagraphs.map((p, i) => <p key={i}>{p}</p>)}
           </motion.div>
           <motion.div 
             className="quinchos-pilot__intro-image-wrapper"
@@ -163,7 +212,7 @@ export default function QuinchosPilot({ service }) {
             viewport={{ once: true, margin: "-40px" }}
             variants={fadeInUp}
           >
-            <SafeImage src={service?.imageUrl || afterImgUrl} alt="Diseño de espacio exterior" loading="lazy" />
+            <SafeImage src={introImgUrl} alt={service?.intro?.image?.alt || introTitle} loading="lazy" />
           </motion.div>
         </div>
       </section>
@@ -189,7 +238,7 @@ export default function QuinchosPilot({ service }) {
             viewport={{ once: true, margin: "-40px" }}
             variants={staggerContainer}
           >
-            {content.solutions.items.map((item) => (
+            {solutionsItems.map((item) => (
               <motion.div key={item.id} className="quinchos-pilot__solution-item" variants={fadeInUp}>
                 <div className="quinchos-pilot__solution-icon">
                   <SolutionIcon type={item.icon} />
@@ -223,7 +272,7 @@ export default function QuinchosPilot({ service }) {
             viewport={{ once: true, margin: "-40px" }}
             variants={staggerContainer}
           >
-            {content.process.steps.map((step) => (
+            {processSteps.map((step) => (
               <motion.div key={step.number} className="quinchos-pilot__process-step" variants={fadeInUp}>
                 <div className="quinchos-pilot__process-num">{step.number}</div>
                 <h3 className="quinchos-pilot__process-title">{step.title}</h3>
@@ -255,7 +304,7 @@ export default function QuinchosPilot({ service }) {
                 </span>
                 <SafeImage 
                   src={baMode === 'before' && beforeImgUrl ? beforeImgUrl : afterImgUrl} 
-                  alt="Proyecto de quincho"
+                  alt={baMode === 'before' ? `Estado inicial de ${projectTitle}` : `Resultado de ${projectTitle}`}
                   className="quinchos-pilot__ba-image"
                   loading="lazy"
                 />
@@ -319,7 +368,7 @@ export default function QuinchosPilot({ service }) {
             viewport={{ once: true, margin: "-40px" }}
             variants={staggerContainer}
           >
-            {content.included.items.map((item, idx) => (
+            {includedItems.map((item, idx) => (
               <motion.div key={idx} className="quinchos-pilot__included-item" variants={fadeInUp}>
                 <span className="quinchos-pilot__included-icon">✓</span>
                 <span>{item}</span>
@@ -329,7 +378,7 @@ export default function QuinchosPilot({ service }) {
         </div>
       </section>
 
-      {/* 7. BLOQUE DE CONFIANZA (Banner Horizontal) */}
+      {/* 7. BLOQUE DE CONFIANZA (Banner Horizontal - Siempre de presentación) */}
       <section className="quinchos-pilot__trust">
         <motion.div 
           className="quinchos-pilot__trust-container"
@@ -369,7 +418,7 @@ export default function QuinchosPilot({ service }) {
             {content.faq.title}
           </motion.h2>
           <div className="quinchos-pilot__faq-list">
-            {content.faq.items.map((item, index) => {
+            {faqItems.map((item, index) => {
               const isOpen = activeFaqIndex === index;
               return (
                 <div key={index} className={`quinchos-pilot__faq-item ${isOpen ? 'quinchos-pilot__faq-item--open' : ''}`}>
@@ -399,7 +448,7 @@ export default function QuinchosPilot({ service }) {
         </div>
       </section>
 
-      {/* 9. CTA FINAL */}
+      {/* 9. CTA FINAL (Presentación / Global CTA) */}
       <section className="quinchos-pilot__cta">
         <motion.div 
           className="quinchos-pilot__cta-container"
