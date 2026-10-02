@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { useServiceDetail } from '../hooks/useServices';
 import SEO from '../components/SEO';
 import RichTextRenderer from '../components/RichTextRenderer';
+import QuinchosPilot from '../components/quinchosPilot/QuinchosPilot';
 import './ServiceDetail.css';
 
 export default function ServiceDetail() {
@@ -19,6 +20,13 @@ export default function ServiceDetail() {
         </div>
       </div>
     );
+  }
+
+  // Intercepción aislada para la prueba piloto de Quinchos y Terrazas
+  // Lo colocamos antes de la validación de error para que el piloto 
+  // funcione incluso si Sanity falla por restricciones de red (CORS).
+  if (slug === 'quinchos-y-terrazas') {
+    return <QuinchosPilot service={service} />;
   }
 
   if (error || !service) {

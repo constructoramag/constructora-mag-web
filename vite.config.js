@@ -19,4 +19,7 @@ export default defineConfig({
   build: {
     target: 'es2019'
   },
+  server: {
+    port: 3000
+  }
 })
