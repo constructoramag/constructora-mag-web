@@ -710,7 +710,7 @@
     padding: 3rem 1.25rem;
   }
 
-  .quinchos-pilot__hero {
+  .quinchos-pilot section.quinchos-pilot__hero {
     padding-top: 5.5rem;
     padding-bottom: 2.5rem;
     min-height: auto;
@@ -797,7 +797,7 @@
     padding: 2.5rem 1rem;
   }
 
-  .quinchos-pilot__hero {
+  .quinchos-pilot section.quinchos-pilot__hero {
     padding-top: 6rem; /* Aumentado para librar el navbar global */
   }
 
