@@ -97,9 +97,6 @@ export default function ServiceDetail() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <span className="service-detail__eyebrow">
-              {service.category || 'Especialidad'}
-            </span>
             <h1 className="service-detail__title">
               {service.title}
             </h1>
