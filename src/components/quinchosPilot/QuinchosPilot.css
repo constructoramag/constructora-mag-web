@@ -797,6 +797,10 @@
     padding: 2.5rem 1rem;
   }
 
+  .quinchos-pilot__hero {
+    padding-top: 6rem; /* Aumentado para librar el navbar global */
+  }
+
   .quinchos-pilot__section-title {
     font-size: 1.6rem;
   }
