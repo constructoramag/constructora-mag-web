@@ -138,7 +138,7 @@ export const CATEGORIES_QUERY = `
 export const SITE_CONTENT_QUERY = `
 {
   "companyInfo": *[_type == "companyInfo"][0] {
-    name, slogan, address, contactEmail, whatsapp1, whatsapp1Display, instagramUrl, facebookUrl, youtubeUrl
+    name, slogan, address, contactEmail, phone1, phone1Display, phone2, phone2Display, whatsapp1, whatsapp1Display, instagramUrl, facebookUrl, youtubeUrl
   },
   "brandSettings": *[_type == "brandSettings"][0] {
     "logoLightUrl": logoLight.asset->url,

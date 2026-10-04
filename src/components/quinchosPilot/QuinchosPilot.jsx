@@ -4,6 +4,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import SEO from '../SEO';
 import { quinchosPilotContent } from '../../data/quinchosPilotContent';
 import { urlFor } from '../../lib/sanityClient';
+import { useSiteContent } from '../../hooks/useSiteContent';
+import { buildWhatsAppUrl } from '../../utils/contactHelpers';
 import './QuinchosPilot.css';
 
 // Componente helper para cargar imágenes de forma robusta con fallback limpio
@@ -79,9 +81,10 @@ const staggerContainer = {
 export default function QuinchosPilot({ service }) {
   const [activeFaqIndex, setActiveFaqIndex] = useState(null);
   const [baMode, setBaMode] = useState('after');
+  const { contact } = useSiteContent();
 
   const content = quinchosPilotContent;
-  const whatsappUrl = `https://wa.me/56982340752?text=${encodeURIComponent(content.finalCta.whatsappMessage)}`;
+  const whatsappUrl = buildWhatsAppUrl(contact?.whatsapp1, content.finalCta.whatsappMessage);
 
   // ─────────────────────────────────────────────────────────
   // MAPEO DE DATOS (SANITY -> FALLBACK)

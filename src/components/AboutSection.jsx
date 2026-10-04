@@ -1,9 +1,10 @@
-import { siteContent } from '../data/siteContent';
+import { useSiteContent } from '../hooks/useSiteContent';
+import { buildWhatsAppUrl } from '../utils/contactHelpers';
 import { motion } from 'framer-motion';
 import './AboutSection.css';
 
 function AboutSection() {
-    const { company } = siteContent;
+    const { company, contact } = useSiteContent();
 
     return (
         <section id="nosotros" className="about section">
@@ -28,13 +29,13 @@ function AboutSection() {
                             Nuestro equipo cuenta con maestros calificados con amplia experiencia en construcción residencial.
                         </p>
                         <div className="about__badges">
-                            <a href="https://wa.me/56982340752?text=Hola!%20Me%20interesa%20un%20presupuesto." target="_blank" rel="noopener noreferrer" className="about__badge-btn">
+                            <a href={buildWhatsAppUrl(contact?.whatsapp1, "Hola! Me interesa un presupuesto.")} target="_blank" rel="noopener noreferrer" className="about__badge-btn">
                                 <span className="material-symbols-outlined">check_circle</span> Presupuesto sin costo
                             </a>
-                            <a href="https://wa.me/56982340752?text=Hola!%20Me%20gustar%C3%ADa%20saber%20sobre%20las%20garant%C3%ADas." target="_blank" rel="noopener noreferrer" className="about__badge-btn">
+                            <a href={buildWhatsAppUrl(contact?.whatsapp1, "Hola! Me gustaría saber sobre las garantías.")} target="_blank" rel="noopener noreferrer" className="about__badge-btn">
                                 <span className="material-symbols-outlined">shield</span> Garantía en trabajos
                             </a>
-                            <a href="https://wa.me/56982340752?text=Hola!%20Busco%20atenci%C3%B3n%20personalizada." target="_blank" rel="noopener noreferrer" className="about__badge-btn">
+                            <a href={buildWhatsAppUrl(contact?.whatsapp1, "Hola! Busco atención personalizada.")} target="_blank" rel="noopener noreferrer" className="about__badge-btn">
                                 <span className="material-symbols-outlined">handshake</span> Atención personalizada
                             </a>
                         </div>

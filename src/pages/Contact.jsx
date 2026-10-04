@@ -2,15 +2,15 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import SEO from '../components/SEO';
 import { useSiteContent } from '../hooks/useSiteContent';
+import { buildWhatsAppUrl, buildTelUrl } from '../utils/contactHelpers';
 import './Contact.css';
 
 export default function Contact() {
-  const { company, loading } = useSiteContent();
+  const { contact, loading } = useSiteContent();
 
-  const waNumber = company?.whatsapp1 || '56982340752';
-  const waDisplay = company?.whatsapp1Display || '+56 9 9447 8840';
-  const email = company?.contactEmail || 'contacto@constructoramag.cl';
-  const address = company?.address || 'Región Metropolitana, Santiago, Chile';
+  const address = contact?.location || 'Venezuela 652, Recoleta';
+  const searchAddress = address.includes('Chile') ? address : `${address}, Chile`;
+  const mapEmbedUrl = `https://maps.google.com/maps?q=${encodeURIComponent(searchAddress)}&t=&z=16&ie=UTF8&iwloc=&output=embed`;
 
   if (loading) {
     return (
@@ -51,7 +51,7 @@ export default function Contact() {
           {/* Tarjetas de Contacto */}
           <div className="contact-page__cards">
             <motion.a 
-              href={`https://wa.me/${waNumber}?text=Hola!%20Me%20gustaría%20agendar%20una%20visita%20técnica.`}
+              href={buildWhatsAppUrl(contact.whatsapp1, "Hola! Me gustaría agendar una visita técnica.")}
               target="_blank"
               rel="noreferrer"
               initial={{ opacity: 0, x: -20 }}
@@ -64,12 +64,31 @@ export default function Contact() {
               </div>
               <div className="contact-page__card-content">
                 <h3 className="contact-page__card-title">
-                  WhatsApp <span className="contact-page__badge">Canal Principal</span>
+                  WhatsApp / Teléfono principal <span className="contact-page__badge">Canal Principal</span>
                 </h3>
-                <p className="contact-page__card-info">{waDisplay}</p>
+                <p className="contact-page__card-info">{contact.whatsapp1Display || contact.phone1Display}</p>
                 <p className="contact-page__card-hint contact-page__card-hint--success">Respuesta inmediata</p>
               </div>
             </motion.a>
+
+            {contact.phone2 && (
+              <motion.a 
+                href={buildTelUrl(contact.phone2)}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.25 }}
+                className="contact-page__card"
+              >
+                <div className="contact-page__card-icon">
+                  <span className="material-symbols-outlined">phone</span>
+                </div>
+                <div className="contact-page__card-content">
+                  <h3 className="contact-page__card-title">Teléfono alternativo</h3>
+                  <p className="contact-page__card-info">{contact.phone2Display}</p>
+                  <p className="contact-page__card-hint contact-page__card-hint--muted">Solo para llamadas</p>
+                </div>
+              </motion.a>
+            )}
 
             <motion.a 
               href={`mailto:${email}`}
@@ -105,7 +124,7 @@ export default function Contact() {
             </motion.div>
           </div>
 
-          {/* Mapa Embebido Invertido (Dark Mode Map) */}
+          {/* Mapa Embebido Dinámico */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -114,7 +133,7 @@ export default function Contact() {
           >
             <iframe 
               title="Ubicación Constructora MAG"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d106518.72370776722!2d-70.7303034988775!3d-33.47271424364177!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662c5410425af2f%3A0x8475d53c400f0931!2sSantiago%2C%20Regi%C3%B3n%20Metropolitana!5e0!3m2!1ses-419!2scl!4v1700000000000!5m2!1ses-419!2scl" 
+              src={mapEmbedUrl}
               className="contact-page__map"
               allowFullScreen="" 
               loading="lazy" 

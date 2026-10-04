@@ -3,9 +3,11 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useSiteContent } from '../hooks/useSiteContent';
 import { isSanityConfigured } from '../lib/sanityClient';
+import { buildWhatsAppUrl } from '../utils/contactHelpers';
 
 export default function MainLayout() {
-  const { theme } = useSiteContent();
+  const { theme, contact } = useSiteContent();
+  const displayContact = contact || {};
 
   return (
     <>
@@ -43,7 +45,7 @@ export default function MainLayout() {
 
       {/* WhatsApp flotante */}
       <a
-        href="https://wa.me/56982340752?text=Hola!%20Me%20interesa%20cotizar%20un%20proyecto."
+        href={buildWhatsAppUrl(displayContact.whatsapp1, "Hola! Me interesa cotizar un proyecto.")}
         target="_blank"
         rel="noopener noreferrer"
         className="whatsapp-fab"

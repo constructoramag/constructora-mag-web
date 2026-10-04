@@ -1,5 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useTestimonials } from '../hooks/useTestimonials';
+import { useSiteContent } from '../hooks/useSiteContent';
+import { buildWhatsAppUrl } from '../utils/contactHelpers';
 import { motion } from 'framer-motion';
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
@@ -24,6 +26,7 @@ const itemVariants = {
 
 const TestimonialSection = () => {
     const { testimonials, loading } = useTestimonials();
+    const { contact } = useSiteContent();
     
     // Embla activo en todos los dispositivos
     const [emblaRef, emblaApi] = useEmblaCarousel(
@@ -135,7 +138,7 @@ const TestimonialSection = () => {
 
                 <div style={{ textAlign: 'center', marginTop: '3rem' }}>
                     <a 
-                        href="https://wa.me/56982340752?text=Hola!%20He%20visto%20las%20rese%C3%B1as%20de%20sus%20clientes%20y%20me%20gustar%C3%ADa%20cotizar%20un%20proyecto."
+                        href={buildWhatsAppUrl(contact?.whatsapp1, "Hola! He visto las reseñas de sus clientes y me gustaría cotizar un proyecto.")}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="btn btn--primary"

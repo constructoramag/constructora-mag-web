@@ -7,7 +7,7 @@
 
 import { createClient } from '@sanity/client';
 
-import imageUrlBuilder from '@sanity/image-url';
+import createImageUrlBuilder from '@sanity/image-url';
 
 const projectId = import.meta.env.VITE_SANITY_PROJECT_ID || 'bdqq6fie';
 const dataset = import.meta.env.VITE_SANITY_DATASET || 'production';
@@ -26,7 +26,7 @@ export const client = isSanityConfigured
     })
     : null;
 
-const builder = isSanityConfigured ? imageUrlBuilder(client) : null;
+const builder = isSanityConfigured ? createImageUrlBuilder(client) : null;
 
 /**
  * Genera la URL optimizada para una imagen de Sanity respetando crop/hotspot.

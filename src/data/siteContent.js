@@ -21,7 +21,7 @@ export const siteContent = {
         about:
             "Transformamos tus espacios con más de 10 años de experiencia, garantizando calidad, cumplimiento de plazos y acabados de primer nivel. Nos especializamos en proyectos residenciales, remodelaciones integrales y construcción de alto estándar.",
         founded: 2014,
-        location: "Santiago de Chile, RM",
+        location: "Venezuela 652, Recoleta",
     },
 
     // ── Services ──────────────────────────────────────────────────────────────
@@ -72,13 +72,17 @@ export const siteContent = {
 
     // ── Contact ───────────────────────────────────────────────────────────────
     contact: {
-        whatsapp1: "+56982340752",
-        whatsappDisplay1: "+56 9 8234 0752",
+        phone1: "+56982340752",
+        phone1Display: "+56 9 8234 0752",
+        whatsapp1: "56982340752",
+        whatsapp1Display: "+56 9 8234 0752",
+        phone2: "+56942785696",
+        phone2Display: "+56 9 4278 5696",
         email: "contacto@constructoramag.cl",
         instagram: "https://www.instagram.com/servicios.integrales.m.a.g",
         facebook: "https://www.facebook.com/contructoramag/",
         youtube: "https://www.youtube.com/@ConstructoraMAGChile",
-        location: "Santiago de Chile, Región Metropolitana",
+        location: "Venezuela 652, Recoleta",
     },
 
     // ── Team (Grupo Familiar) ─────────────────────────────────────────────────

@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
 import LazyVideo from './LazyVideo';
+import { useSiteContent } from '../hooks/useSiteContent';
+import { buildWhatsAppUrl } from '../utils/contactHelpers';
 import './VideoModal.css';
 
 /**
@@ -7,6 +9,8 @@ import './VideoModal.css';
  * Cierra al hacer click fuera o presionar Escape.
  */
 function VideoModal({ project, onClose }) {
+    const { contact } = useSiteContent();
+
     useEffect(() => {
         const handleKey = (e) => { if (e.key === 'Escape') onClose(); };
         document.addEventListener('keydown', handleKey);
@@ -59,7 +63,7 @@ function VideoModal({ project, onClose }) {
                         Cotiza un proyecto similar sin compromiso.
                     </p>
                     <a 
-                        href={`https://wa.me/56982340752?text=Hola!%20Acabo%20de%20ver%20el%20proyecto%20*${project.title}*%20en%20su%20web%20y%20me%20gustar%C3%ADa%20cotizar%20algo%20similar.`}
+                        href={buildWhatsAppUrl(contact?.whatsapp1, `Hola! Acabo de ver el proyecto *${project.title}* en su web y me gustaría cotizar algo similar.`)}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="btn btn--primary btn--sm"

@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useSiteContent } from '../hooks/useSiteContent';
+import { buildWhatsAppUrl } from '../utils/contactHelpers';
 import './Header.css';
 
 const navLinks = [
@@ -14,6 +16,9 @@ function Header() {
     const [scrolled, setScrolled] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
     const location = useLocation();
+    
+    const { contact } = useSiteContent();
+    const displayContact = contact || {};
 
     useEffect(() => {
         const handleScroll = () => setScrolled(window.scrollY > 60);
@@ -44,7 +49,7 @@ function Header() {
                         </Link>
                     ))}
                     <a
-                        href="https://wa.me/56982340752?text=Hola!%20Me%20interesa%20solicitar%20un%20presupuesto."
+                        href={buildWhatsAppUrl(displayContact.whatsapp1, "Hola! Me interesa solicitar un presupuesto.")}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="btn btn--primary btn--sm"
@@ -78,7 +83,7 @@ function Header() {
                         </Link>
                     ))}
                     <a
-                        href="https://wa.me/56982340752?text=Hola!%20Me%20interesa%20solicitar%20un%20presupuesto."
+                        href={buildWhatsAppUrl(displayContact.whatsapp1, "Hola! Me interesa solicitar un presupuesto.")}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="btn btn--primary"

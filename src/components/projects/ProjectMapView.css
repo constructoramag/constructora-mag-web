@@ -1,0 +1,400 @@
+/* ==========================================================================
+   ProjectMapView & CommuneDetailPanel Styles
+   Estética Arquitectónica MAG: Fondo oscuro, acentos en amarillo #EAB308 / #F59E0B
+   ========================================================================== */
+
+.project-map-view {
+  width: 100%;
+  margin-top: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+/* Barra de Controles y Selector de Comuna */
+.project-map-view__controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  background: #121212;
+  border: 1px solid #262626;
+  border-radius: 8px;
+  padding: 0.875rem 1rem;
+}
+
+@media (min-width: 768px) {
+  .project-map-view__controls {
+    flex-direction: row;
+    align-items: center;
+    background: transparent;
+    border: none;
+    padding: 0;
+  }
+}
+
+.project-map-view__select-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #EAB308;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.project-map-view__select {
+  width: 100%;
+  background: #000000;
+  color: #FFFFFF;
+  border: 1px solid #404040;
+  border-radius: 6px;
+  padding: 0.625rem 0.875rem;
+  font-size: 0.9rem;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+@media (min-width: 768px) {
+  .project-map-view__select {
+    width: auto;
+    min-width: 300px;
+  }
+}
+
+.project-map-view__select:focus {
+  border-color: #EAB308;
+}
+
+/* Layout Principal Grid 2 Columnas */
+.project-map-view__container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+@media (min-width: 1024px) {
+  .project-map-view__container.has-selection {
+    grid-template-columns: 62% 38%;
+    gap: 2rem;
+  }
+}
+
+/* Wrapper del Mapa SVG */
+.project-map-view__map-wrapper {
+  background: #0B0B0B;
+  border: 1px solid #262626;
+  border-radius: 12px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.project-map-view__map-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #1F1F1F;
+}
+
+.project-map-view__map-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #EAB308;
+  letter-spacing: 1px;
+}
+
+.project-map-view__attribution {
+  font-size: 0.7rem;
+  color: #737373;
+}
+
+.project-map-view__instruction {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #A1A1AA;
+  margin-bottom: 1rem;
+}
+
+.project-map-view__svg-container {
+  width: 100%;
+  height: 100%;
+  max-height: 700px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.project-map-view__svg {
+  width: 100%;
+  height: auto;
+  max-height: 680px;
+  user-select: none;
+}
+
+/* Capa base para tapar huecos del GeoJSON original */
+.map-path--base {
+  fill: #18181B; /* mismo gris oscuro sin proyectos */
+  stroke: #18181B;
+  stroke-width: 8px; /* sangrado agresivo para parchar huecos internos */
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+/* Estilos de los Polígonos Comunales SVG */
+.map-path {
+  stroke-width: 1px;
+  vector-effect: non-scaling-stroke;
+  paint-order: stroke fill;
+  transition: fill 200ms ease, stroke 200ms ease, filter 200ms ease, opacity 200ms ease;
+  outline: none;
+}
+
+.map-path--disabled {
+  fill: #18181B;
+  stroke: #3F3F46;
+  cursor: default;
+}
+
+.map-path--disabled:hover {
+  fill: #27272A;
+}
+
+.map-path--active {
+  fill: rgba(234, 179, 8, 0.12); /* Amarillo MAG con 12% opacidad */
+  stroke: rgba(234, 179, 8, 0.3); /* Amarillo MAG con 30% opacidad para evitar telaraña */
+  stroke-width: 1px;
+  cursor: pointer;
+  position: relative;
+  z-index: 10;
+}
+
+.map-path--active:hover {
+  fill: rgba(234, 179, 8, 0.25);
+  stroke: rgba(234, 179, 8, 0.7);
+  stroke-width: 1.5px;
+  filter: drop-shadow(0 0 6px rgba(234, 179, 8, 0.4));
+}
+
+.map-path--selected {
+  fill: #F59E0B !important;
+  stroke: #FFFFFF !important;
+  stroke-width: 1.5px !important;
+  filter: drop-shadow(0 0 10px rgba(245, 158, 11, 0.6)) !important;
+}
+
+.map-path:focus-visible {
+  stroke: #FFFFFF !important;
+  stroke-width: 2.5 !important;
+  filter: drop-shadow(0 0 8px #EAB308) !important;
+}
+
+/* Etiquetas dentro del Mapa */
+.map-label {
+  fill: #FFFFFF;
+  font-size: 10px;
+  font-weight: 700;
+  text-anchor: middle;
+  letter-spacing: 0.5px;
+  text-shadow: 0 1px 4px #000000, 0 0 2px #000000;
+  transition: font-size 200ms ease;
+}
+
+.map-label--selected {
+  font-size: 12px;
+  fill: #FFFFFF;
+  text-shadow: 0 2px 6px #000000;
+}
+
+/* Leyenda inferior */
+.project-map-view__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #1F1F1F;
+  font-size: 0.75rem;
+  color: #A1A1AA;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.legend-box {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+}
+
+.legend-box--disabled {
+  background: #18181B;
+  border: 1px solid #3F3F46;
+}
+
+.legend-box--active {
+  background: rgba(234, 179, 8, 0.12);
+  border: 1px solid rgba(234, 179, 8, 0.3);
+}
+
+.legend-box--selected {
+  background: #F59E0B;
+  border: 1px solid #FFFFFF;
+  box-shadow: 0 0 4px #F59E0B;
+}
+
+/* Panel de Comuna (CommuneDetailPanel) */
+.commune-panel {
+  background: #0B0B0B;
+  border: 1px solid #262626;
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 420px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.commune-panel--empty {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.commune-panel__placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 280px;
+}
+
+.commune-panel__icon {
+  font-size: 3rem;
+  color: #3F3F46;
+  margin-bottom: 1rem;
+}
+
+.commune-panel__empty-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #F4F4F5;
+  margin-bottom: 0.5rem;
+}
+
+.commune-panel__empty-text {
+  font-size: 0.875rem;
+  color: #71717A;
+  line-height: 1.5;
+}
+
+.commune-panel__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #27272A;
+}
+
+.commune-panel__badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #EAB308;
+  letter-spacing: 1px;
+}
+
+.commune-panel__title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+
+.commune-panel__count {
+  font-size: 0.875rem;
+  color: #A1A1AA;
+}
+
+.commune-panel__clear-btn {
+  background: #18181B;
+  border: 1px solid #27272A;
+  color: #A1A1AA;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.commune-panel__clear-btn:hover {
+  background: #27272A;
+  color: #FFFFFF;
+  border-color: #EAB308;
+}
+
+.commune-panel__no-projects {
+  padding: 1.5rem 0;
+  color: #A1A1AA;
+  font-size: 0.9rem;
+}
+
+.commune-panel__reset-link,
+.commune-panel__back-btn {
+  margin-top: 1rem;
+  background: transparent;
+  border: none;
+  color: #EAB308;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  transition: opacity 0.2s ease;
+}
+
+.commune-panel__reset-link:hover,
+.commune-panel__back-btn:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+.commune-panel__projects-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Tarjeta compacta para la lista lateral */
+.project-card--compact {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+  .commune-panel__projects-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+}
+
+/* Respetar prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .map-path,
+  .project-map-view__mobile-select,
+  .commune-panel__clear-btn {
+    transition: none !important;
+  }
+}

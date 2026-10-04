@@ -72,10 +72,15 @@ const seedData = [
   {
     _id: 'companyInfo',
     _type: 'companyInfo',
+    contactEmail: 'contacto@constructoramag.cl',
     email: 'contacto@constructoramag.cl',
+    phone1: '+56982340752',
+    phone1Display: '+56 9 8234 0752',
     whatsapp1: '56982340752',
-    whatsapp1Display: '+56 9 9447 8840',
-    address: 'Santiago, Región Metropolitana, Chile'
+    whatsapp1Display: '+56 9 8234 0752',
+    phone2: '+56942785696',
+    phone2Display: '+56 9 4278 5696',
+    address: 'Venezuela 652, Recoleta'
   },
   {
     _id: 'service-ampliaciones',

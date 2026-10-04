@@ -2,6 +2,8 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useServiceDetail } from '../hooks/useServices';
+import { useSiteContent } from '../hooks/useSiteContent';
+import { buildWhatsAppUrl } from '../utils/contactHelpers';
 import SEO from '../components/SEO';
 import RichTextRenderer from '../components/RichTextRenderer';
 import QuinchosPilot from '../components/quinchosPilot/QuinchosPilot';
@@ -10,6 +12,7 @@ import './ServiceDetail.css';
 export default function ServiceDetail() {
   const { slug } = useParams();
   const { service, loading, error } = useServiceDetail(slug);
+  const { contact } = useSiteContent();
 
   if (loading) {
     return (
@@ -151,7 +154,7 @@ export default function ServiceDetail() {
                 Contamos con profesionales altamente calificados para llevar a cabo tu proyecto con el máximo estándar.
               </p>
               <a 
-                href={`https://wa.me/56982340752?text=Hola,%20me%20gustaría%20cotizar%20el%20servicio%20de%20${service.title}.`}
+                href={buildWhatsAppUrl(contact?.whatsapp1, `Hola, me gustaría cotizar el servicio de ${service.title}.`)}
                 target="_blank"
                 rel="noreferrer"
                 className="service-detail__cta-btn"

@@ -76,8 +76,12 @@ function normalizeSanityContent(raw) {
             services: staticContent.services,
             stats: { years: '+10', projects: '+150', satisfaction: '100%', coverage: 'RM' },
             contact: {
+                phone1: staticContent.contact.phone1,
+                phone1Display: staticContent.contact.phone1Display,
+                phone2: staticContent.contact.phone2,
+                phone2Display: staticContent.contact.phone2Display,
                 whatsapp1: staticContent.contact.whatsapp1.replace('+', ''),
-                whatsapp1Display: staticContent.contact.whatsappDisplay1,
+                whatsapp1Display: staticContent.contact.whatsapp1Display,
                 email: staticContent.contact.email,
                 instagram: staticContent.contact.instagram,
                 facebook: staticContent.contact.facebook,
@@ -126,13 +130,18 @@ function normalizeSanityContent(raw) {
         })) : staticContent.services,
         stats: { years: '+10', projects: '+150', satisfaction: '100%', coverage: 'RM' }, // Puede ser dinámico después
         contact: {
+            phone1: companyInfo.phone1 || staticContent.contact.phone1,
+            phone1Display: companyInfo.phone1Display || staticContent.contact.phone1Display,
+            phone2: companyInfo.phone2 || staticContent.contact.phone2, // Si no hay en Sanity, usa fallback (que es "")
+            phone2Display: companyInfo.phone2Display || staticContent.contact.phone2Display,
             whatsapp1: (companyInfo.whatsapp1 || staticContent.contact.whatsapp1).replace('+', ''),
-            whatsapp1Display: companyInfo.whatsapp1Display ?? staticContent.contact.whatsappDisplay1,
-            email: companyInfo.contactEmail ?? staticContent.contact.email,
-            instagram: companyInfo.instagramUrl ?? staticContent.contact.instagram,
-            facebook: companyInfo.facebookUrl ?? staticContent.contact.facebook,
-            youtube: companyInfo.youtubeUrl ?? staticContent.contact.youtube,
-            location: companyInfo.address ?? staticContent.contact.location,
+            whatsapp1Display: companyInfo.whatsapp1Display || staticContent.contact.whatsapp1Display,
+            email: companyInfo.contactEmail || staticContent.contact.email,
+            // Redes sociales: Si Sanity respondió (raw no es null), usamos estrictamente lo que diga Sanity (puede ser vacío).
+            instagram: companyInfo.instagramUrl || null,
+            facebook: companyInfo.facebookUrl || null,
+            youtube: companyInfo.youtubeUrl || null,
+            location: companyInfo.address || staticContent.contact.location,
         },
         testimonials: testimonials.length > 0 ? testimonials : staticContent.testimonials,
         theme: brandSettings,

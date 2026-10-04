@@ -2,30 +2,30 @@ export const deskStructure = (S) =>
   S.list()
     .title('Panel de Control - MAG')
     .items([
-      // --- MARCA Y AJUSTES ---
+      // --- CONFIGURACIÓN DEL SITIO ---
       S.listItem()
-        .title('🎨 Marca y Ajustes')
+        .title('⚙️ Configuración del Sitio')
         .child(
           S.list()
-            .title('Marca y Ajustes')
+            .title('Configuración del Sitio')
             .items([
               S.listItem()
-                .title('Identidad Visual (Brand)')
-                .child(S.document().schemaType('brandSettings').documentId('brandSettings')),
-              S.listItem()
-                .title('Analytics y Scripts')
-                .child(S.document().schemaType('analyticsSettings').documentId('analyticsSettings')),
-              S.listItem()
-                .title('Información de Empresa')
+                .title('🏢 Información de la Empresa')
                 .child(S.document().schemaType('companyInfo').documentId('companyInfo')),
               S.listItem()
-                .title('CTA Global')
+                .title('🎨 Identidad Visual (Brand)')
+                .child(S.document().schemaType('brandSettings').documentId('brandSettings')),
+              S.listItem()
+                .title('📊 Analytics y Scripts')
+                .child(S.document().schemaType('analyticsSettings').documentId('analyticsSettings')),
+              S.listItem()
+                .title('📣 CTA Global')
                 .child(S.document().schemaType('globalCTA').documentId('globalCTA')),
               S.listItem()
-                .title('SEO Global')
+                .title('🔍 SEO Global')
                 .child(S.document().schemaType('globalSEO').documentId('globalSEO')),
               S.listItem()
-                .title('Navegación (Header & Footer)')
+                .title('🧩 Navegación (Header & Footer)')
                 .child(
                   S.list()
                     .title('Navegación')

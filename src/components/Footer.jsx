@@ -1,4 +1,5 @@
 import { useSiteContent } from '../hooks/useSiteContent';
+import { buildTelUrl, buildWhatsAppUrl } from '../utils/contactHelpers';
 import './Footer.css';
 
 function Footer() {
@@ -7,6 +8,9 @@ function Footer() {
     const displayContact = contact ?? {};
     const displayCompany = company ?? {};
     const displayFooter = footer ?? {};
+    const addressText = displayContact.location || 'Venezuela 652, Recoleta';
+    const searchAddress = addressText.includes('Chile') ? addressText : `${addressText}, Chile`;
+    const mapEmbedUrl = `https://maps.google.com/maps?q=${encodeURIComponent(searchAddress)}&t=&z=16&ie=UTF8&iwloc=&output=embed`;
 
     return (
         <footer id="contacto" className="footer">
@@ -21,7 +25,7 @@ function Footer() {
                             <a href="https://maps.app.goo.gl/Uw2JgBLmc6JiQAPp8" target="_blank" rel="noopener noreferrer" className="footer__map-link">
                                 <div className="footer__map-overlay"></div>
                                 <iframe
-                                    src="https://maps.google.com/maps?q=Venezuela%20652,%20Recoleta,%20Chile&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                                    src={mapEmbedUrl}
                                     width="100%"
                                     height="150"
                                     style={{ border: 0, borderRadius: '12px' }}
@@ -38,19 +42,31 @@ function Footer() {
                     <div className="footer__col">
                         <h4 className="footer__col-title">Contacto</h4>
                         <ul className="footer__list">
-                            {displayContact.whatsapp1 && (
+                            {displayContact.phone1 && (
                                 <li>
+                                    <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', display: 'block', marginBottom: '0.2rem' }}>WhatsApp / Teléfono principal</span>
                                     <a
-                                        href={`https://wa.me/${displayContact.whatsapp1}`}
-                                        target="_blank" rel="noopener noreferrer"
+                                        href={buildTelUrl(displayContact.phone1)}
+                                        className="footer__link"
+                                        style={{ marginBottom: '1rem' }}
+                                    >
+                                        <span className="material-symbols-outlined">phone</span> {displayContact.phone1Display ?? displayContact.phone1}
+                                    </a>
+                                </li>
+                            )}
+                            {displayContact.phone2 && (
+                                <li>
+                                    <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', display: 'block', marginBottom: '0.2rem' }}>Teléfono alternativo</span>
+                                    <a
+                                        href={buildTelUrl(displayContact.phone2)}
                                         className="footer__link"
                                     >
-                                        <span className="material-symbols-outlined">phone</span> {displayContact.whatsapp1Display ?? displayContact.whatsapp1}
+                                        <span className="material-symbols-outlined">phone</span> {displayContact.phone2Display ?? displayContact.phone2}
                                     </a>
                                 </li>
                             )}
                             {displayContact.email && (
-                                <li>
+                                <li style={{ marginTop: '1rem' }}>
                                     <a href={`mailto:${displayContact.email}`} className="footer__link">
                                         <span className="material-symbols-outlined">mail</span> {displayContact.email}
                                     </a>
@@ -58,7 +74,7 @@ function Footer() {
                             )}
                             <li>
                                 <span className="footer__link" style={{ cursor: 'default' }}>
-                                    <span className="material-symbols-outlined">location_on</span> Venezuela 652, Recoleta
+                                    <span className="material-symbols-outlined">location_on</span> {addressText}
                                 </span>
                             </li>
                         </ul>
@@ -113,7 +129,7 @@ function Footer() {
                         <h4 className="footer__col-title">¿Tienes un proyecto?</h4>
                         <p className="footer__cta-text">Cotiza gratis, sin compromisos.</p>
                         <a
-                            href={`https://wa.me/${displayContact.whatsapp1 ?? '56982340752'}?text=Hola!%20Me%20interesa%20cotizar%20un%20proyecto.`}
+                            href={buildWhatsAppUrl(displayContact.whatsapp1, "Hola! Me interesa cotizar un proyecto.")}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="btn btn--primary"

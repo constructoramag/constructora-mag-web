@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useServices } from '../hooks/useServices';
+import { useSiteContent } from '../hooks/useSiteContent';
+import { buildWhatsAppUrl } from '../utils/contactHelpers';
 import SEO from '../components/SEO';
 import './Services.css';
 
 export default function Services() {
   const { data: services, categories, loading, error } = useServices();
+  const { contact } = useSiteContent();
   const [activeCategory, setActiveCategory] = useState('Todos');
 
   if (loading) {
@@ -36,7 +39,7 @@ export default function Services() {
     : services.filter(s => s.category === activeCategory);
 
   const optUrl = (url) => url ? `${url}?auto=format` : null;
-  const whatsappUrl = "https://wa.me/56982340752?text=Hola,%20me%20gustaría%20saber%20más%20sobre%20sus%20servicios%20y%20evaluar%20un%20proyecto.";
+  const whatsappUrl = buildWhatsAppUrl(contact?.whatsapp1, "Hola, me gustaría saber más sobre sus servicios y evaluar un proyecto.");
 
   return (
     <div className="services-page">
