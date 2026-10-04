@@ -8,6 +8,7 @@ import './Contact.css';
 export default function Contact() {
   const { contact, loading } = useSiteContent();
 
+  const email = contact?.email || 'contacto@constructoramag.cl';
   const address = contact?.location || 'Venezuela 652, Recoleta';
   const searchAddress = address.includes('Chile') ? address : `${address}, Chile`;
   const mapEmbedUrl = `https://maps.google.com/maps?q=${encodeURIComponent(searchAddress)}&t=&z=16&ie=UTF8&iwloc=&output=embed`;
