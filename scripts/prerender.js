@@ -77,9 +77,18 @@ async function run() {
       // Espera inteligente: aguardar a que React inyecte JSON-LD o que desaparezca el estado de carga
       try {
         await page.waitForFunction(() => {
-          // Si existe JSON-LD estructurado o ya no hay un loader (.animate-pulse), asumimos que renderizó
-          return document.querySelector('script[type="application/ld+json"]') || !document.querySelector('.animate-pulse');
-        }, { timeout: 5000 });
+          const serviceLoading = document.querySelector('.service-detail__loading');
+          const projectLoading = document.querySelector('.project-detail__loading');
+          const animatePulse = document.querySelector('.animate-pulse');
+          const hasJsonLd = !!document.querySelector('script[type="application/ld+json"]');
+          const root = document.querySelector('#root');
+          
+          // Consideramos que está listo si:
+          // 1. No hay loaders visibles
+          // 2. Ya se inyectó JSON-LD estructurado (indicador de SEO/Helmet listo) o tiene contenido de texto base.
+          return (!serviceLoading && !projectLoading && !animatePulse) && 
+                 (hasJsonLd || (root && root.textContent.trim().length > 0));
+        }, { timeout: 10000 });
         
         // Breve pausa para asegurar que react-helmet-async actualizó los meta tags del head
         await new Promise(resolve => setTimeout(resolve, 300));
