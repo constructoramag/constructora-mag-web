@@ -8,6 +8,8 @@ export default defineConfig({
     react(),
     Sitemap({
       hostname: 'https://constructoramag.cl',
+      generateRobotsTxt: true,
+      robots: [{ userAgent: '*', allow: '/' }],
       dynamicRoutes: [
         '/proyectos',
         '/servicios',
