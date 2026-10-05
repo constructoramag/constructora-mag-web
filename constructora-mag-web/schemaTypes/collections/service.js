@@ -81,7 +81,13 @@ export default {
                   { title: 'Techo/Pérgola (Roof)', value: 'Roof' },
                   { title: 'Cocina (Kitchen)', value: 'Kitchen' },
                   { title: 'Instalaciones (Utilities)', value: 'Utilities' },
-                  { title: 'Terminaciones (Finishes)', value: 'Finishes' }
+                  { title: 'Terminaciones (Finishes)', value: 'Finishes' },
+                  { title: 'Agua / Cañerías (Water)', value: 'water' },
+                  { title: 'Reparación / Filtraciones (Repair)', value: 'repair' },
+                  { title: 'Sanitarios (Sanitary)', value: 'sanitary' },
+                  { title: 'Gas (Gas)', value: 'gas' },
+                  { title: 'Desagüe / Destape (Drain)', value: 'drain' },
+                  { title: 'Mantención (Maintenance)', value: 'maintenance' }
                 ]
               }
             }

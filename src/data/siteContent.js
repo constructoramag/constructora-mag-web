@@ -21,7 +21,7 @@ export const siteContent = {
         about:
             "Transformamos tus espacios con más de 10 años de experiencia, garantizando calidad, cumplimiento de plazos y acabados de primer nivel. Nos especializamos en proyectos residenciales, remodelaciones integrales y construcción de alto estándar.",
         founded: 2014,
-        location: "Venezuela 652, Recoleta",
+        location: "Venezuela 652, Recoleta, Región Metropolitana, Chile",
     },
 
     // ── Services ──────────────────────────────────────────────────────────────
@@ -82,7 +82,7 @@ export const siteContent = {
         instagram: "https://www.instagram.com/servicios.integrales.m.a.g",
         facebook: "https://www.facebook.com/contructoramag/",
         youtube: "https://www.youtube.com/@ConstructoraMAGChile",
-        location: "Venezuela 652, Recoleta",
+        location: "Venezuela 652, Recoleta, Región Metropolitana, Chile",
     },
 
     // ── Team (Grupo Familiar) ─────────────────────────────────────────────────

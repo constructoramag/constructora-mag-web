@@ -50,7 +50,9 @@ export default function ProjectDetail() {
       "image": optUrl(project.imageUrl),
       "author": {
         "@type": "Organization",
-        "name": "Constructora MAG"
+        "name": "Constructora M.A.G.",
+        "address": contact?.location || "Venezuela 652, Recoleta, Región Metropolitana, Chile",
+        "telephone": contact?.phone1Display || "+56 9 8234 0752"
       }
     },
     {

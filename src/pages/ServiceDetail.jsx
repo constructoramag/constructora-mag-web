@@ -6,7 +6,7 @@ import { useSiteContent } from '../hooks/useSiteContent';
 import { buildWhatsAppUrl } from '../utils/contactHelpers';
 import SEO from '../components/SEO';
 import RichTextRenderer from '../components/RichTextRenderer';
-import QuinchosPilot from '../components/quinchosPilot/QuinchosPilot';
+import ServiceDetailTemplate from '../components/serviceTemplate/ServiceDetailTemplate';
 import './ServiceDetail.css';
 
 export default function ServiceDetail() {
@@ -25,11 +25,9 @@ export default function ServiceDetail() {
     );
   }
 
-  // Intercepción aislada para la prueba piloto de Quinchos y Terrazas
-  // Lo colocamos antes de la validación de error para que el piloto 
-  // funcione incluso si Sanity falla por restricciones de red (CORS).
-  if (slug === 'quinchos-y-terrazas') {
-    return <QuinchosPilot service={service} />;
+  // Intercepción aislada para usar el template moderno (alimentado 100% por contenido estructurado)
+  if (['quinchos-y-terrazas', 'gasfiteria'].includes(slug)) {
+    return <ServiceDetailTemplate service={service} />;
   }
 
   if (error || !service) {
@@ -58,7 +56,9 @@ export default function ServiceDetail() {
       "serviceType": service.title,
       "provider": {
         "@type": "LocalBusiness",
-        "name": "Constructora MAG"
+        "name": "Constructora M.A.G.",
+        "address": contact?.location || "Venezuela 652, Recoleta, Región Metropolitana, Chile",
+        "telephone": contact?.phone1Display || "+56 9 8234 0752"
       },
       "description": service.seo?.metaDescription || service.shortDescription,
       "url": `https://constructoramag.cl/servicios/${service.slug}`

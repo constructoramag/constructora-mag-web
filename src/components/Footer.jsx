@@ -8,7 +8,7 @@ function Footer() {
     const displayContact = contact ?? {};
     const displayCompany = company ?? {};
     const displayFooter = footer ?? {};
-    const addressText = displayContact.location || 'Venezuela 652, Recoleta';
+    const addressText = displayContact.location || 'Venezuela 652, Recoleta, Región Metropolitana, Chile';
     const searchAddress = addressText.includes('Chile') ? addressText : `${addressText}, Chile`;
     const mapEmbedUrl = `https://maps.google.com/maps?q=${encodeURIComponent(searchAddress)}&t=&z=16&ie=UTF8&iwloc=&output=embed`;
 
@@ -142,7 +142,7 @@ function Footer() {
                 {/* Bottom bar */}
                 <div className="footer__bottom">
                     <p>{displayFooter.copyright}</p>
-                    <p className="footer__powered">Región Metropolitana, Santiago de Chile 🇨🇱</p>
+                    <p className="footer__powered">{addressText}</p>
                 </div>
             </div>
         </footer>

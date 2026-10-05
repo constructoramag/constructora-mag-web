@@ -128,7 +128,7 @@ export const quinchosPilotContent = {
     title: 'No necesitas tener todo definido',
     text: 'Muchas veces una buena idea comienza con una referencia o simplemente con la necesidad de aprovechar mejor un espacio. Cuéntanos qué tienes en mente.',
     steps: [
-      { step: '01', text: 'Tu idea' },
+      { step: '01', text: 'Tu necesidad' },
       { step: '02', text: 'Fotografías' },
       { step: '03', text: 'Comuna' },
       { step: '04', text: 'Conversamos' }

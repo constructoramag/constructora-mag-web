@@ -1,9 +1,9 @@
 /* ==========================================================================
    QUINCHOS Y TERRAZAS — ESTILOS DEDICADOS PILOTO (REFINADOS Y POLISHED)
-   Aislados estrictamente bajo la clase .quinchos-pilot
+   Aislados estrictamente bajo la clase .service-template
    ========================================================================== */
 
-.quinchos-pilot {
+.service-template {
   --qp-yellow: #FFC700;
   --qp-yellow-hover: #e6b300;
   --qp-dark-bg: #0a0a0a;
@@ -22,24 +22,24 @@
 }
 
 /* Tipografía Escalonada Consistente */
-.quinchos-pilot h1, .quinchos-pilot h2, .quinchos-pilot h3 {
+.service-template h1, .service-template h2, .service-template h3 {
   color: #ffffff;
   line-height: 1.2;
 }
 
-.quinchos-pilot__section-title {
+.service-template__section-title {
   font-size: clamp(1.75rem, 3vw, 2.5rem);
   font-weight: 700;
   margin-bottom: 1rem;
 }
 
 /* Espaciado Base de Secciones */
-.quinchos-pilot section {
+.service-template section {
   padding: clamp(3.5rem, 6vw, 5rem) 1.5rem;
 }
 
 /* Fallback de Imágenes Limpio */
-.quinchos-pilot__img-fallback {
+.service-template__img-fallback {
   width: 100%;
   height: 100%;
   background: radial-gradient(circle at center, #1c1c1c 0%, #0c0c0c 100%);
@@ -49,7 +49,7 @@
   border: 1px solid var(--qp-border);
 }
 
-.quinchos-pilot__fallback-content {
+.service-template__fallback-content {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -57,7 +57,7 @@
   color: var(--qp-text-muted);
 }
 
-.quinchos-pilot__fallback-text {
+.service-template__fallback-text {
   font-size: 0.75rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -66,7 +66,7 @@
 }
 
 /* Botones / CTAs */
-.quinchos-pilot__btn-primary {
+.service-template__btn-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -83,13 +83,13 @@
   cursor: pointer;
 }
 
-.quinchos-pilot__btn-primary:hover {
+.service-template__btn-primary:hover {
   background-color: var(--qp-yellow-hover);
   border-color: var(--qp-yellow-hover);
   transform: translateY(-1px);
 }
 
-.quinchos-pilot__btn-secondary {
+.service-template__btn-secondary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -106,7 +106,7 @@
   cursor: pointer;
 }
 
-.quinchos-pilot__btn-secondary:hover {
+.service-template__btn-secondary:hover {
   border-color: #888;
   background: rgba(255, 255, 255, 0.05);
 }
@@ -114,7 +114,7 @@
 /* --------------------------------------------------------------------------
    1. HERO COMPACTO
    -------------------------------------------------------------------------- */
-.quinchos-pilot__hero {
+.service-template__hero {
   position: relative;
   min-height: clamp(380px, 45vh, 480px);
   display: flex;
@@ -124,14 +124,14 @@
   border-bottom: 1px solid var(--qp-border);
 }
 
-.quinchos-pilot__hero-bg {
+.service-template__hero-bg {
   position: absolute;
   inset: 0;
   z-index: 1;
   overflow: hidden;
 }
 
-.quinchos-pilot__hero-bg img {
+.service-template__hero-bg img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -139,13 +139,13 @@
   filter: brightness(0.7) contrast(1.1);
 }
 
-.quinchos-pilot__hero-overlay {
+.service-template__hero-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(90deg, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.7) 50%, rgba(10,10,10,0.3) 100%);
 }
 
-.quinchos-pilot__hero-container {
+.service-template__hero-container {
   position: relative;
   z-index: 2;
   width: 100%;
@@ -153,7 +153,7 @@
   margin: 0 auto;
 }
 
-.quinchos-pilot__breadcrumbs {
+.service-template__breadcrumbs {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
@@ -163,11 +163,11 @@
   margin-bottom: 1.5rem;
 }
 
-.quinchos-pilot__breadcrumbs-link { color: var(--qp-text-sub); text-decoration: none; transition: color 0.2s; }
-.quinchos-pilot__breadcrumbs-link:hover { color: var(--qp-yellow); }
-.quinchos-pilot__breadcrumbs-current { color: var(--qp-yellow); font-weight: 600; }
+.service-template__breadcrumbs-link { color: var(--qp-text-sub); text-decoration: none; transition: color 0.2s; }
+.service-template__breadcrumbs-link:hover { color: var(--qp-yellow); }
+.service-template__breadcrumbs-current { color: var(--qp-yellow); font-weight: 600; }
 
-.quinchos-pilot__hero-title {
+.service-template__hero-title {
   font-size: clamp(2.25rem, 5vw, 3.5rem);
   font-weight: 800;
   margin-bottom: 1rem;
@@ -175,7 +175,7 @@
   letter-spacing: -0.02em;
 }
 
-.quinchos-pilot__hero-subtitle {
+.service-template__hero-subtitle {
   font-size: clamp(1rem, 2vw, 1.15rem);
   color: #e5e5e5;
   max-width: 600px;
@@ -183,14 +183,14 @@
   line-height: 1.6;
 }
 
-.quinchos-pilot__hero-actions {
+.service-template__hero-actions {
   display: flex;
   align-items: center;
   gap: 1.5rem;
   flex-wrap: wrap;
 }
 
-.quinchos-pilot__hero-subtext {
+.service-template__hero-subtext {
   font-size: 0.85rem;
   color: #b3b3b3;
 }
@@ -198,11 +198,11 @@
 /* --------------------------------------------------------------------------
    2. INTRODUCCIÓN (Split Visual 50/50)
    -------------------------------------------------------------------------- */
-.quinchos-pilot__intro {
+.service-template__intro {
   background-color: var(--qp-dark-bg);
 }
 
-.quinchos-pilot__intro-grid {
+.service-template__intro-grid {
   max-width: var(--qp-max-width);
   margin: 0 auto;
   display: grid;
@@ -211,13 +211,13 @@
   align-items: center;
 }
 
-.quinchos-pilot__intro-text p {
+.service-template__intro-text p {
   color: #d4d4d4;
   margin-bottom: 1.25rem;
   font-size: 1.05rem;
 }
 
-.quinchos-pilot__intro-image-wrapper {
+.service-template__intro-image-wrapper {
   position: relative;
   width: 100%;
   aspect-ratio: 4 / 3;
@@ -226,14 +226,14 @@
   background-color: #121212;
 }
 
-.quinchos-pilot__intro-image-wrapper img {
+.service-template__intro-image-wrapper img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   filter: grayscale(20%);
 }
 
-.quinchos-pilot__intro-image-wrapper::after {
+.service-template__intro-image-wrapper::after {
   content: '';
   position: absolute;
   inset: 0;
@@ -245,27 +245,27 @@
 /* --------------------------------------------------------------------------
    3. QUÉ PODEMOS HACER (Estética Arquitectónica)
    -------------------------------------------------------------------------- */
-.quinchos-pilot__solutions {
+.service-template__solutions {
   background-color: var(--qp-alt-bg);
   border-top: 1px solid var(--qp-border);
 }
 
-.quinchos-pilot__solutions-container {
+.service-template__solutions-container {
   max-width: var(--qp-max-width);
   margin: 0 auto;
 }
 
-.quinchos-pilot__header {
+.service-template__header {
   margin-bottom: 3.5rem;
   max-width: 700px;
 }
 
-.quinchos-pilot__subtitle {
+.service-template__subtitle {
   color: var(--qp-text-sub);
   font-size: 1.05rem;
 }
 
-.quinchos-pilot__solutions-grid {
+.service-template__solutions-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 0;
@@ -273,7 +273,7 @@
   border-left: 1px solid var(--qp-border);
 }
 
-.quinchos-pilot__solution-item {
+.service-template__solution-item {
   padding: 2.5rem 2rem;
   border-right: 1px solid var(--qp-border);
   border-bottom: 1px solid var(--qp-border);
@@ -281,23 +281,23 @@
   transition: background 0.25s ease;
 }
 
-.quinchos-pilot__solution-item:hover {
+.service-template__solution-item:hover {
   background: rgba(255, 255, 255, 0.02);
 }
 
-.quinchos-pilot__solution-icon {
+.service-template__solution-icon {
   color: var(--qp-yellow);
   margin-bottom: 1.25rem;
   opacity: 0.9;
 }
 
-.quinchos-pilot__solution-title {
+.service-template__solution-title {
   font-size: 1.15rem;
   font-weight: 600;
   margin-bottom: 0.75rem;
 }
 
-.quinchos-pilot__solution-desc {
+.service-template__solution-desc {
   font-size: 0.9rem;
   color: var(--qp-text-sub);
   line-height: 1.5;
@@ -306,16 +306,16 @@
 /* --------------------------------------------------------------------------
    4. PROCESO (Timeline Conectado)
    -------------------------------------------------------------------------- */
-.quinchos-pilot__process {
+.service-template__process {
   background-color: var(--qp-dark-bg);
 }
 
-.quinchos-pilot__process-container {
+.service-template__process-container {
   max-width: var(--qp-max-width);
   margin: 0 auto;
 }
 
-.quinchos-pilot__process-timeline {
+.service-template__process-timeline {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   row-gap: 4rem;
@@ -325,7 +325,7 @@
 }
 
 /* Línea conectora horizontal para desktop */
-.quinchos-pilot__process-timeline::before {
+.service-template__process-timeline::before {
   content: '';
   position: absolute;
   top: 15px; /* Alinear con el centro del número */
@@ -335,7 +335,7 @@
   background: var(--qp-border);
   z-index: 1;
 }
-.quinchos-pilot__process-timeline::after {
+.service-template__process-timeline::after {
   content: '';
   position: absolute;
   top: calc(50% + 15px); /* Segunda fila */
@@ -346,13 +346,13 @@
   z-index: 1;
 }
 
-.quinchos-pilot__process-step {
+.service-template__process-step {
   position: relative;
   z-index: 2;
   padding-right: 1.5rem;
 }
 
-.quinchos-pilot__process-num {
+.service-template__process-num {
   font-size: 1rem;
   font-weight: 700;
   color: #000;
@@ -367,12 +367,12 @@
   border: 4px solid var(--qp-dark-bg);
 }
 
-.quinchos-pilot__process-title {
+.service-template__process-title {
   font-size: 1.1rem;
   margin-bottom: 0.5rem;
 }
 
-.quinchos-pilot__process-desc {
+.service-template__process-desc {
   font-size: 0.9rem;
   color: var(--qp-text-sub);
 }
@@ -380,18 +380,18 @@
 /* --------------------------------------------------------------------------
    5. PROYECTO REAL (Ancho Extendido & Before/After)
    -------------------------------------------------------------------------- */
-.quinchos-pilot__showcase {
+.service-template__showcase {
   background-color: #050505;
   border-top: 1px solid #1a1a1a;
   border-bottom: 1px solid #1a1a1a;
 }
 
-.quinchos-pilot__showcase-container {
+.service-template__showcase-container {
   max-width: 1300px;
   margin: 0 auto;
 }
 
-.quinchos-pilot__showcase-badge {
+.service-template__showcase-badge {
   color: var(--qp-yellow);
   font-size: 0.75rem;
   font-weight: 700;
@@ -401,7 +401,7 @@
   margin-bottom: 0.5rem;
 }
 
-.quinchos-pilot__showcase-layout {
+.service-template__showcase-layout {
   display: grid;
   grid-template-columns: 1fr 380px;
   gap: 3.5rem;
@@ -410,7 +410,7 @@
 }
 
 /* Contenedor Visual */
-.quinchos-pilot__ba-container {
+.service-template__ba-container {
   position: relative;
   border-radius: 4px;
   overflow: hidden;
@@ -418,7 +418,7 @@
   background: #000;
 }
 
-.quinchos-pilot__ba-image-wrapper {
+.service-template__ba-image-wrapper {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 10;
@@ -426,14 +426,14 @@
   background-color: #121212;
 }
 
-.quinchos-pilot__ba-image {
+.service-template__ba-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
 
-.quinchos-pilot__ba-label {
+.service-template__ba-label {
   position: absolute;
   top: 1.5rem;
   left: 1.5rem;
@@ -448,13 +448,13 @@
   z-index: 5;
 }
 
-.quinchos-pilot__ba-controls {
+.service-template__ba-controls {
   display: flex;
   background: #0a0a0a;
   border-top: 1px solid #222;
 }
 
-.quinchos-pilot__ba-btn {
+.service-template__ba-btn {
   flex: 1;
   padding: 0.85rem;
   background: transparent;
@@ -468,23 +468,23 @@
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
-.quinchos-pilot__ba-btn:last-child { border-right: none; }
-.quinchos-pilot__ba-btn--active { color: var(--qp-yellow); background: #111; }
+.service-template__ba-btn:last-child { border-right: none; }
+.service-template__ba-btn--active { color: var(--qp-yellow); background: #111; }
 
 /* Información del Proyecto */
-.quinchos-pilot__showcase-info {
+.service-template__showcase-info {
   display: flex;
   flex-direction: column;
 }
 
-.quinchos-pilot__showcase-name {
+.service-template__showcase-name {
   font-size: clamp(1.4rem, 2.5vw, 1.8rem);
   font-weight: 700;
   margin-bottom: 0.5rem;
   line-height: 1.2;
 }
 
-.quinchos-pilot__showcase-meta {
+.service-template__showcase-meta {
   font-size: 0.85rem;
   color: var(--qp-yellow);
   margin-bottom: 1.5rem;
@@ -493,20 +493,20 @@
   gap: 0.5rem;
 }
 
-.quinchos-pilot__showcase-desc {
+.service-template__showcase-desc {
   font-size: 0.95rem;
   color: #b3b3b3;
   margin-bottom: 2rem;
   line-height: 1.6;
 }
 
-.quinchos-pilot__showcase-actions {
+.service-template__showcase-actions {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
 }
 
-.quinchos-pilot__showcase-actions .quinchos-pilot__btn-secondary {
+.service-template__showcase-actions .service-template__btn-secondary {
   justify-content: center;
   width: 100%;
 }
@@ -514,23 +514,23 @@
 /* --------------------------------------------------------------------------
    6. TU PROYECTO PUEDE INCLUIR (Check-grid Compacto)
    -------------------------------------------------------------------------- */
-.quinchos-pilot__included {
+.service-template__included {
   background-color: var(--qp-dark-bg);
 }
 
-.quinchos-pilot__included-container {
+.service-template__included-container {
   max-width: 900px;
   margin: 0 auto;
 }
 
-.quinchos-pilot__included-grid {
+.service-template__included-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem 2rem;
   margin-top: 2.5rem;
 }
 
-.quinchos-pilot__included-item {
+.service-template__included-item {
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -540,7 +540,7 @@
   color: #e5e5e5;
 }
 
-.quinchos-pilot__included-icon {
+.service-template__included-icon {
   color: var(--qp-yellow);
   font-size: 1rem;
 }
@@ -548,12 +548,12 @@
 /* --------------------------------------------------------------------------
    7. BLOQUE DE CONFIANZA (Banner Horizontal Compacto)
    -------------------------------------------------------------------------- */
-.quinchos-pilot__trust {
+.service-template__trust {
   background-color: var(--qp-alt-bg);
   border-top: 1px solid var(--qp-border);
 }
 
-.quinchos-pilot__trust-container {
+.service-template__trust-container {
   max-width: var(--qp-max-width);
   margin: 0 auto;
   display: grid;
@@ -562,13 +562,13 @@
   align-items: center;
 }
 
-.quinchos-pilot__trust-text {
+.service-template__trust-text {
   font-size: 1rem;
   color: var(--qp-text-sub);
   margin-bottom: 1.5rem;
 }
 
-.quinchos-pilot__trust-steps {
+.service-template__trust-steps {
   display: flex;
   justify-content: space-between;
   border: 1px solid var(--qp-border);
@@ -577,7 +577,7 @@
   padding: 1.5rem;
 }
 
-.quinchos-pilot__trust-step {
+.service-template__trust-step {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -585,13 +585,13 @@
   text-align: center;
 }
 
-.quinchos-pilot__trust-num {
+.service-template__trust-num {
   font-size: 1.1rem;
   font-weight: 700;
   color: var(--qp-yellow);
 }
 
-.quinchos-pilot__trust-label {
+.service-template__trust-label {
   font-size: 0.8rem;
   color: #d4d4d4;
 }
@@ -599,24 +599,24 @@
 /* --------------------------------------------------------------------------
    8. FAQ Y CTA FINAL
    -------------------------------------------------------------------------- */
-.quinchos-pilot__faq {
+.service-template__faq {
   background-color: var(--qp-dark-bg);
 }
 
-.quinchos-pilot__faq-container {
+.service-template__faq-container {
   max-width: 800px;
   margin: 0 auto;
 }
 
-.quinchos-pilot__faq-list {
+.service-template__faq-list {
   margin-top: 2.5rem;
 }
 
-.quinchos-pilot__faq-item {
+.service-template__faq-item {
   border-bottom: 1px solid var(--qp-border);
 }
 
-.quinchos-pilot__faq-button {
+.service-template__faq-button {
   width: 100%;
   display: flex;
   align-items: center;
@@ -632,45 +632,45 @@
   transition: color 0.2s ease;
 }
 
-.quinchos-pilot__faq-button:hover {
+.service-template__faq-button:hover {
   color: var(--qp-yellow);
 }
 
-.quinchos-pilot__faq-icon {
+.service-template__faq-icon {
   color: var(--qp-yellow);
   font-size: 0.75rem;
   transition: transform 0.25s ease;
 }
-.quinchos-pilot__faq-item--open .quinchos-pilot__faq-icon { transform: rotate(180deg); }
+.service-template__faq-item--open .service-template__faq-icon { transform: rotate(180deg); }
 
-.quinchos-pilot__faq-content-wrapper {
+.service-template__faq-content-wrapper {
   overflow: hidden;
 }
 
-.quinchos-pilot__faq-content {
+.service-template__faq-content {
   padding-bottom: 1.5rem;
   color: var(--qp-text-sub);
   font-size: 0.95rem;
   line-height: 1.6;
 }
 
-.quinchos-pilot__cta {
+.service-template__cta {
   background: linear-gradient(180deg, #0a0a0a 0%, #000000 100%);
   text-align: center;
   border-top: 1px solid var(--qp-border);
 }
-.quinchos-pilot__cta-container { max-width: 600px; margin: 0 auto; }
-.quinchos-pilot__cta-subtitle { color: var(--qp-text-sub); margin-bottom: 2rem; font-size: 1.05rem; white-space: pre-line; }
-.quinchos-pilot__cta-helper { font-size: 0.85rem; color: #666; margin-top: 1rem; }
+.service-template__cta-container { max-width: 600px; margin: 0 auto; }
+.service-template__cta-subtitle { color: var(--qp-text-sub); margin-bottom: 2rem; font-size: 1.05rem; white-space: pre-line; }
+.service-template__cta-helper { font-size: 0.85rem; color: #666; margin-top: 1rem; }
 
 
 /* ==========================================================================
    ACCESIBILIDAD — PREFERS-REDUCED-MOTION
    ========================================================================== */
 @media (prefers-reduced-motion: reduce) {
-  .quinchos-pilot *,
-  .quinchos-pilot *::before,
-  .quinchos-pilot *::after {
+  .service-template *,
+  .service-template *::before,
+  .service-template *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
@@ -685,52 +685,52 @@
 
 /* TABLET (Hasta 1024px) */
 @media (max-width: 1024px) {
-  .quinchos-pilot__intro-grid,
-  .quinchos-pilot__trust-container,
-  .quinchos-pilot__showcase-layout {
+  .service-template__intro-grid,
+  .service-template__trust-container,
+  .service-template__showcase-layout {
     grid-template-columns: 1fr;
     gap: 3rem;
   }
   
-  .quinchos-pilot__intro-image-wrapper { max-height: 400px; }
+  .service-template__intro-image-wrapper { max-height: 400px; }
   
-  .quinchos-pilot__solutions-grid {
+  .service-template__solutions-grid {
     grid-template-columns: repeat(2, 1fr);
   }
   
-  .quinchos-pilot__process-timeline {
+  .service-template__process-timeline {
     grid-template-columns: repeat(2, 1fr);
   }
-  .quinchos-pilot__process-timeline::after { display: none; } /* Ocultar conector fila 2 */
+  .service-template__process-timeline::after { display: none; } /* Ocultar conector fila 2 */
 }
 
 /* MOBILE AVANZADO (Hasta 768px, target principal 430px y 390px) */
 @media (max-width: 768px) {
-  .quinchos-pilot section {
+  .service-template section {
     padding: 3rem 1.25rem;
   }
 
-  .quinchos-pilot section.quinchos-pilot__hero {
+  .service-template section.service-template__hero {
     padding-top: 5.5rem;
     padding-bottom: 2.5rem;
     min-height: auto;
   }
   
-  .quinchos-pilot__hero-actions {
+  .service-template__hero-actions {
     flex-direction: column;
     align-items: stretch;
     gap: 1rem;
   }
   
-  .quinchos-pilot__btn-primary, .quinchos-pilot__btn-secondary {
+  .service-template__btn-primary, .service-template__btn-secondary {
     width: 100%;
   }
   
-  .quinchos-pilot__solutions-grid {
+  .service-template__solutions-grid {
     grid-template-columns: 1fr;
     border: none;
   }
-  .quinchos-pilot__solution-item {
+  .service-template__solution-item {
     border: 1px solid var(--qp-border);
     margin-bottom: 1rem;
     border-radius: 4px;
@@ -738,21 +738,21 @@
   }
 
   /* Timeline Vertical en Mobile */
-  .quinchos-pilot__process-timeline {
+  .service-template__process-timeline {
     grid-template-columns: 1fr;
     gap: 2rem;
     padding-left: 0.5rem;
   }
   /* Ocultar conectores horizontales */
-  .quinchos-pilot__process-timeline::before, .quinchos-pilot__process-timeline::after { display: none; }
+  .service-template__process-timeline::before, .service-template__process-timeline::after { display: none; }
   
   /* Crear conector vertical */
-  .quinchos-pilot__process-step {
+  .service-template__process-step {
     position: relative;
     padding-left: 2rem;
     padding-right: 0;
   }
-  .quinchos-pilot__process-step::before {
+  .service-template__process-step::before {
     content: '';
     position: absolute;
     left: 8px; /* centro del num */
@@ -762,9 +762,9 @@
     background: var(--qp-border);
     z-index: 0;
   }
-  .quinchos-pilot__process-step:last-child::before { display: none; }
+  .service-template__process-step:last-child::before { display: none; }
   
-  .quinchos-pilot__process-num {
+  .service-template__process-num {
     position: absolute;
     left: -8px;
     top: 0;
@@ -773,47 +773,47 @@
     font-size: 0.9rem;
   }
 
-  .quinchos-pilot__process-title { margin-bottom: 0.25rem; }
+  .service-template__process-title { margin-bottom: 0.25rem; }
 
   /* Ajustes Compactos */
-  .quinchos-pilot__included-grid {
+  .service-template__included-grid {
     grid-template-columns: 1fr;
     gap: 0;
   }
   
-  .quinchos-pilot__trust-steps {
+  .service-template__trust-steps {
     flex-wrap: wrap;
     gap: 1.25rem;
     padding: 1.25rem 1rem;
   }
-  .quinchos-pilot__trust-step {
+  .service-template__trust-step {
     width: calc(50% - 0.75rem);
   }
 }
 
 /* SMARTPHONES PEQUEÑOS (430px y 390px) */
 @media (max-width: 430px) {
-  .quinchos-pilot section {
+  .service-template section {
     padding: 2.5rem 1rem;
   }
 
-  .quinchos-pilot section.quinchos-pilot__hero {
+  .service-template section.service-template__hero {
     padding-top: 6rem; /* Aumentado para librar el navbar global */
   }
 
-  .quinchos-pilot__section-title {
+  .service-template__section-title {
     font-size: 1.6rem;
   }
 
-  .quinchos-pilot__hero-title {
+  .service-template__hero-title {
     font-size: 2rem;
   }
 
-  .quinchos-pilot__trust-step {
+  .service-template__trust-step {
     width: 100%;
   }
 
-  .quinchos-pilot__ba-label {
+  .service-template__ba-label {
     top: 0.75rem;
     left: 0.75rem;
     font-size: 0.65rem;
