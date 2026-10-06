@@ -26,7 +26,7 @@ export default function ServiceDetail() {
   }
 
   // Intercepción aislada para usar el template moderno (alimentado 100% por contenido estructurado)
-  if (['quinchos-y-terrazas', 'gasfiteria'].includes(slug)) {
+  if (['quinchos-y-terrazas', 'gasfiteria', 'techumbres'].includes(slug)) {
     return <ServiceDetailTemplate service={service} />;
   }
 
