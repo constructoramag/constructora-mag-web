@@ -5,33 +5,33 @@ import './BenefitsSection.css';
 const benefits = [
     {
         icon: 'request_quote',
-        title: 'Presupuestos transparentes',
-        description: 'Sin costos ocultos ni sorpresas de última hora. Claridad desde el día uno.'
+        title: 'Presupuesto detallado',
+        description: 'Alcance, partidas y condiciones explicadas antes de comenzar.'
     },
     {
         icon: 'schedule',
-        title: 'Cumplimiento de plazos',
-        description: 'Sabemos que tu tiempo es oro. Entregamos las obras en la fecha acordada.'
+        title: 'Planificación del trabajo',
+        description: 'Organizamos etapas, requerimientos y coordinación antes de la ejecución.'
     },
     {
         icon: 'support_agent',
-        title: 'Atención personalizada',
-        description: 'Te acompañamos y asesoramos en cada paso de tu proyecto, de principio a fin.'
+        title: 'Atención directa',
+        description: 'Mantenemos comunicación durante las distintas etapas del proyecto.'
     },
     {
-        icon: 'diamond',
-        title: 'Materiales de calidad',
-        description: 'Solo trabajamos con insumos y proveedores de primera línea para asegurar durabilidad.'
+        icon: 'design_services',
+        title: 'Soluciones según cada proyecto',
+        description: 'Evaluamos materiales y alternativas de acuerdo con el uso, presupuesto y condiciones existentes.'
     },
     {
         icon: 'engineering',
-        title: 'Equipo especializado',
-        description: 'Maestros calificados y profesionales apasionados por la excelencia.'
+        title: 'Coordinación de obra',
+        description: 'Organizamos los trabajos y especialidades necesarias para desarrollar cada intervención.'
     },
     {
-        icon: 'verified_user',
-        title: 'Garantía de trabajos',
-        description: 'Respaldamos nuestra mano de obra. Tu tranquilidad es nuestro principal objetivo.'
+        icon: 'fact_check',
+        title: 'Revisión final',
+        description: 'Revisamos contigo los trabajos incluidos antes de cerrar el proyecto.'
     }
 ];
 
