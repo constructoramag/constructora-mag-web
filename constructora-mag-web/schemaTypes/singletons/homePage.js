@@ -36,6 +36,33 @@ export default {
       group: 'hero'
     },
     {
+      name: 'heroVideoUrl',
+      title: 'URL directa alternativa del video (MP4)',
+      type: 'url',
+      description: 'Opcional. URL directa a un archivo de video MP4. No admite enlaces de páginas de YouTube, Vimeo u otros reproductores.',
+      group: 'hero'
+    },
+    {
+      name: 'heroImages',
+      title: 'Imágenes del Hero',
+      type: 'array',
+      description: 'Imágenes que se alternan automáticamente cuando no hay un video configurado. Se recomienda utilizar fotografías horizontales de alta calidad.',
+      of: [
+        {
+          type: 'image',
+          fields: [
+            {
+              name: 'alt',
+              title: 'Texto alternativo',
+              type: 'string',
+              description: 'Importante para accesibilidad y SEO.',
+            }
+          ]
+        }
+      ],
+      group: 'hero'
+    },
+    {
       name: 'heroFallbackImage',
       title: 'Imagen de Respaldo (Si el video falla)',
       type: 'image',

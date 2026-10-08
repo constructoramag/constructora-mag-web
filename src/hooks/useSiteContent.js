@@ -113,7 +113,8 @@ function normalizeSanityContent(raw) {
             ctaSecondary: staticContent.hero.ctaSecondary,
             fallbackImage: staticContent.hero.fallbackImage,
             fallbackImageUrl: homePage.heroFallbackImageUrl,
-            videoUrl: homePage.heroVideoUrl ?? staticContent.hero.videoUrl,
+            videoUrl: homePage.heroVideoFileUrl || homePage.heroVideoUrl || null,
+            heroImages: homePage.heroImages || [],
         },
         company: {
             name: companyInfo.name ?? staticContent.company.name,

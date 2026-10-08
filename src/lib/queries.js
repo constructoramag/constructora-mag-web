@@ -149,7 +149,7 @@ export const SITE_CONTENT_QUERY = `
     copyrightText, footerLinks
   },
   "homePage": *[_type == "homePage"][0] {
-    heroTitle, heroSubtitle, heroVideoUrl, "heroFallbackImageUrl": heroFallbackImage.asset->url, aboutText
+    heroTitle, heroSubtitle, "heroVideoFileUrl": heroVideo.asset->url, heroVideoUrl, heroImages[]{ "url": asset->url, alt }, "heroFallbackImageUrl": heroFallbackImage.asset->url, aboutText
   },
   "globalCTA": *[_type == "globalCTA"][0] {
     buttonText, buttonLink
