@@ -1,5 +1,6 @@
 .testimonials-section {
-  padding: var(--section-py) 0;
+  padding-top: calc(var(--section-space) / 2);
+  padding-bottom: calc(var(--section-space) / 2);
   background: var(--bg);
   position: relative;
   overflow: hidden;
@@ -27,7 +28,6 @@
 
 .testimonials-grid {
   display: flex;
-  margin-top: 3rem;
   position: relative;
   z-index: 1;
   margin-left: -1.5rem; /* Compensate for slide padding */

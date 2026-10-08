@@ -1,5 +1,6 @@
 .project-gallery {
-    padding: var(--section-py) 0;
+    padding-top: var(--section-space);
+    padding-bottom: calc(var(--section-space) / 2);
     background: var(--bg-deep);
 }
 

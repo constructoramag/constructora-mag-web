@@ -1,7 +1,7 @@
 .footer {
     background: #050505;
     border-top: 1px solid var(--border);
-    padding: 7rem 0 3rem;
+    padding: var(--section-space) 0 3rem;
     position: relative;
     overflow: hidden;
 }

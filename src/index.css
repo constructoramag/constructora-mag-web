@@ -27,7 +27,14 @@
 
   /* Layout */
   --container: 1200px;
-  --section-py: 6rem;
+  --section-space: 100px;
+}
+
+@media (max-width: 1024px) {
+  :root { --section-space: 80px; }
+}
+@media (max-width: 768px) {
+  :root { --section-space: 64px; }
 }
 
 /* ── Reset ──────────────────────────────────────────────────── */
@@ -79,7 +86,7 @@ a {
 .section-header {
   text-align: center;
   max-width: 640px;
-  margin: 0 auto 3.5rem;
+  margin: 0 auto 3rem;
 }
 
 .section-eyebrow {

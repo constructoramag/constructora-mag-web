@@ -1,4 +1,6 @@
 .work-process {
+    padding-top: var(--section-space);
+    padding-bottom: calc(var(--section-space) / 2);
     background: var(--bg);
 }
 
@@ -8,7 +10,6 @@
 
 .process-grid {
     display: flex;
-    margin-top: 3rem;
 }
 
 .process-embla__slide {
