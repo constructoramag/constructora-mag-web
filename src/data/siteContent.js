@@ -4,7 +4,7 @@
 export const siteContent = {
     hero: {
         title: "Expertos en\nConstrucción y\nRemodelación Integral",
-        subtitle: "Más de 10 años transformando hogares y empresas con soluciones integrales de construcción, remodelación y terminaciones de primer nivel.",
+        subtitle: "Transformamos hogares y empresas con soluciones integrales de construcción, remodelación y terminaciones.",
         cta: "Solicitar presupuesto",
         ctaSecondary: "Ver proyectos",
         // Imagen de respaldo (SIEMPRE requerida)
