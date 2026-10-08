@@ -89,6 +89,7 @@ function normalizeSanityContent(raw) {
                 location: staticContent.contact.location,
             },
             theme: null,
+            featuredProjects: [],
             testimonials: staticContent.testimonials,
             footer: {
                 copyright: `© ${new Date().getFullYear()} ${staticContent.company.name}. Todos los derechos reservados.`,
@@ -145,6 +146,7 @@ function normalizeSanityContent(raw) {
             location: companyInfo.address || staticContent.contact.location,
         },
         testimonials: testimonials.length > 0 ? testimonials : staticContent.testimonials,
+        featuredProjects: homePage.featuredProjects || [],
         theme: brandSettings,
         footer: {
             copyright: footerConfig.copyrightText ?? `© ${new Date().getFullYear()} ${companyInfo.name ?? staticContent.company.name}. Todos los derechos reservados.`,

@@ -29,20 +29,17 @@ const itemVariants = {
  * Los datos vienen de Sanity (o fallback estático via useProjects hook).
  * Incluye skeleton loader mientras cargan los datos.
  */
-function ProjectGallery() {
-    const { data: projects, categories, loading } = useProjects();
-    const [activeCategory, setActiveCategory] = useState('Todos');
+function ProjectGallery({ featuredProjects = [] }) {
+    const { data: projects, loading } = useProjects();
     const [selectedProject, setSelectedProject] = useState(null);
 
-    const filtered =
-        activeCategory === 'Todos'
-            ? projects
-            : projects.filter((p) => p.category === activeCategory);
-
-    const displayedProjects = filtered.slice(0, 6); // Teaser mode
+    // Lógica de prioridad: Si hay proyectos destacados desde Sanity, se usan esos.
+    // Si no, o si falla, se hace fallback a los primeros proyectos recientes.
+    const baseProjects = (featuredProjects && featuredProjects.length > 0) ? featuredProjects : projects;
+    const displayedProjects = baseProjects.slice(0, 3); // Max 3 proyectos en Home
 
     return (
-        <section id="proyectos" className="project-gallery section">
+        <section id="proyectos" className="project-gallery project-gallery--home section">
             <div className="container">
                 {/* Header */}
                 <div className="section-header">
@@ -54,22 +51,7 @@ function ProjectGallery() {
 
 
 
-                {/* Filtros */}
-                {!loading && (
-                    <div className="gallery-filters" role="tablist" aria-label="Filtro de categorías">
-                        {categories.map((cat) => (
-                            <button
-                                key={cat}
-                                role="tab"
-                                aria-selected={activeCategory === cat}
-                                className={`gallery-filter-btn ${activeCategory === cat ? 'gallery-filter-btn--active' : ''}`}
-                                onClick={() => setActiveCategory(cat)}
-                            >
-                                {cat}
-                            </button>
-                        ))}
-                    </div>
-                )}
+                {/* Filtros ocultos en Home para mantener la simplicidad */}
 
                 {/* Skeleton loader */}
                 {loading && (
@@ -117,9 +99,18 @@ function ProjectGallery() {
                 )}
 
                 {/* Vacío */}
-                {!loading && filtered.length === 0 && (
+                {!loading && projects.length === 0 && (
                     <div className="gallery-empty">
-                        <p>No hay proyectos en esta categoría aún.</p>
+                        <p>No hay proyectos aún.</p>
+                    </div>
+                )}
+
+                {/* CTA */}
+                {!loading && projects.length > 0 && (
+                    <div style={{ textAlign: 'center', marginTop: '3rem' }}>
+                        <Link to="/proyectos" className="btn btn--outline">
+                            Ver todos los proyectos
+                        </Link>
                     </div>
                 )}
             </div>

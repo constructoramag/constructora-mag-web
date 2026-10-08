@@ -9,7 +9,7 @@ import { useSiteContent } from '../hooks/useSiteContent';
 import { Link } from 'react-router-dom';
 
 export default function Home() {
-  const { hero } = useSiteContent();
+  const { hero, featuredProjects } = useSiteContent();
 
   const scrollToProjects = () =>
     document.getElementById('proyectos')?.scrollIntoView({ behavior: 'smooth' });
@@ -41,7 +41,7 @@ export default function Home() {
 
 
       {/* Galería de proyectos (Evidencia antes de vender) */}
-      <ProjectGallery />
+      <ProjectGallery featuredProjects={featuredProjects} />
 
       {/* Por qué elegirnos (Confianza) */}
       <BenefitsSection />

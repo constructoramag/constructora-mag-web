@@ -51,8 +51,33 @@
 
 @media (max-width: 480px) {
     .gallery-grid {
-        /* Even on very small screens they requested 2 cards per row */
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.75rem;
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+}
+/* -- Scoped ProjectCard Overrides for Home -- */
+.project-gallery--home .project-card__media {
+    aspect-ratio: 16 / 9;
+}
+
+.project-gallery--home .project-card__info {
+    padding: 1rem 1.25rem 1.25rem;
+}
+
+.project-gallery--home .project-card__desc {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .project-gallery--home .project-card__info {
+        padding: 1rem 1.25rem 1.25rem;
+    }
+    
+    /* Re-enable slider on mobile for Home only */
+    .project-gallery--home .project-card__slider-wrapper {
+        display: block !important;
+    }
+    .project-gallery--home .project-card__mobile-after {
+        display: none !important;
     }
 }
