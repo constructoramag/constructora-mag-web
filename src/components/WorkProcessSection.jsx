@@ -7,23 +7,23 @@ import './WorkProcessSection.css';
 const processSteps = [
     {
         number: '01',
-        title: 'Evaluación y Presupuesto',
-        description: 'Visitamos el lugar, escuchamos tus necesidades y elaboramos un presupuesto detallado, sin costos ocultos.'
+        title: 'Evaluamos tu proyecto',
+        description: 'Conversamos sobre lo que necesitas y revisamos las condiciones del espacio para definir el alcance inicial del trabajo.'
     },
     {
         number: '02',
-        title: 'Diseño y Planificación',
-        description: 'Definimos los plazos, seleccionamos materiales de calidad y estructuramos un cronograma claro de trabajo.'
+        title: 'Planificamos la ejecución',
+        description: 'Organizamos las etapas, partidas, materiales y requerimientos necesarios antes de comenzar.'
     },
     {
         number: '03',
-        title: 'Ejecución Profesional',
-        description: 'Nuestro equipo especializado realiza la obra manteniendo el orden, la limpieza y la supervisión constante.'
+        title: 'Ejecutamos los trabajos',
+        description: 'Desarrollamos las partidas acordadas y coordinamos las distintas especialidades involucradas en el proyecto.'
     },
     {
         number: '04',
-        title: 'Entrega Garantizada',
-        description: 'Revisamos cada detalle contigo. Entregamos la obra en la fecha acordada y con nuestra garantía de calidad.'
+        title: 'Revisamos y entregamos',
+        description: 'Revisamos contigo los trabajos incluidos y los detalles finales antes de cerrar la intervención.'
     }
 ];
 
@@ -86,7 +86,7 @@ function WorkProcessSection() {
                     <span className="section-eyebrow">Sin Improvisaciones</span>
                     <h2 className="section-title">Nuestro Proceso de Trabajo</h2>
                     <p className="section-subtitle">
-                        Una metodología comprobada para que tu proyecto fluya sin estrés, cumpliendo plazos y superando expectativas.
+                        Una metodología estructurada para que tu proyecto fluya con claridad y orden en cada etapa.
                     </p>
                 </div>
 
