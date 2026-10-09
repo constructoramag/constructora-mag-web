@@ -234,20 +234,7 @@ export default function ProjectDetail() {
               </div>
             )}
 
-            {project.testimonials && project.testimonials.length > 0 && (
-              <div className="project-detail__testimonial" aria-label="Testimonio de cliente">
-                <div className="project-detail__testimonial-stars" aria-hidden="true">
-                  {'★'.repeat(project.testimonials[0].rating)}{'☆'.repeat(5 - project.testimonials[0].rating)}
-                </div>
-                <blockquote className="project-detail__testimonial-quote">
-                  "{project.testimonials[0].content}"
-                </blockquote>
-                <div>
-                  <p className="project-detail__testimonial-author">{project.testimonials[0].author}</p>
-                  <p className="project-detail__testimonial-role">{project.testimonials[0].role}</p>
-                </div>
-              </div>
-            )}
+
 
           </div>
         </aside>

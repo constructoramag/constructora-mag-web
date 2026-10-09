@@ -111,27 +111,5 @@ export const siteContent = {
     ],
 
     // ── Testimonials ──────────────────────────────────────────────────────────
-    testimonials: [
-        {
-            _id: 'test1',
-            author: "Camila Rojas",
-            role: "Remodelación Casa Completa",
-            content: "Excelente trabajo del equipo de MAG. Cumplieron con todos los plazos y los acabados de nuestra casa quedaron maravillosos. Totalmente recomendados para proyectos grandes.",
-            rating: 5,
-        },
-        {
-            _id: 'test2',
-            author: "Roberto Silva",
-            role: "Construcción de Quincho",
-            content: "Contratamos a la constructora para hacer un quincho en nuestro patio. Muy profesionales desde el diseño hasta la entrega. Quedó espectacular para la familia.",
-            rating: 5,
-        },
-        {
-            _id: 'test3',
-            author: "Familia Gómez",
-            role: "Ampliación Segundo Piso",
-            content: "Teníamos miedo de ampliar con la casa habitada, pero fueron muy ordenados y limpios. El resultado final superó nuestras expectativas.",
-            rating: 4,
-        }
-    ],
+    testimonials: [],
 };
