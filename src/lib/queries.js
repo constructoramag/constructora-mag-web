@@ -151,6 +151,8 @@ export const SITE_CONTENT_QUERY = `
   "homePage": *[_type == "homePage"][0] {
     heroTitle, 
     heroSubtitle, 
+    heroPrimaryCtaText,
+    heroSecondaryCtaText,
     "heroVideoFileUrl": heroVideo.asset->url, 
     heroVideoUrl, 
     heroImages[]{ "url": asset->url, alt }, 
@@ -169,10 +171,6 @@ export const SITE_CONTENT_QUERY = `
         "beforeImageUrl": beforeImage.asset->url,
         "afterImageUrl": afterImage.asset->url
       }
-    }
-  },
-  "globalCTA": *[_type == "globalCTA"][0] {
-    buttonText, buttonLink
   }
 }
 `

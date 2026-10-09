@@ -110,8 +110,8 @@ function normalizeSanityContent(raw) {
         hero: {
             title: homePage.heroTitle ?? staticContent.hero.title,
             subtitle: homePage.heroSubtitle ?? staticContent.hero.subtitle,
-            cta: globalCTA.buttonText ?? staticContent.hero.cta,
-            ctaSecondary: staticContent.hero.ctaSecondary,
+            cta: homePage.heroPrimaryCtaText ?? staticContent.hero.cta,
+            ctaSecondary: homePage.heroSecondaryCtaText ?? staticContent.hero.ctaSecondary,
             fallbackImage: staticContent.hero.fallbackImage,
             fallbackImageUrl: homePage.heroFallbackImageUrl,
             videoUrl: homePage.heroVideoFileUrl || homePage.heroVideoUrl || null,

@@ -29,6 +29,20 @@ export default {
       group: 'hero'
     },
     {
+      name: 'heroPrimaryCtaText',
+      title: 'Texto CTA Principal',
+      type: 'string',
+      description: 'Texto del botón principal del Hero. Su destino es la sección de contacto.',
+      group: 'hero'
+    },
+    {
+      name: 'heroSecondaryCtaText',
+      title: 'Texto CTA Secundario',
+      type: 'string',
+      description: 'Texto del botón secundario del Hero. Su destino es la sección de proyectos.',
+      group: 'hero'
+    },
+    {
       name: 'heroVideo',
       title: 'Video de Fondo (MP4)',
       type: 'file',

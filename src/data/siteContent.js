@@ -3,10 +3,10 @@
 
 export const siteContent = {
     hero: {
-        title: "Expertos en\nConstrucción y\nRemodelación Integral",
-        subtitle: "Transformamos hogares y empresas con soluciones integrales de construcción, remodelación y terminaciones.",
-        cta: "Solicitar presupuesto",
-        ctaSecondary: "Ver proyectos",
+        title: "Construcción y remodelación en Santiago",
+        subtitle: "Ejecutamos proyectos residenciales y comerciales con planificación clara, atención directa y soluciones adaptadas a cada espacio.",
+        cta: "Cuéntanos tu proyecto",
+        ctaSecondary: "Ver proyectos realizados",
         // Imagen de respaldo (SIEMPRE requerida)
         fallbackImage: "/images/hero_bg.png",
         // URL de YouTube o Vimeo para video de fondo (null = solo imagen)
