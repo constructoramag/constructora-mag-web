@@ -106,7 +106,6 @@ function normalizeSanityContent(raw) {
 
     const homePage = raw.homePage || {};
     const companyInfo = raw.companyInfo || {};
-    const globalCTA = raw.globalCTA || {};
     const brandSettings = raw.brandSettings || {};
     const services = raw.services || [];
     const testimonials = raw.testimonials || [];

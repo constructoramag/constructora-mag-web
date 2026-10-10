@@ -27,6 +27,16 @@ function ServicesSection() {
     const { data: sanityServices, loading } = useServices();
     const services = sanityServices?.slice(0, 3) || [];
 
+    const getHomeDescription = (service) => {
+        if (service.slug === 'gasfiteria') {
+            return 'Instalación, reparación y mantención de redes de agua, artefactos sanitarios, cañerías y desagües.';
+        }
+        if (service.slug === 'techumbres') {
+            return 'Reparación y mantención de techumbres, filtraciones, cubiertas, impermeabilización y aguas lluvias.';
+        }
+        return service.shortDescription || service.description;
+    };
+
     return (
         <section id="servicios" className="services section services--home">
             <div className="container">
@@ -78,7 +88,7 @@ function ServicesSection() {
                                         </h3>
                                         
                                         <div className="service-card__details">
-                                            <p className="service-card__desc">{service.shortDescription || service.description}</p>
+                                            <p className="service-card__desc">{getHomeDescription(service)}</p>
                                             <Link
                                                 to={`/servicios/${service.slug}`}
                                                 className="service-card__cta"

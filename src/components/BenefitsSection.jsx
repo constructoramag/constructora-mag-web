@@ -79,8 +79,7 @@ function BenefitsSection() {
                     <span className="section-eyebrow">Nuestro Compromiso</span>
                     <h2 className="section-title">Por qué elegir MAG</h2>
                     <p className="section-subtitle">
-                        Construimos confianza basada en hechos y profesionalismo. 
-                        Nuestra metodología asegura el éxito de tu proyecto.
+                        Una forma de trabajo basada en planificación, comunicación y coordinación durante cada etapa del proyecto.
                     </p>
                 </div>
 

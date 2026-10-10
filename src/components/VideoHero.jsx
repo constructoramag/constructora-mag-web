@@ -5,19 +5,23 @@ import './VideoHero.css';
 /**
  * VideoHero — Sección hero de pantalla completa premium con video y crossfade.
  */
-function VideoHero({ title, subtitle, cta, ctaSecondary, fallbackImage, videoUrl, heroImages = [], onCtaClick, onSecondaryClick }) {
+function VideoHero({ title, subtitle, cta, ctaSecondary, fallbackImage, videoUrl, heroImages = [] }) {
     const ref = useRef(null);
     const [shouldMountVideo, setShouldMountVideo] = useState(false);
     const [isReducedMotion, setIsReducedMotion] = useState(false);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const [isMobile, setIsMobile] = useState(() =>
+        typeof window !== 'undefined' ? window.innerWidth <= 767 : false
+    );
 
     useEffect(() => {
         // En entorno SSR (ej: build de Vite) window no está definido, 
         // pero useLayoutEffect/useEffect sólo se corre en el cliente.
         const checkMedia = () => {
-            const isMobile = window.matchMedia('(max-width: 767px)').matches;
+            const mobile = window.matchMedia('(max-width: 767px)').matches;
             const prefersMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            setShouldMountVideo(!isMobile && !prefersMotion);
+            setIsMobile(mobile);
+            setShouldMountVideo(!mobile && !prefersMotion);
             setIsReducedMotion(prefersMotion);
         };
         
@@ -57,7 +61,6 @@ function VideoHero({ title, subtitle, cta, ctaSecondary, fallbackImage, videoUrl
     // Preparación de imágenes para Slideshow
     const validImages = heroImages?.filter(img => img?.url) || [];
     const hasSlideshow = !finalVideoUrl && validImages.length > 1 && !isReducedMotion;
-    const isMobile = typeof window !== 'undefined' && window.innerWidth <= 767;
     const isTablet = typeof window !== 'undefined' && window.innerWidth <= 1024;
     
     // Lazy loading de imágenes: solo cargamos la actual y la siguiente
@@ -74,11 +77,12 @@ function VideoHero({ title, subtitle, cta, ctaSecondary, fallbackImage, videoUrl
     // Obtener la URL optimizada según el viewport
     const getOptimizedUrl = (url) => {
         if (!url) return "";
-        const width = isMobile ? 800 : (isTablet ? 1280 : 1920);
-        return `${url}?w=${width}&auto=format&q=80`;
+        const width = isMobile ? 1200 : (isTablet ? 1280 : 1920);
+        const quality = isMobile ? 85 : 80;
+        return `${url}?w=${width}&auto=format&q=${quality}`;
     };
 
-    const finalPoster = fallbackImage || "/images/hero-bg-opt.jpg";
+    const finalPoster = fallbackImage ? getOptimizedUrl(fallbackImage) : "/images/hero-bg-opt.jpg";
     const [isFirstImageLoaded, setIsFirstImageLoaded] = useState(false);
 
     useEffect(() => {
@@ -103,10 +107,10 @@ function VideoHero({ title, subtitle, cta, ctaSecondary, fallbackImage, videoUrl
 
     return (
         <section ref={ref} className="video-hero" aria-label="Sección principal">
-            {/* Fondo: parallax */}
+            {/* Fondo: parallax en desktop, estático y nítido en mobile */}
             <motion.div 
                 className="video-hero__bg"
-                style={{ y: yBg, opacity: opacityBg }}
+                style={{ y: isMobile ? "0%" : yBg, opacity: opacityBg }}
             >
                 {/* Fallback permanente siempre visible debajo */}
                 <div 
@@ -166,12 +170,12 @@ function VideoHero({ title, subtitle, cta, ctaSecondary, fallbackImage, videoUrl
                 <h1 className="video-hero__title">{title}</h1>
                 <p className="video-hero__subtitle">{subtitle}</p>
                 <div className="video-hero__actions">
-                    <button className="btn btn--primary" onClick={onCtaClick}>
+                    <a href="#contacto" className="btn btn--primary">
                         {cta}
-                    </button>
-                    <button className="btn btn--outline" onClick={onSecondaryClick}>
+                    </a>
+                    <a href="#proyectos" className="btn btn--outline">
                         {ctaSecondary}
-                    </button>
+                    </a>
                 </div>
             </motion.div>
 

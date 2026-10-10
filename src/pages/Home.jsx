@@ -10,12 +10,6 @@ import { Link } from 'react-router-dom';
 export default function Home() {
   const { hero, homeAbout, featuredProjects } = useSiteContent();
 
-  const scrollToProjects = () =>
-    document.getElementById('proyectos')?.scrollIntoView({ behavior: 'smooth' });
-
-  const scrollToContact = () =>
-    document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth' });
-
   return (
     <div className="home-page">
       {/* Hero con video de fondo */}
@@ -29,8 +23,6 @@ export default function Home() {
             fallbackImage={hero.fallbackImageUrl || hero.fallbackImage}
             videoUrl={hero.videoUrl}
             heroImages={hero.heroImages}
-            onCtaClick={scrollToContact}
-            onSecondaryClick={scrollToProjects}
           />
         )}
       </div>
