@@ -33,10 +33,13 @@ async function getDynamicRoutes() {
 
 async function startServer() {
   const app = express();
+  const templateHtml = fs.readFileSync(path.join(distPath, 'index.html'), 'utf8');
+
   app.use(express.static(distPath));
-  
+
   app.use((req, res) => {
-    res.sendFile(path.join(distPath, 'index.html'));
+    res.setHeader('Content-Type', 'text/html');
+    res.send(templateHtml);
   });
 
   return new Promise((resolve) => {
@@ -50,7 +53,7 @@ async function run() {
   console.log("Iniciando Prerenderizado Estático (SSG)...");
   const routes = await getDynamicRoutes();
   const { server, port } = await startServer();
-  
+
   let browser;
   if (process.env.VERCEL || process.env.CI) {
     const chromium = (await import('@sparticuz/chromium')).default;
@@ -62,33 +65,43 @@ async function run() {
       headless: chromium.headless,
     });
   } else {
-    browser = await puppeteer.launch({ 
+    browser = await puppeteer.launch({
       headless: true,
-      args: ['--no-sandbox', '--disable-setuid-sandbox'] 
+      args: ['--no-sandbox', '--disable-setuid-sandbox']
     });
   }
-  
+
   for (const route of routes) {
     const page = await browser.newPage();
     try {
       console.log(`Prerenderizando: ${route}`);
       await page.goto(`http://localhost:${port}${route}`, { waitUntil: 'domcontentloaded', timeout: 60000 });
-      
-      // Espera inteligente: aguardar a que React inyecte JSON-LD o que desaparezca el estado de carga
+
+      const expectedCanonical = route === '/'
+        ? 'https://www.constructoramag.cl/'
+        : `https://www.constructoramag.cl${route}`;
+
+      // Espera inteligente: aguardar a que React inyecte SEO / canonical y desaparezcan loaders
       try {
-        await page.waitForFunction(() => {
+        await page.waitForFunction((expected) => {
           const serviceLoading = document.querySelector('.service-detail__loading');
           const projectLoading = document.querySelector('.project-detail__loading');
+          const contactLoading = document.querySelector('.contact-page__loading');
           const animatePulse = document.querySelector('.animate-pulse');
-          const hasJsonLd = !!document.querySelector('script[type="application/ld+json"]');
+          const canonicalEl = document.querySelector('link[rel="canonical"]');
+          const currentCanonical = canonicalEl ? canonicalEl.getAttribute('href') : null;
           const root = document.querySelector('#root');
           
-          // Consideramos que está listo si:
-          // 1. No hay loaders visibles
-          // 2. Ya se inyectó JSON-LD estructurado (indicador de SEO/Helmet listo) o tiene contenido de texto base.
-          return (!serviceLoading && !projectLoading && !animatePulse) && 
-                 (hasJsonLd || (root && root.textContent.trim().length > 0));
-        }, { timeout: 10000 });
+          if (expected === null) {
+            return root && root.textContent.trim().length > 0;
+          }
+
+          const isStillLoading = !!(serviceLoading || projectLoading || contactLoading || animatePulse);
+          const hasRightCanonical = currentCanonical === expected;
+          const hasContent = root && root.textContent.trim().length > 0;
+
+          return !isStillLoading && hasRightCanonical && hasContent;
+        }, { timeout: 15000 }, route === '/404' ? null : expectedCanonical);
         
         // Breve pausa para asegurar que react-helmet-async actualizó los meta tags del head
         await new Promise(resolve => setTimeout(resolve, 300));
@@ -97,6 +110,43 @@ async function run() {
         await new Promise(resolve => setTimeout(resolve, 1500));
       }
       
+      // Sanitización estricta de tags de metadatos en <head> para evitar cualquier duplicación
+      await page.evaluate(() => {
+        // Garantizar exactamente 1 <title>
+        const titles = Array.from(document.querySelectorAll('head > title'));
+        if (titles.length > 1) {
+          titles.slice(0, titles.length - 1).forEach(el => el.remove());
+        }
+
+        // Garantizar exactamente 1 <link rel="canonical">
+        const canons = Array.from(document.querySelectorAll('head > link[rel="canonical"]'));
+        if (canons.length > 1) {
+          canons.slice(0, canons.length - 1).forEach(el => el.remove());
+        }
+
+        // Garantizar unicidad en propiedades Open Graph
+        const uniqueProperties = [
+          'og:type', 'og:title', 'og:description', 'og:url', 'og:image', 'og:site_name', 'og:locale'
+        ];
+        uniqueProperties.forEach(prop => {
+          const els = Array.from(document.querySelectorAll(`head > meta[property="${prop}"]`));
+          if (els.length > 1) {
+            els.slice(0, els.length - 1).forEach(el => el.remove());
+          }
+        });
+
+        // Garantizar unicidad en meta name
+        const uniqueNames = [
+          'description', 'twitter:card', 'twitter:title', 'twitter:description', 'twitter:image'
+        ];
+        uniqueNames.forEach(name => {
+          const els = Array.from(document.querySelectorAll(`head > meta[name="${name}"]`));
+          if (els.length > 1) {
+            els.slice(0, els.length - 1).forEach(el => el.remove());
+          }
+        });
+      });
+
       const html = await page.content();
       
       let fileName = route === '/' ? '/index.html' : route;

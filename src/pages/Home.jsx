@@ -1,3 +1,4 @@
+import SEO from '../components/SEO';
 import VideoHero from '../components/VideoHero';
 import ProjectGallery from '../components/ProjectGallery';
 import BenefitsSection from '../components/BenefitsSection';
@@ -12,6 +13,12 @@ export default function Home() {
 
   return (
     <div className="home-page">
+      <SEO
+        title="MAG Servicios Integrales | Constructora en Santiago de Chile"
+        description="MAG Servicios Integrales — Empresa constructora y remodeladora en Santiago de Chile. Especialistas en construcción, ampliaciones, quinchos y obras menores. Cotiza gratis."
+        canonical="/"
+      />
+
       {/* Hero con video de fondo */}
       <div id="inicio">
         {hero && (

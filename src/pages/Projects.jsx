@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
-import { Helmet } from 'react-helmet-async';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import SEO from '../components/SEO';
 import { useProjects } from '../hooks/useProjects';
 import { useSiteContent } from '../hooks/useSiteContent';
 import { buildWhatsAppUrl } from '../utils/contactHelpers';
@@ -27,10 +27,11 @@ export default function Projects() {
 
   return (
     <div className="projects-page">
-      <Helmet>
-        <title>Portafolio de Proyectos | Constructora MAG</title>
-        <meta name="description" content="Explora nuestro portafolio de proyectos de construcción, remodelación y exteriores." />
-      </Helmet>
+      <SEO
+        title="Portafolio de Proyectos | Constructora MAG"
+        description="Explora nuestro portafolio de proyectos de construcción, remodelación y exteriores en la Región Metropolitana."
+        canonical="/proyectos"
+      />
       
       <div className="projects-hero">
         <motion.div 

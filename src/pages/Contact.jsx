@@ -13,14 +13,6 @@ export default function Contact() {
   const searchAddress = address.includes('Chile') ? address : `${address}, Chile`;
   const mapEmbedUrl = `https://maps.google.com/maps?q=${encodeURIComponent(searchAddress)}&t=&z=16&ie=UTF8&iwloc=&output=embed`;
 
-  if (loading) {
-    return (
-      <div className="contact-page__loading">
-        Cargando...
-      </div>
-    );
-  }
-
   return (
     <div className="contact-page">
       <SEO 
@@ -29,7 +21,12 @@ export default function Contact() {
         canonical="/contacto"
       />
 
-      <div className="contact-page__container">
+      {loading ? (
+        <div className="contact-page__loading">
+          Cargando...
+        </div>
+      ) : (
+        <div className="contact-page__container">
         <div className="contact-page__header">
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
@@ -143,6 +140,7 @@ export default function Contact() {
           </motion.div>
         </div>
       </div>
+      )}
     </div>
   );
 }
