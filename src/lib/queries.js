@@ -157,6 +157,8 @@ export const SITE_CONTENT_QUERY = `
     heroVideoUrl, 
     heroImages[]{ "url": asset->url, alt }, 
     "heroFallbackImageUrl": heroFallbackImage.asset->url, 
+    aboutEnabled,
+    aboutTitle,
     aboutText,
     featuredProjects[]->{
       _id,
@@ -171,6 +173,7 @@ export const SITE_CONTENT_QUERY = `
         "beforeImageUrl": beforeImage.asset->url,
         "afterImageUrl": afterImage.asset->url
       }
+    }
   }
 }
 `

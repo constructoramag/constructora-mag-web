@@ -72,6 +72,12 @@ function normalizeSanityContent(raw) {
                 fallbackImage: staticContent.hero.fallbackImage,
                 videoUrl: staticContent.hero.videoUrl,
             },
+            homeAbout: {
+                show: staticContent.homeAbout.show,
+                title: staticContent.homeAbout.title,
+                text: staticContent.homeAbout.text,
+                cta: staticContent.homeAbout.cta
+            },
             company: staticContent.company,
             services: staticContent.services,
             stats: { years: '+10', projects: '+150', satisfaction: '100%', coverage: 'RM' },
@@ -117,10 +123,16 @@ function normalizeSanityContent(raw) {
             videoUrl: homePage.heroVideoFileUrl || homePage.heroVideoUrl || null,
             heroImages: homePage.heroImages || [],
         },
+        homeAbout: {
+            show: homePage?.aboutEnabled ?? staticContent.homeAbout.show,
+            title: homePage.aboutTitle ?? staticContent.homeAbout.title,
+            text: homePage.aboutText ?? staticContent.homeAbout.text,
+            cta: staticContent.homeAbout.cta
+        },
         company: {
             name: companyInfo.name ?? staticContent.company.name,
             slogan: companyInfo.slogan ?? staticContent.company.slogan,
-            about: homePage.aboutText ?? staticContent.company.about,
+            about: staticContent.company.about,
             founded: companyInfo.foundedYear ?? staticContent.company.founded,
             location: companyInfo.address ?? staticContent.company.location,
         },

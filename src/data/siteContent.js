@@ -14,6 +14,14 @@ export const siteContent = {
         videoUrl: null, // Si se necesita un video temporal externo, se utilizará VITE_HERO_TEST_VIDEO_URL o el de Sanity
     },
 
+    // ── Home About ────────────────────────────────────────────────────────────
+    homeAbout: {
+        show: true,
+        title: "Una empresa cercana a cada proyecto",
+        text: "En Constructora MAG somos una empresa familiar dedicada a proyectos de construcción y remodelación. Trabajamos con atención directa, coordinación clara y soluciones adaptadas a las necesidades de cada espacio.",
+        cta: "Conoce más sobre MAG",
+    },
+
     // ── Company Info ──────────────────────────────────────────────────────────
     company: {
         name: "MAG Servicios Integrales",

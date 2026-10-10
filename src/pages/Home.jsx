@@ -8,7 +8,7 @@ import { useSiteContent } from '../hooks/useSiteContent';
 import { Link } from 'react-router-dom';
 
 export default function Home() {
-  const { hero, featuredProjects } = useSiteContent();
+  const { hero, homeAbout, featuredProjects } = useSiteContent();
 
   const scrollToProjects = () =>
     document.getElementById('proyectos')?.scrollIntoView({ behavior: 'smooth' });
@@ -52,13 +52,17 @@ export default function Home() {
       <ServicesSection />
 
       {/* Intro Familiar Teaser */}
-      <section className="container" style={{ paddingTop: 'calc(var(--section-space) / 2)', paddingBottom: 'var(--section-space)', textAlign: 'center', maxWidth: '900px', margin: '0 auto' }}>
-        <span className="section-eyebrow">Empresa familiar, compromiso profesional</span>
-        <h2 className="section-title" style={{ fontSize: 'clamp(1.2rem, 3vw, 1.5rem)', marginBottom: '2rem', fontWeight: 500, color: 'var(--text-secondary)', lineHeight: '1.8', fontFamily: 'var(--font-body)' }}>
-          En Constructora MAG somos una empresa familiar dedicada al rubro de la construcción, donde cada proyecto se trabaja con responsabilidad, calidad y atención al detalle. Más que construir obras, construimos confianza.
-        </h2>
-        <Link to="/nosotros" className="btn btn--primary">Conoce nuestra historia</Link>
-      </section>
+      {homeAbout?.show && (
+        <section className="container" style={{ paddingTop: 'calc(var(--section-space) / 2)', paddingBottom: 'var(--section-space)', textAlign: 'center', maxWidth: '800px', margin: '0 auto' }}>
+          <h2 className="section-title" style={{ fontSize: 'clamp(1.5rem, 3vw, 2rem)', marginBottom: '1.5rem', fontWeight: 600, color: 'var(--text-primary)' }}>
+            {homeAbout.title}
+          </h2>
+          <p style={{ fontSize: 'clamp(1.1rem, 2.5vw, 1.35rem)', marginBottom: '2.5rem', fontWeight: 400, color: 'var(--text-secondary)', lineHeight: '1.8', fontFamily: 'var(--font-body)' }}>
+            {homeAbout.text}
+          </p>
+          <Link to="/nosotros" className="btn btn--outline">{homeAbout.cta}</Link>
+        </section>
+      )}
 
 
 
