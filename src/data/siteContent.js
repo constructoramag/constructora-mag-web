@@ -99,22 +99,22 @@ export const siteContent = {
             _id: 't1',
             name: "Marco A. Guzmán",
             role: "Fundador & Director de Proyectos",
-            bio: "Más de 15 años liderando proyectos de construcción y remodelación con enfoque en calidad y detalle.",
-            imageUrl: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=600&auto=format&fit=crop",
+            bio: "Responsable de la coordinación general y seguimiento de los proyectos.",
+            imageUrl: "",
         },
         {
             _id: 't2',
             name: "María Eugenia",
             role: "Gerente de Administración y Finanzas",
-            bio: "Encargada de la planificación, presupuesto y atención a clientes, garantizando la transparencia en cada etapa.",
-            imageUrl: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=600&auto=format&fit=crop",
+            bio: "Responsable de administración, planificación y coordinación con clientes.",
+            imageUrl: "",
         },
         {
             _id: 't3',
             name: "José Guzmán",
             role: "Jefe de Obras",
-            bio: "Supervisión técnica en terreno, coordinando equipos de trabajo y asegurando los plazos de entrega.",
-            imageUrl: "https://images.unsplash.com/photo-1504307651254-35680f356f58?q=80&w=600&auto=format&fit=crop",
+            bio: "Responsable de la ejecución y coordinación de los trabajos en obra.",
+            imageUrl: "",
         }
     ],
 

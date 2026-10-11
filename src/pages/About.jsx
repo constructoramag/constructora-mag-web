@@ -1,120 +1,234 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import SEO from '../components/SEO';
-import TeamSection from '../components/TeamSection';
-import TrustBar from '../components/TrustBar';
-import WorkProcessSection from '../components/WorkProcessSection';
+import { useTeam } from '../hooks/useTeam';
+import { useSiteContent } from '../hooks/useSiteContent';
+import { buildWhatsAppUrl } from '../utils/contactHelpers';
 import './About.css';
 
+const FUNCTIONAL_BIOS = {
+  'Marco A. Guzmán': 'Responsable de la coordinación general y seguimiento de los proyectos.',
+  'María Eugenia': 'Responsable de administración, planificación y coordinación con clientes.',
+  'José Guzmán': 'Responsable de la ejecución y coordinación de los trabajos en obra.'
+};
+
+const getInitials = (name) => {
+  if (!name) return 'MG';
+  return name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+};
+
 export default function About() {
+  const { team } = useTeam();
+  const { contact } = useSiteContent();
+
+  const fallbackTeam = [
+    { _id: 't1', name: 'Marco A. Guzmán', role: 'Fundador & Director de Proyectos' },
+    { _id: 't2', name: 'María Eugenia', role: 'Gerente de Administración y Finanzas' },
+    { _id: 't3', name: 'José Guzmán', role: 'Jefe de Obras' }
+  ];
+
+  const displayTeam = (team && team.length > 0) ? team : fallbackTeam;
+
+  const whatsappUrl = buildWhatsAppUrl(
+    contact?.whatsapp1,
+    'Hola, me gustaría conversar sobre las alternativas para un proyecto.'
+  );
+
   return (
     <div className="about-page">
       <SEO 
         title="Nosotros | Constructora MAG" 
-        description="Conoce la historia, misión y el equipo detrás de Constructora MAG. Expertos en construcción y remodelación."
+        description="Conoce a Constructora MAG, una empresa familiar dedicada a proyectos de construcción y remodelación en Santiago, con atención directa y coordinación durante cada etapa."
         canonical="/nosotros"
       />
 
-      {/* Hero */}
-      <section className="about-page__hero">
-        <div className="about-page__hero-bg">
-          <img 
-            src="/images/hero-bg-opt.jpg" 
-            alt=""
-            aria-hidden="true"
-            fetchPriority="high"
-          />
-          <div className="about-page__hero-overlay"></div>
-        </div>
-        <div className="about-page__hero-content">
-          <motion.h1 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="about-page__title"
-          >
-            Nuestra <span className="about-page__title-highlight">Historia</span>
-          </motion.h1>
-          <motion.p 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="about-page__subtitle"
-          >
-            Construyendo confianza y calidad en cada proyecto desde hace más de una década.
-          </motion.p>
+      {/* 1. Hero Breve */}
+      <section className="about-hero">
+        <div className="container about-hero__container">
+          <div className="about-hero__content">
+            <span className="about-eyebrow">SOBRE MAG</span>
+            <h1 className="about-hero__title">
+              Una empresa cercana a cada proyecto
+            </h1>
+            <p className="about-hero__desc">
+              Somos una empresa familiar dedicada a proyectos de construcción y remodelación, con atención directa y una coordinación clara durante cada etapa de la obra.
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* Historia */}
-      <section className="container" style={{ padding: '6rem 1.5rem 2rem', maxWidth: '900px', margin: '0 auto', textAlign: 'center' }}>
-        <p style={{ fontSize: '1.15rem', lineHeight: '1.8', color: 'var(--text-secondary)', marginBottom: '1.5rem' }}>
-          Constructora MAG nace como una empresa familiar dedicada al rubro de la construcción, impulsada por el esfuerzo, la experiencia y la dedicación de su fundador.
-        </p>
-        <p style={{ fontSize: '1.15rem', lineHeight: '1.8', color: 'var(--text-secondary)', marginBottom: '1.5rem' }}>
-          Desde nuestros inicios, hemos trabajado con un propósito claro: entregar soluciones constructivas confiables, seguras y duraderas, cuidando cada detalle del proceso y manteniendo una relación cercana y transparente con nuestros clientes.
-        </p>
-        <p style={{ fontSize: '1.15rem', lineHeight: '1.8', color: 'var(--text-secondary)', marginBottom: '1.5rem' }}>
-          Creemos que una obra bien ejecutada no solo se mide por sus terminaciones, sino también por la confianza que se construye durante el camino. Por eso trabajamos con responsabilidad, planificación y compromiso, buscando que cada proyecto cumpla con las expectativas de quienes confían en nosotros.
-        </p>
-        <p style={{ fontSize: '1.25rem', lineHeight: '1.8', color: 'var(--text-primary)', fontWeight: 700 }}>
-          Más que construir obras, construimos relaciones duraderas basadas en el respeto, la transparencia y el trabajo bien hecho.
-        </p>
-      </section>
+      {/* 2. Quiénes Somos / Historia */}
+      <section className="about-story section">
+        <div className="container">
+          <div className="about-story__grid">
+            <div className="about-story__header-col">
+              <span className="about-eyebrow">QUIÉNES SOMOS</span>
+              <h2 className="about-section-title">
+                Construimos desde la cercanía
+              </h2>
+              <div className="about-story__badge">
+                <span className="about-story__badge-dot"></span>
+                <span>Empresa familiar en Santiago</span>
+              </div>
+            </div>
 
-      {/* Identidad Corporativa */}
-      <section className="about-page__mission">
-        <div className="about-page__mission-grid">
-          <motion.div 
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="about-page__mission-text"
-          >
-            <h2>Misión</h2>
-            <p>
-              Brindar soluciones integrales en construcción, remodelación y ampliación, desarrollando proyectos seguros, eficientes y duraderos.
-            </p>
-            <p>
-              Trabajamos con materiales de calidad, planificación clara y un equipo comprometido, buscando superar las expectativas de nuestros clientes en cada etapa de la obra.
-            </p>
-            <h2>Visión</h2>
-            <p>
-              Consolidarnos como una constructora de confianza en la Región Metropolitana, reconocida por la calidad de nuestras terminaciones, la responsabilidad en nuestros procesos y la cercanía con cada cliente.
-            </p>
-            <p>
-              Queremos crear espacios funcionales, seguros y bien ejecutados, que mejoren la vida de las personas y aporten valor a sus hogares.
-            </p>
-          </motion.div>
-          
-          <motion.div 
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="about-page__values-grid"
-          >
-            <div className="about-page__value-card">
-              <span className="material-symbols-outlined about-page__value-icon">verified</span>
-              <h3 className="about-page__value-title">Calidad Superior</h3>
+            <div className="about-story__body-col">
+              <p className="about-story__lead">
+                En Constructora MAG abordamos cada proyecto entendiendo primero las necesidades del espacio y de quienes lo utilizan.
+              </p>
+              <p className="about-story__text">
+                Como empresa familiar, mantenemos una comunicación directa durante el desarrollo de la obra y coordinamos cada etapa buscando soluciones que sean funcionales, coherentes con el proyecto y bien ejecutadas.
+              </p>
+              <p className="about-story__text">
+                Nuestro trabajo abarca construcción, remodelación y mejoramiento de espacios residenciales y comerciales en Santiago.
+              </p>
             </div>
-            <div className="about-page__value-card about-page__value-card--mt">
-              <span className="material-symbols-outlined about-page__value-icon">handshake</span>
-              <h3 className="about-page__value-title">Compromiso</h3>
-            </div>
-            <div className="about-page__value-card about-page__value-card--mb">
-              <span className="material-symbols-outlined about-page__value-icon">architecture</span>
-              <h3 className="about-page__value-title">Innovación</h3>
-            </div>
-            <div className="about-page__value-card">
-              <span className="material-symbols-outlined about-page__value-icon">timer</span>
-              <h3 className="about-page__value-title">Puntualidad</h3>
-            </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
-      <TrustBar />
-      <WorkProcessSection />
-      <TeamSection />
+      {/* 3. Misión + Visión */}
+      <section className="about-mv section">
+        <div className="container">
+          <div className="about-mv__grid">
+            <div className="about-mv__card">
+              <div className="about-mv__top">
+                <span className="about-mv__index">01</span>
+                <span className="about-eyebrow">PROPÓSITO</span>
+              </div>
+              <h3 className="about-mv__title">Nuestra misión</h3>
+              <p className="about-mv__text">
+                Desarrollar proyectos de construcción y remodelación con una planificación clara, atención directa y soluciones adaptadas a las necesidades reales de cada espacio.
+              </p>
+            </div>
+
+            <div className="about-mv__card">
+              <div className="about-mv__top">
+                <span className="about-mv__index">02</span>
+                <span className="about-eyebrow">PROYECCIÓN</span>
+              </div>
+              <h3 className="about-mv__title">Nuestra visión</h3>
+              <p className="about-mv__text">
+                Consolidar una forma de trabajo basada en relaciones de confianza, coordinación responsable y proyectos que reflejen el cuidado puesto en cada etapa.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Nuestra forma de trabajar / Principios */}
+      <section className="about-principles section">
+        <div className="container">
+          <div className="about-section-header">
+            <span className="about-eyebrow">PRINCIPIOS</span>
+            <h2 className="about-section-title">Nuestra forma de trabajar</h2>
+            <p className="about-section-subtitle">
+              Principios que orientan la manera en que coordinamos y desarrollamos cada proyecto.
+            </p>
+          </div>
+
+          <div className="about-principles__grid">
+            <div className="about-principle-card">
+              <div className="about-principle-icon">
+                <span className="material-symbols-outlined">event_note</span>
+              </div>
+              <h3 className="about-principle-title">Planificación clara</h3>
+              <p className="about-principle-text">
+                Organizamos cada etapa del proyecto para mantener una ejecución ordenada y comprensible.
+              </p>
+            </div>
+
+            <div className="about-principle-card">
+              <div className="about-principle-icon">
+                <span className="material-symbols-outlined">forum</span>
+              </div>
+              <h3 className="about-principle-title">Atención directa</h3>
+              <p className="about-principle-text">
+                Mantenemos una comunicación cercana para resolver dudas y coordinar decisiones durante la obra.
+              </p>
+            </div>
+
+            <div className="about-principle-card">
+              <div className="about-principle-icon">
+                <span className="material-symbols-outlined">tune</span>
+              </div>
+              <h3 className="about-principle-title">Soluciones adaptadas</h3>
+              <p className="about-principle-text">
+                Evaluamos cada espacio según sus necesidades, condiciones y objetivos particulares.
+              </p>
+            </div>
+
+            <div className="about-principle-card">
+              <div className="about-principle-icon">
+                <span className="material-symbols-outlined">architecture</span>
+              </div>
+              <h3 className="about-principle-title">Coordinación de obra</h3>
+              <p className="about-principle-text">
+                Integramos especialidades, materiales y tareas buscando mantener continuidad entre las distintas etapas.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. Equipo Familiar */}
+      <section className="about-team section" id="equipo">
+        <div className="container">
+          <div className="about-section-header">
+            <span className="about-eyebrow">NUESTRO EQUIPO</span>
+            <h2 className="about-section-title">El Grupo Familiar</h2>
+            <p className="about-section-subtitle">
+              Equipo a cargo de la gestión, planificación y ejecución de cada proyecto.
+            </p>
+          </div>
+
+          <div className="about-team__grid">
+            {displayTeam.map((member) => (
+              <div key={member._id || member.name} className="about-team-card">
+                <div className="about-team-avatar">
+                  {member.imageUrl && !member.imageUrl.includes('unsplash') && !member.imageUrl.includes('placeholder') ? (
+                    <img src={member.imageUrl} alt={member.name} className="about-team-img" loading="lazy" />
+                  ) : (
+                    <span className="about-team-initials">{getInitials(member.name)}</span>
+                  )}
+                </div>
+                <div className="about-team-info">
+                  <h3 className="about-team-name">{member.name}</h3>
+                  <p className="about-team-role">{member.role}</p>
+                  <p className="about-team-bio">
+                    {FUNCTIONAL_BIOS[member.name] || member.bio}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 6. CTA Final */}
+      <section className="about-cta section">
+        <div className="container">
+          <div className="about-cta__card">
+            <div className="about-cta__content">
+              <span className="about-eyebrow">CONTACTO DIRECTO</span>
+              <h2 className="about-cta__title">¿Tienes un proyecto en mente?</h2>
+              <p className="about-cta__text">
+                Cuéntanos qué necesitas y conversemos sobre las alternativas para tu proyecto.
+              </p>
+            </div>
+            <div className="about-cta__action">
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn--primary about-cta__btn"
+              >
+                <span>Cuéntanos tu proyecto</span>
+                <span className="material-symbols-outlined about-cta__icon">arrow_forward</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
 
     </div>
   );
