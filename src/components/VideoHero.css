@@ -33,7 +33,7 @@
     }
 }
 
-/* Base Architectural Drafting Layer (Visible only before LQIP / poster loads) */
+/* Base Architectural Drafting Layer (Visible only before LQIP / poster loads) - Completely Static */
 .video-hero__bg::before {
     content: "";
     position: absolute;
@@ -43,8 +43,6 @@
     right: 0;
     z-index: 0;
     pointer-events: none;
-    will-change: transform;
-    animation: heroLinesFloat 10s ease-in-out infinite alternate;
 
     background-image:
         /* --- LEFT FLANK (8% - 15%) --- */
@@ -120,64 +118,10 @@
     background-repeat: no-repeat;
 }
 
-/* Subtle Animated Gold Accents (Slow traveling tracer along structural axis) */
-.video-hero__bg::after {
-    content: "";
-    position: absolute;
-    top: 8.33%;
-    bottom: 8.33%;
-    left: 0;
-    right: 0;
-    z-index: 0;
-    pointer-events: none;
-
-    background-image:
-        /* Left vertical gold light tracer (along 10% line) */
-        linear-gradient(180deg, transparent 0%, rgba(228, 170, 21, 0.22) 50%, transparent 100%),
-        /* Right vertical gold light tracer (along 90% line) */
-        linear-gradient(180deg, transparent 0%, rgba(228, 170, 21, 0.18) 50%, transparent 100%);
-
-    background-size:
-        1px 70px,
-        1px 70px;
-
-    background-position:
-        10% 18%,
-        90% 75%;
-
-    background-repeat: no-repeat;
-    animation: heroGoldTracer 4s ease-in-out infinite alternate;
-    animation-delay: -1.5s;
-}
-
-@keyframes heroLinesFloat {
-    0% {
-        transform: translate3d(0, 0, 0);
-    }
-    100% {
-        transform: translate3d(0, -6px, 0);
-    }
-}
-
-@keyframes heroGoldTracer {
-    0% {
-        background-position: 10% 18%, 90% 75%;
-        opacity: 0.3;
-    }
-    50% {
-        opacity: 0.85;
-    }
-    100% {
-        background-position: 10% 78%, 90% 22%;
-        opacity: 0.35;
-    }
-}
-
 @media (max-width: 767px) {
     .video-hero__bg::before {
         top: 0;
         bottom: 0;
-        animation: heroLinesFloatMobile 10s ease-in-out infinite alternate;
 
         background-image:
             /* Left vertical structural trace */
@@ -199,48 +143,6 @@
             94% center,         /* V right at 94% */
             6% 18%,             /* Gold H at (6%, 18%) */
             6% 18%;             /* Gold V at (6%, 18%) */
-    }
-
-    .video-hero__bg::after {
-        top: 0;
-        bottom: 0;
-
-        background-image:
-            /* Single subtle gold tracer along left 6% axis */
-            linear-gradient(180deg, transparent 0%, rgba(228, 170, 21, 0.20) 50%, transparent 100%);
-
-        background-size:
-            1px 50px;
-
-        background-position:
-            6% 22%;
-
-        background-repeat: no-repeat;
-        animation: heroGoldTracerMobile 4.5s ease-in-out infinite alternate;
-        animation-delay: -1.5s;
-    }
-}
-
-@keyframes heroLinesFloatMobile {
-    0% {
-        transform: translate3d(0, 0, 0);
-    }
-    100% {
-        transform: translate3d(0, -3px, 0);
-    }
-}
-
-@keyframes heroGoldTracerMobile {
-    0% {
-        background-position: 6% 22%;
-        opacity: 0.25;
-    }
-    50% {
-        opacity: 0.75;
-    }
-    100% {
-        background-position: 6% 72%;
-        opacity: 0.3;
     }
 }
 
@@ -270,11 +172,6 @@
 @media (prefers-reduced-motion: reduce) {
     .video-hero__html5-video {
         display: none !important; /* Esconde el video y deja que el póster se vea de fondo */
-    }
-    .video-hero__bg::before,
-    .video-hero__bg::after {
-        animation: none !important;
-        transform: none !important;
     }
 }
 
