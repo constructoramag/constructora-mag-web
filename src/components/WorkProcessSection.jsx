@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { motion } from 'framer-motion';
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
 import './WorkProcessSection.css';
@@ -26,32 +25,6 @@ const processSteps = [
         description: 'Revisamos contigo los trabajos incluidos y los detalles finales antes de cerrar la intervención.'
     }
 ];
-
-const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-        opacity: 1,
-        transition: { staggerChildren: 0.3 }
-    }
-};
-
-const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { 
-        opacity: 1, 
-        y: 0,
-        transition: { duration: 0.8, ease: 'easeOut' }
-    }
-};
-
-const connectorVariants = {
-    hidden: { pathLength: 0, opacity: 0 },
-    visible: { 
-        pathLength: 1, 
-        opacity: 1,
-        transition: { duration: 1, ease: "easeInOut" }
-    }
-};
 
 function WorkProcessSection() {
     // Embla activo solo en móviles (< 1024px)
@@ -91,19 +64,12 @@ function WorkProcessSection() {
                 </div>
 
                 <div className="process-embla" ref={emblaRef}>
-                    <motion.div 
-                        className="process-grid"
-                        variants={containerVariants}
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.1 }}
-                    >
+                    <div className="process-grid">
                         {processSteps.map((step, index) => {
                             const isMobileActive = selectedIndex === index;
                             
                             return (
-                                <motion.div 
-                                    variants={itemVariants} 
+                                <div
                                     key={step.number} 
                                     className={`process-card process-embla__slide ${isMobileActive ? 'process-card--active' : ''}`}
                                 >
@@ -111,19 +77,19 @@ function WorkProcessSection() {
                                     <h3 className="process-title">{step.title}</h3>
                                     <p className="process-desc">{step.description}</p>
                                     
-                                    {/* Conector visual animado progresivamente (Desktop) */}
+                                    {/* Conector visual (Desktop) */}
                                     {index !== processSteps.length - 1 && (
-                                        <div className="process-connector">
+                                        <div className="process-connector" aria-hidden="true">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="24" viewBox="0 0 40 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                                <motion.line variants={connectorVariants} x1="5" y1="12" x2="35" y2="12"></motion.line>
-                                                <motion.polyline variants={connectorVariants} points="28 5 35 12 28 19"></motion.polyline>
+                                                <line x1="5" y1="12" x2="35" y2="12"></line>
+                                                <polyline points="28 5 35 12 28 19"></polyline>
                                             </svg>
                                         </div>
                                     )}
-                                </motion.div>
+                                </div>
                             );
                         })}
-                    </motion.div>
+                    </div>
                 </div>
             </div>
         </section>
