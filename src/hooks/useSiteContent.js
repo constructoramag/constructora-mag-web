@@ -119,6 +119,7 @@ function normalizeSanityContent(raw) {
             ctaSecondary: homePage.heroSecondaryCtaText ?? staticContent.hero.ctaSecondary,
             fallbackImage: staticContent.hero.fallbackImage,
             fallbackImageUrl: homePage.heroFallbackImageUrl,
+            fallbackImageLqip: homePage.heroFallbackImageLqip,
             videoUrl: homePage.heroVideoFileUrl || homePage.heroVideoUrl || null,
             heroImages: homePage.heroImages || [],
         },

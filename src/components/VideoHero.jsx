@@ -5,7 +5,7 @@ import './VideoHero.css';
 /**
  * VideoHero — Sección hero de pantalla completa premium con video y crossfade.
  */
-function VideoHero({ title, subtitle, cta, ctaSecondary, fallbackImage, videoUrl, heroImages = [] }) {
+function VideoHero({ title, subtitle, cta, ctaSecondary, fallbackImage, fallbackImageUrl, fallbackImageLqip, videoUrl, heroImages = [] }) {
     const ref = useRef(null);
     const [shouldMountVideo, setShouldMountVideo] = useState(false);
     const [isReducedMotion, setIsReducedMotion] = useState(false);
@@ -82,16 +82,47 @@ function VideoHero({ title, subtitle, cta, ctaSecondary, fallbackImage, videoUrl
         return `${url}?w=${width}&auto=format&q=${quality}`;
     };
 
-    const finalPoster = fallbackImage ? getOptimizedUrl(fallbackImage) : "/images/hero-bg-opt.jpg";
-    const [isFirstImageLoaded, setIsFirstImageLoaded] = useState(false);
+    const getSrcSet = (url) => {
+        if (!url || !url.startsWith('http')) return undefined;
+        const cleanUrl = url.split('?')[0];
+        return `${cleanUrl}?w=800&auto=format&q=85 800w, ${cleanUrl}?w=1200&auto=format&q=85 1200w, ${cleanUrl}?w=1600&auto=format&q=80 1600w, ${cleanUrl}?w=1920&auto=format&q=80 1920w`;
+    };
+
+    const [ssrPoster] = useState(() => {
+        if (typeof document !== 'undefined') {
+            const existingImg = document.querySelector('.video-hero__poster-bg img');
+            const src = existingImg?.getAttribute('src');
+            if (src && src.includes('sanity.io')) {
+                const posterBg = document.querySelector('.video-hero__poster-bg');
+                const bgImg = posterBg?.style.backgroundImage;
+                const lqipMatch = bgImg ? bgImg.match(/url\(["']?(data:image\/[^"')]+)["']?\)/) : null;
+                return {
+                    src,
+                    srcSet: existingImg.getAttribute('srcset') || undefined,
+                    lqip: lqipMatch ? lqipMatch[1] : null
+                };
+            }
+        }
+        return null;
+    });
+
+    const fallbackImageObj = validImages.length > 0 ? validImages[0] : { url: fallbackImageUrl || fallbackImage, lqip: fallbackImageLqip || null };
+    const posterBaseUrl = fallbackImageObj.url || "/images/hero-bg-opt.jpg";
+    const isSanityUrl = posterBaseUrl.includes('sanity.io');
+    const posterSrcSet = isSanityUrl ? getSrcSet(posterBaseUrl) : (ssrPoster?.srcSet || undefined);
+    const posterSrc = isSanityUrl ? `${posterBaseUrl.split('?')[0]}?w=1920&auto=format&q=80` : (ssrPoster?.src || posterBaseUrl);
+    const posterLqip = isSanityUrl ? fallbackImageObj.lqip : (ssrPoster?.lqip || fallbackImageObj.lqip);
+
+    const [isPosterLoaded, setIsPosterLoaded] = useState(false);
+    const imgRef = useRef(null);
+
+    const handlePosterLoad = () => setIsPosterLoaded(true);
 
     useEffect(() => {
-        if (hasSlideshow && validImages.length > 0) {
-            const img = new Image();
-            img.src = getOptimizedUrl(validImages[0].url);
-            img.onload = () => setIsFirstImageLoaded(true);
+        if (imgRef.current && imgRef.current.complete) {
+            setIsPosterLoaded(true);
         }
-    }, [hasSlideshow, validImages]);
+    }, []);
 
     // Lógica del Slideshow
     useEffect(() => {
@@ -112,27 +143,49 @@ function VideoHero({ title, subtitle, cta, ctaSecondary, fallbackImage, videoUrl
                 className="video-hero__bg"
                 style={{ y: isMobile ? "0%" : yBg, opacity: opacityBg }}
             >
-                {/* Fallback permanente siempre visible debajo */}
-                <div 
+                {/* Fallback permanente siempre visible debajo (LCP Priorizado + LQIP) */}
+                <div
                     className="video-hero__poster-bg"
-                    style={{ backgroundImage: `url(${finalPoster})`, zIndex: 0 }}
-                />
+                    style={{
+                        backgroundImage: posterLqip ? `url(${posterLqip})` : 'none',
+                        zIndex: 1
+                    }}
+                >
+                    <img
+                        ref={imgRef}
+                        src={posterSrc}
+                        srcSet={posterSrcSet}
+                        sizes="100vw"
+                        alt=""
+                        aria-hidden="true"
+                        fetchpriority="high"
+                        loading="eager"
+                        style={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'cover',
+                            objectPosition: 'center',
+                            opacity: isPosterLoaded ? 1 : 0,
+                            transition: 'opacity 200ms ease-out'
+                        }}
+                        onLoad={handlePosterLoad}
+                    />
+                </div>
 
                 {/* Slideshow de Imágenes (Lazy load: solo monta si el índice está en loadedIndices) */}
                 {hasSlideshow && validImages.map((img, idx) => {
+                    if (idx === 0) return null; // El primer slide ya está representado por el poster fijo
                     if (!loadedIndices.includes(idx)) return null;
                     
                     const isCurrent = idx === currentImageIndex;
-                    // Retrasar la aparición de la primera imagen hasta que esté cargada
-                    const isVisible = isCurrent && (idx !== 0 || isFirstImageLoaded);
 
                     return (
                         <div
                             key={img.url + idx}
-                            className={`video-hero__poster-bg ${isVisible ? 'video-hero__poster-bg--active' : ''}`}
+                            className={`video-hero__poster-bg ${isCurrent ? 'video-hero__poster-bg--active' : ''}`}
                             style={{ 
                                 backgroundImage: `url(${getOptimizedUrl(img.url)})`,
-                                opacity: isVisible ? 1 : 0,
+                                opacity: isCurrent ? 1 : 0,
                                 transition: 'opacity 1.5s ease-in-out',
                                 zIndex: isCurrent ? 2 : 1
                             }}
@@ -148,7 +201,7 @@ function VideoHero({ title, subtitle, cta, ctaSecondary, fallbackImage, videoUrl
                         muted
                         playsInline
                         preload="metadata"
-                        poster={finalPoster}
+                        poster={posterSrc}
                     >
                         <source src={finalVideoUrl} type="video/mp4" />
                     </video>

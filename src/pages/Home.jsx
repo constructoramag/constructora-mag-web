@@ -9,10 +9,10 @@ import { useSiteContent } from '../hooks/useSiteContent';
 import { Link } from 'react-router-dom';
 
 export default function Home() {
-  const { hero, homeAbout, featuredProjects } = useSiteContent();
+  const { hero, homeAbout, featuredProjects, loading } = useSiteContent();
 
   return (
-    <div className="home-page">
+    <div className="home-page" data-content-ready={!loading}>
       <SEO
         title="MAG Servicios Integrales | Constructora en Santiago de Chile"
         description="MAG Servicios Integrales — Empresa constructora y remodeladora en Santiago de Chile. Especialistas en construcción, ampliaciones, quinchos y obras menores. Cotiza gratis."
@@ -27,7 +27,9 @@ export default function Home() {
             subtitle={hero.subtitle}
             cta={hero.cta || "Solicita tu presupuesto sin costo"}
             ctaSecondary={hero.ctaSecondary || "Ver proyectos destacados"}
-            fallbackImage={hero.fallbackImageUrl || hero.fallbackImage}
+            fallbackImage={hero.fallbackImage}
+            fallbackImageUrl={hero.fallbackImageUrl}
+            fallbackImageLqip={hero.fallbackImageLqip}
             videoUrl={hero.videoUrl}
             heroImages={hero.heroImages}
           />

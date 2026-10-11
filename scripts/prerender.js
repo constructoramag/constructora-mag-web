@@ -91,9 +91,14 @@ async function run() {
           const canonicalEl = document.querySelector('link[rel="canonical"]');
           const currentCanonical = canonicalEl ? canonicalEl.getAttribute('href') : null;
           const root = document.querySelector('#root');
+          const homeReady = document.querySelector('.home-page[data-content-ready="true"]');
           
           if (expected === null) {
             return root && root.textContent.trim().length > 0;
+          }
+
+          if (expected === 'https://www.constructoramag.cl/') {
+            return homeReady !== null && currentCanonical === expected;
           }
 
           const isStillLoading = !!(serviceLoading || projectLoading || contactLoading || animatePulse);

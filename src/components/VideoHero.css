@@ -7,9 +7,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    background: var(--bg-dark, #0B0B0B);
 }
 
-/* ── Background ──────────────────────────────────────────────────── */
+/* ── Background & Architectural Base Layer ───────────────────────── */
 .video-hero__bg {
     position: absolute;
     top: -10%;
@@ -20,7 +21,7 @@
     height: 120%; /* Extend height to prevent edges showing during vertical parallax on desktop */
     z-index: 0;
     overflow: hidden;
-    background: #000;
+    background: #0B0B0B; /* Fondo negro base MAG */
 }
 
 @media (max-width: 767px) {
@@ -29,6 +30,217 @@
         bottom: 0;
         height: 100%;
         transform: none !important;
+    }
+}
+
+/* Base Architectural Drafting Layer (Visible only before LQIP / poster loads) */
+.video-hero__bg::before {
+    content: "";
+    position: absolute;
+    top: 8.33%;
+    bottom: 8.33%;
+    left: 0;
+    right: 0;
+    z-index: 0;
+    pointer-events: none;
+    will-change: transform;
+    animation: heroLinesFloat 10s ease-in-out infinite alternate;
+
+    background-image:
+        /* --- LEFT FLANK (8% - 15%) --- */
+        /* Vertical structural axis left (10%) */
+        linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.10) 10%, rgba(255, 255, 255, 0.10) 90%, transparent 100%),
+        /* Vertical secondary axis left (13%) */
+        linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.08) 18%, rgba(255, 255, 255, 0.08) 82%, transparent 100%),
+        /* Top horizontal datum mark left */
+        linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.10) 25%, rgba(255, 255, 255, 0.10) 100%, transparent 100%),
+        /* Bottom horizontal datum mark left */
+        linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.08) 25%, rgba(255, 255, 255, 0.08) 100%, transparent 100%),
+        /* MAG Gold top-left corner tick - horizontal */
+        linear-gradient(90deg, rgba(228, 170, 21, 0.15) 0%, rgba(228, 170, 21, 0.15) 100%),
+        /* MAG Gold top-left corner tick - vertical */
+        linear-gradient(180deg, rgba(228, 170, 21, 0.15) 0%, rgba(228, 170, 21, 0.15) 100%),
+        /* Architectural 45° dimension tick (cota diagonal) top-left */
+        linear-gradient(45deg, transparent calc(50% - 1px), rgba(228, 170, 21, 0.14) 50%, transparent calc(50% + 1px)),
+
+        /* --- RIGHT FLANK (85% - 92%) --- */
+        /* Vertical structural axis right (90%) */
+        linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.10) 10%, rgba(255, 255, 255, 0.10) 90%, transparent 100%),
+        /* Vertical secondary axis right (87%) */
+        linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.08) 18%, rgba(255, 255, 255, 0.08) 82%, transparent 100%),
+        /* Top horizontal datum mark right */
+        linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.10) 75%, transparent 100%),
+        /* Bottom horizontal datum mark right */
+        linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.08) 75%, transparent 100%),
+        /* MAG Gold top-right corner tick - horizontal */
+        linear-gradient(90deg, rgba(228, 170, 21, 0.15) 0%, rgba(228, 170, 21, 0.15) 100%),
+        /* MAG Gold top-right corner tick - vertical */
+        linear-gradient(180deg, rgba(228, 170, 21, 0.15) 0%, rgba(228, 170, 21, 0.15) 100%),
+        /* Architectural 135° dimension tick top-right */
+        linear-gradient(135deg, transparent calc(50% - 1px), rgba(228, 170, 21, 0.14) 50%, transparent calc(50% + 1px));
+
+    background-size:
+        /* Left */
+        1px 80%,      /* V main left (10%) */
+        1px 64%,      /* V sec left (13%) */
+        10% 1px,      /* H top left */
+        8% 1px,       /* H bottom left */
+        22px 1px,     /* Gold H top-left */
+        1px 22px,     /* Gold V top-left */
+        12px 12px,    /* Gold 45° tick top-left */
+
+        /* Right */
+        1px 80%,      /* V main right (90%) */
+        1px 64%,      /* V sec right (87%) */
+        10% 1px,      /* H top right */
+        8% 1px,       /* H bottom right */
+        22px 1px,     /* Gold H top-right */
+        1px 22px,     /* Gold V top-right */
+        12px 12px;    /* Gold 135° tick top-right */
+
+    background-position:
+        /* Left */
+        10% center,                     /* V main left */
+        13% center,                     /* V sec left */
+        6% 16%,                         /* H top left */
+        6% 84%,                         /* H bottom left */
+        calc(10% - 11px) 16%,           /* Gold H top-left */
+        10% calc(16% - 11px),           /* Gold V top-left */
+        calc(10% - 6px) calc(16% - 6px),/* Gold 45° tick top-left */
+
+        /* Right */
+        90% center,                     /* V main right */
+        87% center,                     /* V sec right */
+        94% 16%,                        /* H top right */
+        94% 84%,                        /* H bottom right */
+        calc(90% - 11px) 16%,           /* Gold H top-right */
+        90% calc(16% - 11px),           /* Gold V top-right */
+        calc(90% - 6px) calc(16% - 6px);/* Gold 135° tick top-right */
+
+    background-repeat: no-repeat;
+}
+
+/* Subtle Animated Gold Accents (Slow traveling tracer along structural axis) */
+.video-hero__bg::after {
+    content: "";
+    position: absolute;
+    top: 8.33%;
+    bottom: 8.33%;
+    left: 0;
+    right: 0;
+    z-index: 0;
+    pointer-events: none;
+
+    background-image:
+        /* Left vertical gold light tracer (along 10% line) */
+        linear-gradient(180deg, transparent 0%, rgba(228, 170, 21, 0.22) 50%, transparent 100%),
+        /* Right vertical gold light tracer (along 90% line) */
+        linear-gradient(180deg, transparent 0%, rgba(228, 170, 21, 0.18) 50%, transparent 100%);
+
+    background-size:
+        1px 70px,
+        1px 70px;
+
+    background-position:
+        10% 18%,
+        90% 75%;
+
+    background-repeat: no-repeat;
+    animation: heroGoldTracer 4s ease-in-out infinite alternate;
+    animation-delay: -1.5s;
+}
+
+@keyframes heroLinesFloat {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        transform: translate3d(0, -6px, 0);
+    }
+}
+
+@keyframes heroGoldTracer {
+    0% {
+        background-position: 10% 18%, 90% 75%;
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 0.85;
+    }
+    100% {
+        background-position: 10% 78%, 90% 22%;
+        opacity: 0.35;
+    }
+}
+
+@media (max-width: 767px) {
+    .video-hero__bg::before {
+        top: 0;
+        bottom: 0;
+        animation: heroLinesFloatMobile 10s ease-in-out infinite alternate;
+
+        background-image:
+            /* Left vertical structural trace */
+            linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.10) 8%, rgba(255, 255, 255, 0.10) 92%, transparent 100%),
+            /* Right vertical structural trace */
+            linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.08) 12%, rgba(255, 255, 255, 0.08) 88%, transparent 100%),
+            /* Subtle top-left MAG gold corner mark */
+            linear-gradient(90deg, rgba(228, 170, 21, 0.15) 0%, rgba(228, 170, 21, 0.15) 100%),
+            linear-gradient(180deg, rgba(228, 170, 21, 0.15) 0%, rgba(228, 170, 21, 0.15) 100%);
+
+        background-size:
+            1px 75%,   /* V left */
+            1px 65%,   /* V right */
+            16px 1px,  /* Gold H corner */
+            1px 16px;  /* Gold V corner */
+
+        background-position:
+            6% center,          /* V left at 6% */
+            94% center,         /* V right at 94% */
+            6% 18%,             /* Gold H at (6%, 18%) */
+            6% 18%;             /* Gold V at (6%, 18%) */
+    }
+
+    .video-hero__bg::after {
+        top: 0;
+        bottom: 0;
+
+        background-image:
+            /* Single subtle gold tracer along left 6% axis */
+            linear-gradient(180deg, transparent 0%, rgba(228, 170, 21, 0.20) 50%, transparent 100%);
+
+        background-size:
+            1px 50px;
+
+        background-position:
+            6% 22%;
+
+        background-repeat: no-repeat;
+        animation: heroGoldTracerMobile 4.5s ease-in-out infinite alternate;
+        animation-delay: -1.5s;
+    }
+}
+
+@keyframes heroLinesFloatMobile {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        transform: translate3d(0, -3px, 0);
+    }
+}
+
+@keyframes heroGoldTracerMobile {
+    0% {
+        background-position: 6% 22%;
+        opacity: 0.25;
+    }
+    50% {
+        opacity: 0.75;
+    }
+    100% {
+        background-position: 6% 72%;
+        opacity: 0.3;
     }
 }
 
@@ -58,6 +270,11 @@
 @media (prefers-reduced-motion: reduce) {
     .video-hero__html5-video {
         display: none !important; /* Esconde el video y deja que el póster se vea de fondo */
+    }
+    .video-hero__bg::before,
+    .video-hero__bg::after {
+        animation: none !important;
+        transform: none !important;
     }
 }
 
