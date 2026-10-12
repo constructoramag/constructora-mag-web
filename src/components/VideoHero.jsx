@@ -158,7 +158,7 @@ function VideoHero({ title, subtitle, cta, ctaSecondary, fallbackImage, fallback
                         sizes="100vw"
                         alt=""
                         aria-hidden="true"
-                        fetchpriority="high"
+                        fetchPriority="high"
                         loading="eager"
                         style={{
                             width: '100%',

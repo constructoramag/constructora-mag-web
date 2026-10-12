@@ -6,8 +6,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { createClient } from '@sanity/client';
-
-import createImageUrlBuilder from '@sanity/image-url';
+import { createImageUrlBuilder } from '@sanity/image-url';
 
 const projectId = import.meta.env.VITE_SANITY_PROJECT_ID || 'bdqq6fie';
 const dataset = import.meta.env.VITE_SANITY_DATASET || 'production';

@@ -11,10 +11,10 @@
 // 3. Null / undefined → retorna mock con url() = ''
 // ─────────────────────────────────────────────────────────────────────────────
 
-import imageUrlBuilder from '@sanity/image-url';
+import { createImageUrlBuilder } from '@sanity/image-url';
 import { client, isSanityConfigured } from './sanityClient';
 
-const builder = isSanityConfigured ? imageUrlBuilder(client) : null;
+const builder = isSanityConfigured ? createImageUrlBuilder(client) : null;
 
 /**
  * Crea un objeto chainable mock que ignora todas las transformaciones
