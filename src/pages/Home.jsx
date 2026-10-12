@@ -15,7 +15,7 @@ export default function Home() {
     <div className="home-page" data-content-ready={!loading}>
       <SEO
         title="MAG Servicios Integrales | Constructora en Santiago de Chile"
-        description="MAG Servicios Integrales — Empresa constructora y remodeladora en Santiago de Chile. Especialistas en construcción, ampliaciones, quinchos y obras menores. Cotiza gratis."
+        description="Constructora MAG desarrolla proyectos de construcción y remodelación en Santiago, con atención directa, planificación clara y soluciones adaptadas a cada espacio."
         canonical="/"
       />
 

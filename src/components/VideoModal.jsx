@@ -60,7 +60,7 @@ function VideoModal({ project, onClose }) {
                         ¿Te gusta este nivel de calidad?
                     </h4>
                     <p style={{ margin: '0 0 1rem 0', fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
-                        Cotiza un proyecto similar sin compromiso.
+                        ¿Tienes un proyecto similar? Conversemos.
                     </p>
                     <a 
                         href={buildWhatsAppUrl(contact?.whatsapp1, `Hola! Acabo de ver el proyecto *${project.title}* en su web y me gustaría cotizar algo similar.`)}
