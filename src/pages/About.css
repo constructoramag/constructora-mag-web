@@ -449,6 +449,14 @@
   margin-bottom: 0.85rem;
 }
 
+.about-team-formation {
+  font-size: 0.8125rem;
+  color: rgba(255, 255, 255, 0.62);
+  line-height: 1.45;
+  margin-top: -0.45rem;
+  margin-bottom: 0.85rem;
+}
+
 .about-team-bio {
   font-size: 0.91rem;
   color: var(--text-secondary);

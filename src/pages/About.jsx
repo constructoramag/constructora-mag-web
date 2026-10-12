@@ -186,7 +186,12 @@ export default function About() {
               <div key={member._id || member.name} className="about-team-card">
                 <div className="about-team-avatar">
                   {member.imageUrl && !member.imageUrl.includes('unsplash') && !member.imageUrl.includes('placeholder') ? (
-                    <img src={member.imageUrl} alt={member.name} className="about-team-img" loading="lazy" />
+                    <img
+                      src={member.imageUrl}
+                      alt={member.imageAlt || member.name}
+                      className="about-team-img"
+                      loading="lazy"
+                    />
                   ) : (
                     <span className="about-team-initials">{getInitials(member.name)}</span>
                   )}
@@ -194,8 +199,11 @@ export default function About() {
                 <div className="about-team-info">
                   <h3 className="about-team-name">{member.name}</h3>
                   <p className="about-team-role">{member.role}</p>
+                  {member.formation && member.formation.trim() && (
+                    <p className="about-team-formation">{member.formation.trim()}</p>
+                  )}
                   <p className="about-team-bio">
-                    {FUNCTIONAL_BIOS[member.name] || member.bio}
+                    {member.bio || FUNCTIONAL_BIOS[member.name]}
                   </p>
                 </div>
               </div>

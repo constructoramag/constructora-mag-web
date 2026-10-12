@@ -190,11 +190,14 @@ export const TESTIMONIALS_QUERY = `
 `
 
 export const TEAM_QUERY = `
-  *[_type == "team"] | order(_createdAt asc) {
+  *[_type == "teamMember" && active == true] | order(order asc, _createdAt asc) {
     _id,
     name,
     role,
+    formation,
     bio,
-    "imageUrl": image.asset->url
+    order,
+    "imageUrl": image.asset->url,
+    "imageAlt": coalesce(image.alt, "")
   }
 `
