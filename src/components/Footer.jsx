@@ -127,7 +127,7 @@ function Footer() {
                     {/* WhatsApp CTA */}
                     <div className="footer__col footer__col--cta">
                         <h4 className="footer__col-title">¿Tienes un proyecto?</h4>
-                        <p className="footer__cta-text">Cotiza gratis, sin compromisos.</p>
+                        <p className="footer__cta-text">Conversemos sobre tu proyecto.</p>
                         <a
                             href={buildWhatsAppUrl(displayContact.whatsapp1, "Hola! Me interesa cotizar un proyecto.")}
                             target="_blank"
